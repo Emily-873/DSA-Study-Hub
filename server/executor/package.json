@@ -10,5 +10,8 @@
   "dependencies": {
     "express": "^4.19.2",
     "express-rate-limit": "^8.2.2"
+  },
+  "overrides": {
+    "ip-address": ">=10.1.1"
   }
 }
