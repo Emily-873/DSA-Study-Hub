@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   // Workaround/Patch for Next.js CVE: Unbounded postponed resume buffering
   // Block requests containing the 'next-resume' header.
   // This header is never valid when sent from an untrusted client and could lead to DoS if PPR is enabled.
