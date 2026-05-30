@@ -19,25 +19,29 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: npm
+          cache: pnpm
 
       - name: Install frontend dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Lint
-        run: npm run lint
+        run: pnpm run lint
 
       - name: Type check
         run: npx tsc --noEmit
 
       - name: Frontend tests
-        run: npm test
+        run: pnpm test
 
       - name: Install server dependencies
-        run: cd server && npm ci
+        run: cd server && pnpm install --frozen-lockfile
 
       - name: Server tests
-        run: cd server && npm test
+        run: cd server && pnpm test

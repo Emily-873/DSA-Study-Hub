@@ -96,7 +96,7 @@ Follow these steps to run the project locally on your machine.
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) (v18 or higher)
-- npm (Node Package Manager)
+- pnpm (Performant NPM)
 
 ### Installation
 
@@ -110,8 +110,8 @@ Follow these steps to run the project locally on your machine.
 2. **Install dependencies:**
 
    ```bash
-   npm install
-   cd server && npm install && cd ..
+   pnpm install
+   cd server && pnpm install && cd ..
    ```
 
 3. **Set up environment variables:**
@@ -124,7 +124,7 @@ Follow these steps to run the project locally on your machine.
 4. **Run the development server:**
 
    ```bash
-   npm run dev
+   pnpm run dev
    ```
 
 5. **Open in Browser:**
