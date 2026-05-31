@@ -5,3 +5,4 @@ packages:
   - "!server"
 overrides:
   postcss: ">=8.5.10"
+  cookie: ">=0.7.0"
