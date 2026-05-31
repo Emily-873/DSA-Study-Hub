@@ -1,5 +1,5 @@
 {
-  "name": "dsa-hub-next",
+  "name": "dsa-study-hub",
   "private": true,
   "license": "GPL-3.0-or-later",
   "version": "0.0.0",
@@ -41,7 +41,7 @@
     "globals": "^15.9.0",
     "jsdom": "^29.0.2",
     "minimatch": "^10.2.2",
-    "postcss": "^8.5.10",
+    "postcss": "^8.5.15",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.3.0",
@@ -50,7 +50,10 @@
   "overrides": {
     "minimatch": "^10.2.2",
     "cookie": "^0.7.0",
-    "postcss": "^8.5.10",
+    "postcss": ">=8.5.10",
     "fast-uri": "^3.1.2"
+  },
+  "resolutions": {
+    "postcss": ">=8.5.10"
   }
 }

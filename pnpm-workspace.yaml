@@ -3,3 +3,5 @@ allowBuilds:
 packages:
   - "."
   - "!server"
+overrides:
+  postcss: ">=8.5.10"
