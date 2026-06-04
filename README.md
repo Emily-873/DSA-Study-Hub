@@ -4,27 +4,18 @@
 
 **DSA Study Hub** is an interactive educational web application designed to help students master **Data Structures and Applications (DSA)**. It features a modern, responsive interface where users can view C source code for standard laboratory programs and run interactive simulations of those algorithms directly in the browser.
 
-<div align="center">
-
-![Project Status](https://img.shields.io/badge/status-active-success.svg?style=for-the-badge)
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg?style=for-the-badge)](https://github.com/toxicbishop/DSA-Study-Hub/blob/main/LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/toxicbishop/DSA-Study-Hub?style=for-the-badge)](https://github.com/toxicbishop/DSA-Study-Hub/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/toxicbishop/DSA-Study-Hub?style=for-the-badge)](https://github.com/toxicbishop/DSA-Study-Hub/network)
-[![GitHub issues](https://img.shields.io/github/issues/toxicbishop/DSA-Study-Hub?style=for-the-badge)](https://github.com/toxicbishop/DSA-Study-Hub/issues)
-
-</div>
-
-<div align="center">
-
-![Next.js](https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js&logoColor=white)
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
-
-</div>
+![Project Status](https://img.shields.io/badge/status-active-success.svg)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/toxicbishop/DSA-Study-Hub/blob/main/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/toxicbishop/DSA-Study-Hub)](https://github.com/toxicbishop/DSA-Study-Hub/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/toxicbishop/DSA-Study-Hub)](https://github.com/toxicbishop/DSA-Study-Hub/network)
+[![GitHub issues](https://img.shields.io/github/issues/toxicbishop/DSA-Study-Hub)](https://github.com/toxicbishop/DSA-Study-Hub/issues)
+![Next.js](https://img.shields.io/badge/Next.js-black?style=flat-square&logo=next.js&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-000000?style=flat-square&logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=flat-square&logo=mongodb&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=flat-square&logo=docker&logoColor=white)
 
 ## Project Previews
 
