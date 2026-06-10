@@ -18,12 +18,14 @@ const randomIntFromInterval = (min: number, max: number) =>
 const SortingVisualizer: React.FC = () => {
   const [array, setArray] = useState<number[]>([]);
   const [isSorting, setIsSorting] = useState(false);
+  const [isSortedState, setIsSortedState] = useState(false); // true = finished naturally
   const [speed, setSpeed] = useLocalStorage("sortingSpeed", 50);
   const [algorithm, setAlgorithm] = useLocalStorage(
     "sortingAlgorithm",
     "bubble",
   );
   const [comparisons, setComparisons] = useState(0);
+  const isSortedRef = useRef(false); // ref mirror so the effect closure is always fresh
 
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMuted, setIsMuted] = useState(false);
@@ -490,6 +492,8 @@ const SortingVisualizer: React.FC = () => {
 
   const handleSort = async () => {
     setIsSorting(true);
+    setIsSortedState(false);
+    isSortedRef.current = false;
     isSortingRef.current = true;
     if (algorithm === "bubble") await bubbleSort();
     else if (algorithm === "selection") await selectionSort();
@@ -504,14 +508,31 @@ const SortingVisualizer: React.FC = () => {
     else if (algorithm === "shell") await shellSort();
     else if (algorithm === "bogo") await bogoSort();
 
+    // Only mark as sorted if the algorithm ran to completion (not stopped)
+    if (isSortingRef.current) {
+      setIsSortedState(true);
+      isSortedRef.current = true;
+    }
     setIsSorting(false);
     isSortingRef.current = false;
   };
 
   const handleStop = () => {
     isSortingRef.current = false;
+    setIsSortedState(false); // stopped mid-way — not sorted
+    isSortedRef.current = false;
     setIsSorting(false);
   };
+
+  // Auto-shuffle when user switches algorithm after a completed sort
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (isSortedRef.current) {
+      isSortedRef.current = false;
+      setIsSortedState(false);
+      resetArray();
+    }
+  }, [algorithm]); // algorithm change is the only trigger
 
   // --- QUICK SORT ---
   const quickSortHelper = async () => {
