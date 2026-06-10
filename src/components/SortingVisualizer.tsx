@@ -28,6 +28,9 @@ const SortingVisualizer: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMuted, setIsMuted] = useState(false);
   const audioCtxRef = useRef<AudioContext | null>(null);
+  const isSortingRef = useRef(false);
+  const checkIfSorting = () => isSortingRef.current;
+
 
   // Audio Context initialization helper
   const getAudioContext = () => {
@@ -65,7 +68,7 @@ const SortingVisualizer: React.FC = () => {
   const [mounted, setMounted] = useState(false);
 
   const resetArray = useCallback(() => {
-    if (isSorting) return;
+    if (isSortingRef.current) return;
     const width = containerRef.current?.offsetWidth || 800;
     const numBars = Math.floor(width / (width < 600 ? 8 : 12)); // Responsive bar count
     const newArray: number[] = [];
@@ -82,17 +85,19 @@ const SortingVisualizer: React.FC = () => {
     for (let i = 0; i < bars.length; i++) {
       bars[i].style.backgroundColor = "#f97316"; // Default Orange
     }
-  }, [isSorting]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Stable — uses isSortingRef.current, not isSorting state
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  // Only fire once when the component mounts on the client
   useEffect(() => {
     if (mounted) {
       resetArray();
     }
-  }, [mounted, resetArray]);
+  }, [mounted]); // intentionally omit resetArray — it is stable and should not retrigger
 
   const sleep = (ms: number) =>
     new Promise((resolve) => setTimeout(resolve, ms));
@@ -481,9 +486,7 @@ const SortingVisualizer: React.FC = () => {
     setIsSorting(false);
   };
 
-  // Need a special check for the async loop break
-  const isSortingRef = useRef(false);
-  const checkIfSorting = () => isSortingRef.current;
+
 
   const handleSort = async () => {
     setIsSorting(true);
