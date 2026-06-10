@@ -90,7 +90,7 @@ export default function HashTableVisualizer() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-6 mb-6 font-sans">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-6 mb-6 font-sans">
         {/* Controls */}
         <div className="p-4 bg-gray-50 dark:bg-gray-800/40 border border-gray-200 dark:border-gray-800 rounded-xl space-y-4">
           <div>
