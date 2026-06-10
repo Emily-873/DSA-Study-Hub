@@ -90,22 +90,22 @@ export default function HashTableVisualizer() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 font-sans">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-6 mb-6 font-sans">
         {/* Controls */}
         <div className="p-4 bg-gray-50 dark:bg-gray-800/40 border border-gray-200 dark:border-gray-800 rounded-xl space-y-4">
           <div>
             <label className="block text-xs font-bold uppercase text-gray-400 mb-1">Insert Key</label>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               <input
                 type="number"
                 value={keyInput}
                 onChange={(e) => setKeyInput(e.target.value)}
                 placeholder="Key (e.g. 25)"
-                className="flex-1 px-3 py-2 bg-white dark:bg-gray-950 border border-gray-300 dark:border-gray-700 rounded-lg outline-none focus:ring-2 focus:ring-orange-500 text-xs font-semibold"
+                className="flex-grow min-w-[120px] px-3 py-2 bg-white dark:bg-gray-950 border border-gray-300 dark:border-gray-700 rounded-lg outline-none focus:ring-2 focus:ring-orange-500 text-xs font-semibold"
               />
               <button
                 onClick={insertKey}
-                className="flex items-center gap-1.5 px-4 py-2 bg-orange-500 text-white rounded-lg font-bold text-xs hover:scale-105 active:scale-95 transition-all shadow"
+                className="flex-grow sm:flex-grow-0 flex items-center justify-center gap-1.5 px-4 py-2 bg-orange-500 text-white rounded-lg font-bold text-xs hover:scale-105 active:scale-95 transition-all shadow"
               >
                 <Plus size={14} /> Insert
               </button>
@@ -120,14 +120,14 @@ export default function HashTableVisualizer() {
           </button>
 
           {errorMsg && (
-            <div className="p-2.5 bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-900/50 rounded-lg text-xs font-semibold text-red-600 dark:text-red-400 flex items-center gap-1.5">
+            <div className="p-2.5 bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-900/50 rounded-lg text-xs font-semibold text-red-600 dark:text-red-300 flex items-center gap-1.5">
               <AlertCircle size={14} /> {errorMsg}
             </div>
           )}
         </div>
 
         {/* Logs */}
-        <div className="md:col-span-2 p-4 bg-gray-50/50 dark:bg-gray-950/20 border border-gray-200 dark:border-gray-800 rounded-xl font-mono text-xs">
+        <div className="p-4 bg-gray-50/50 dark:bg-gray-950/20 border border-gray-200 dark:border-gray-800 rounded-xl font-mono text-xs">
           <span className="font-extrabold uppercase text-orange-500 tracking-wider font-sans">
             Hash Trace Logger
           </span>

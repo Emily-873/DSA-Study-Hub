@@ -140,7 +140,7 @@ export default function GraphVisualizer() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 font-mono text-xs">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3 gap-6 font-mono text-xs">
         {/* Adjacency Matrix Builder */}
         <div className="p-4 bg-gray-50 dark:bg-gray-800/40 border border-gray-200 dark:border-gray-800 rounded-xl space-y-4">
           <div>
@@ -219,8 +219,8 @@ export default function GraphVisualizer() {
         </div>
 
         {/* Graph SVG Display */}
-        <div className="lg:col-span-2 p-4 bg-gray-50/50 dark:bg-gray-950/20 border border-gray-200 dark:border-gray-800 rounded-2xl flex flex-col justify-between items-center min-h-[300px]">
-          <svg className="w-full max-w-[400px] h-[220px]">
+        <div className="md:col-span-2 lg:col-span-1 xl:col-span-2 p-4 bg-gray-50/50 dark:bg-gray-950/20 border border-gray-200 dark:border-gray-800 rounded-2xl flex flex-col justify-between items-center min-h-[300px]">
+          <svg className="w-full max-w-[400px] h-[250px]">
             {/* Draw Directed Edges */}
             <defs>
               <marker
