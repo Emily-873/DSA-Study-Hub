@@ -6,6 +6,7 @@ import {
   Settings2,
   Volume2,
   VolumeX,
+  Square,
 } from "lucide-react";
 import ComplexityChart from "./ComplexityChart";
 import useLocalStorage from "../hooks/useLocalStorage";
@@ -106,7 +107,7 @@ const SortingVisualizer: React.FC = () => {
 
     for (let i = 0; i < arr.length; i++) {
       for (let j = 0; j < arr.length - i - 1; j++) {
-        if (!isSorting && !checkIfSorting()) return; // Stop if reset
+        if (!isSortingRef.current) return; // Stop if reset
 
         // Highlight comparison
         bars[j].style.backgroundColor = "#ec4899"; // Pink
@@ -147,7 +148,7 @@ const SortingVisualizer: React.FC = () => {
       bars[i].style.backgroundColor = "#ec4899"; // Current Pivot
 
       for (let j = i + 1; j < arr.length; j++) {
-        if (!isSorting && !checkIfSorting()) return;
+        if (!isSortingRef.current) return;
         bars[j].style.backgroundColor = "#eab308"; // Scanning
         playSound(arr[j]);
         await sleep(100 - speed);
@@ -504,6 +505,21 @@ const SortingVisualizer: React.FC = () => {
     isSortingRef.current = false;
   };
 
+  const handleStop = () => {
+    isSortingRef.current = false;
+    setIsSorting(false);
+
+    // Reset bar colors back to default orange after a tiny delay
+    setTimeout(() => {
+      const bars = document.getElementsByClassName(
+        "array-bar",
+      ) as HTMLCollectionOf<HTMLElement>;
+      for (let i = 0; i < bars.length; i++) {
+        bars[i].style.backgroundColor = "#f97316";
+      }
+    }, 100);
+  };
+
   // --- QUICK SORT ---
   const quickSortHelper = async () => {
     const arr = [...array];
@@ -771,13 +787,21 @@ const SortingVisualizer: React.FC = () => {
         </button>
 
         <div className="flex gap-2">
-          <button
-            onClick={handleSort}
-            disabled={isSorting}
-            className={`flex items-center space-x-2 px-6 py-2 neo-button font-bold text-white transition-all ${isSorting ? "bg-gray-400 cursor-not-allowed" : "bg-orange-500"}`}>
-            <Play size={18} />
-            <span>Sort</span>
-          </button>
+          {isSorting ? (
+            <button
+              onClick={handleStop}
+              className="flex items-center space-x-2 px-6 py-2 neo-button font-bold text-white bg-red-500 hover:bg-red-600 transition-all">
+              <Square size={18} className="fill-white" />
+              <span>Stop</span>
+            </button>
+          ) : (
+            <button
+              onClick={handleSort}
+              className="flex items-center space-x-2 px-6 py-2 neo-button font-bold text-white bg-orange-500 hover:bg-orange-600 transition-all">
+              <Play size={18} />
+              <span>Sort</span>
+            </button>
+          )}
           <button
             onClick={resetArray}
             disabled={isSorting}
