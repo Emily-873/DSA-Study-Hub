@@ -131,7 +131,7 @@ export const ProgramView: React.FC<ProgramViewProps> = ({
     <section className="py-20 px-4 pt-32 min-h-screen">
       <div className="max-w-[1500px] mx-auto px-4 md:px-8 flex flex-col lg:flex-row gap-8 items-stretch">
         {/* Left Column: Program Details & Code */}
-        <div className="w-full lg:w-7/12 lg:min-w-0 p-6 neo-brutalism bg-white dark:bg-gray-800/20 backdrop-blur-sm">
+        <div className="w-full lg:w-[55%] xl:w-[50%] lg:min-w-0 p-6 neo-brutalism bg-white dark:bg-gray-800/20 backdrop-blur-sm">
           <div className="space-y-6">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
@@ -321,7 +321,7 @@ export const ProgramView: React.FC<ProgramViewProps> = ({
       </div>
 
         {/* Right Column: Interactive Visualizer & Simulator */}
-        <div className="w-full lg:w-5/12 lg:min-w-0 px-2 lg:px-0 flex flex-col pb-20">
+        <div className="w-full lg:w-[45%] xl:w-[50%] lg:min-w-0 px-2 lg:px-0 flex flex-col pb-20">
           {viewMode === "visualizer" && program.hasInteractive ? (
             <div>
               {renderInteractiveVisualizer(activeView)}
