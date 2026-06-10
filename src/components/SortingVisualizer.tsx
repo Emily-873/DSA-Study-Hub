@@ -61,6 +61,8 @@ const SortingVisualizer: React.FC = () => {
     osc.stop(ctx.currentTime + 0.1);
   };
 
+  const [mounted, setMounted] = useState(false);
+
   const resetArray = useCallback(() => {
     if (isSorting) return;
     const width = containerRef.current?.offsetWidth || 800;
@@ -82,8 +84,14 @@ const SortingVisualizer: React.FC = () => {
   }, [isSorting]);
 
   useEffect(() => {
-    resetArray();
-  }, [resetArray]);
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (mounted) {
+      resetArray();
+    }
+  }, [mounted, resetArray]);
 
   const sleep = (ms: number) =>
     new Promise((resolve) => setTimeout(resolve, ms));
