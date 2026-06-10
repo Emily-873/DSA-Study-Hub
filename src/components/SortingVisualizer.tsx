@@ -29,10 +29,15 @@ const SortingVisualizer: React.FC = () => {
 
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMuted, setIsMuted] = useState(false);
+  const isMutedRef = useRef(false); // ref so playSound always sees the latest value
   const audioCtxRef = useRef<AudioContext | null>(null);
   const isSortingRef = useRef(false);
   const checkIfSorting = () => isSortingRef.current;
 
+  // Keep isMutedRef in sync whenever the toggle fires
+  useEffect(() => {
+    isMutedRef.current = isMuted;
+  }, [isMuted]);
 
   // Audio Context initialization helper
   const getAudioContext = () => {
@@ -47,7 +52,7 @@ const SortingVisualizer: React.FC = () => {
   };
 
   const playSound = (value: number) => {
-    if (isMuted) return;
+    if (isMutedRef.current) return; // always reads the latest toggle
     const ctx = getAudioContext();
     if (ctx.state === "suspended") ctx.resume();
 
