@@ -220,7 +220,7 @@ export default function GraphVisualizer() {
 
         {/* Graph SVG Display */}
         <div className="lg:col-span-2 p-4 bg-gray-50/50 dark:bg-gray-950/20 border border-gray-200 dark:border-gray-800 rounded-2xl flex flex-col justify-between items-center min-h-[300px]">
-          <svg className="w-full max-w-[400px] h-[220px]">
+          <svg className="w-full max-w-[400px] h-[250px]">
             {/* Draw Directed Edges */}
             <defs>
               <marker
