@@ -508,16 +508,6 @@ const SortingVisualizer: React.FC = () => {
   const handleStop = () => {
     isSortingRef.current = false;
     setIsSorting(false);
-
-    // Reset bar colors back to default orange after a tiny delay
-    setTimeout(() => {
-      const bars = document.getElementsByClassName(
-        "array-bar",
-      ) as HTMLCollectionOf<HTMLElement>;
-      for (let i = 0; i < bars.length; i++) {
-        bars[i].style.backgroundColor = "#f97316";
-      }
-    }, 100);
   };
 
   // --- QUICK SORT ---
