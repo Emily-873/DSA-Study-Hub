@@ -23,6 +23,7 @@ import {
 import { programsData, notes } from "../data/programs";
 import { GoogleAuth, GoogleUser } from "./GoogleAuth";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 interface SearchItem {
   id: string;
@@ -84,6 +85,9 @@ export const Navbar = ({
   isAuthModalOpen,
   setIsAuthModalOpen,
 }: NavbarProps) => {
+  const router = useRouter();
+  const { id } = router.query;
+  const activeView = typeof id === "string" ? id : Array.isArray(id) ? id[0] : "";
   return (
     <nav
       className={`fixed w-full top-0 z-50 transition-all duration-300 ${isNavbarScrolled ? "glassmorphism !bg-white/70 dark:!bg-black/70 shadow-lg" : "bg-transparent"}`}>
@@ -122,25 +126,37 @@ export const Navbar = ({
               </button>
               {isProgramsOpen && (
                 <div className="absolute top-full left-0 mt-2 w-48 glassmorphism rounded-lg py-2 h-64 overflow-y-auto z-50">
-                  {programsData.map((program) => (
-                    <Link
-                      href={`/program/${program.id}`}
-                      key={program.id}
-                      passHref
-                      legacyBehavior>
-                      <a
-                        className="flex items-center justify-between px-4 py-2 hover:bg-orange-500/10"
-                        onClick={() => {
-                          handleProgramClick(program.id);
-                          setIsProgramsOpen(false);
-                        }}>
-                        <span>{program.name}</span>
-                        {completedPrograms.includes(program.id) && (
-                          <Check size={14} className="text-green-500" />
-                        )}
-                      </a>
-                    </Link>
-                  ))}
+                  {programsData.map((program) => {
+                    const isActive = activeView === program.id;
+                    return (
+                      <Link
+                        href={`/program/${program.id}`}
+                        key={program.id}
+                        passHref
+                        legacyBehavior>
+                        <a
+                          className={`flex items-center justify-between py-2 transition-colors ${
+                            isActive
+                              ? "bg-orange-500/10 text-orange-500 font-bold border-l-2 border-orange-500 pl-3.5 pr-4"
+                              : "text-gray-700 dark:text-gray-200 hover:bg-orange-500/10 px-4"
+                          }`}
+                          onClick={() => {
+                            handleProgramClick(program.id);
+                            setIsProgramsOpen(false);
+                          }}>
+                          <div className="flex items-center gap-2">
+                            {isActive && (
+                              <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
+                            )}
+                            <span>{program.name}</span>
+                          </div>
+                          {completedPrograms.includes(program.id) && (
+                            <Check size={14} className="text-green-500 flex-shrink-0" />
+                          )}
+                        </a>
+                      </Link>
+                    );
+                  })}
                 </div>
               )}
             </div>
@@ -377,22 +393,34 @@ export const Navbar = ({
               </button>
               {isProgramsOpen && (
                 <div className="pl-8 flex flex-col space-y-1 mt-1">
-                  {programsData.map((program) => (
-                    <a
-                      key={program.id}
-                      href={`#${program.id}`}
-                      className="flex items-center justify-between py-1.5 px-2 text-sm text-gray-600 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 rounded-md hover:bg-orange-500/5"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleProgramClick(program.name);
-                        setIsMobileMenuOpen(false);
-                      }}>
-                      <span>{program.name}</span>
-                      {completedPrograms.includes(program.id) && (
-                        <Check size={14} className="text-green-500" />
-                      )}
-                    </a>
-                  ))}
+                  {programsData.map((program) => {
+                    const isActive = activeView === program.id;
+                    return (
+                      <a
+                        key={program.id}
+                        href={`#${program.id}`}
+                        className={`flex items-center justify-between py-1.5 rounded-md hover:bg-orange-500/5 transition-colors ${
+                          isActive
+                            ? "bg-orange-500/10 text-orange-500 font-semibold border-l-2 border-orange-500 pl-2 pr-2"
+                            : "text-gray-600 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 px-2.5"
+                        }`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleProgramClick(program.name);
+                          setIsMobileMenuOpen(false);
+                        }}>
+                        <div className="flex items-center gap-2">
+                          {isActive && (
+                            <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
+                          )}
+                          <span>{program.name}</span>
+                        </div>
+                        {completedPrograms.includes(program.id) && (
+                          <Check size={14} className="text-green-500 flex-shrink-0" />
+                        )}
+                      </a>
+                    );
+                  })}
                 </div>
               )}
             </div>

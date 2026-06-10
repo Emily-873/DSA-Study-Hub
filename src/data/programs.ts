@@ -2196,6 +2196,7 @@ export const programsData = [
     difficulty: "Easy",
     time: "O(1)",
     space: "O(1)",
+    hasInteractive: true,
   },
   {
     id: "program2",
@@ -2204,6 +2205,7 @@ export const programsData = [
     difficulty: "Easy",
     time: "O(N)",
     space: "O(N)",
+    hasInteractive: true,
   },
   {
     id: "program3",
@@ -2212,6 +2214,7 @@ export const programsData = [
     difficulty: "Easy",
     time: "O(N)",
     space: "O(N)",
+    hasInteractive: true,
   },
   {
     id: "program4",
@@ -2220,6 +2223,7 @@ export const programsData = [
     difficulty: "Easy",
     time: "O(N)",
     space: "O(N)",
+    hasInteractive: true,
   },
   {
     id: "program5a",
@@ -2228,6 +2232,7 @@ export const programsData = [
     difficulty: "Medium",
     time: "O(N)",
     space: "O(N)",
+    hasInteractive: true,
   },
   {
     id: "program5b",
@@ -2236,6 +2241,7 @@ export const programsData = [
     difficulty: "Medium",
     time: "O(2^N)",
     space: "O(N)",
+    hasInteractive: true,
   },
   {
     id: "program6",
@@ -2244,6 +2250,7 @@ export const programsData = [
     difficulty: "Medium",
     time: "O(1)",
     space: "O(N)",
+    hasInteractive: true,
   },
   {
     id: "program7",
@@ -2252,6 +2259,7 @@ export const programsData = [
     difficulty: "Medium",
     time: "O(N)",
     space: "O(N)",
+    hasInteractive: true,
   },
   {
     id: "program8",
@@ -2260,6 +2268,7 @@ export const programsData = [
     difficulty: "Medium",
     time: "O(N)",
     space: "O(N)",
+    hasInteractive: true,
   },
   {
     id: "program9",
@@ -2268,6 +2277,7 @@ export const programsData = [
     difficulty: "Hard",
     time: "O(N*M)",
     space: "O(N+M)",
+    hasInteractive: true,
   },
   {
     id: "program10",
@@ -2276,6 +2286,7 @@ export const programsData = [
     difficulty: "Hard",
     time: "O(H)",
     space: "O(H)",
+    hasInteractive: true,
   },
   {
     id: "program11",
@@ -2284,6 +2295,7 @@ export const programsData = [
     difficulty: "Hard",
     time: "O(V+E)",
     space: "O(V)",
+    hasInteractive: true,
   },
   {
     id: "program12",
@@ -2292,6 +2304,7 @@ export const programsData = [
     difficulty: "Medium",
     time: "O(1) avg",
     space: "O(M)",
+    hasInteractive: true,
   },
 ];
 
