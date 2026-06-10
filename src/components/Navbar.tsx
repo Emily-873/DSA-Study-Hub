@@ -95,22 +95,21 @@ export const Navbar = ({
         <div className="flex items-center h-16 px-4">
           {/* Left: Logo */}
           <div className="flex-1 flex justify-start items-center">
-            <Link href="/" passHref legacyBehavior>
-              <a
-                className="text-xl lg:text-2xl font-bold tracking-tight whitespace-nowrap cursor-pointer text-gray-900 dark:text-white"
-                onClick={resetProgramState}>
-                DSA Study <span className="text-orange-500">Hub</span>
-              </a>
+            <Link href="/" className="text-xl lg:text-2xl font-bold tracking-tight whitespace-nowrap cursor-pointer text-gray-900 dark:text-white" onClick={resetProgramState}>
+              DSA Study <span className="text-orange-500">Hub</span>
+
             </Link>
           </div>
 
           {/* Center: Tabs Container */}
           <div className="hidden md:flex flex-shrink-0 items-center justify-center space-x-2 lg:space-x-4">
-            <Link href="/" passHref legacyBehavior>
-              <a className="flex items-center space-x-1 hover:text-orange-500 transition-colors">
-                <Home size={18} />
-                <span>Home</span>
-              </a>
+            <Link
+              href="/"
+              className="flex items-center space-x-1 hover:text-orange-500 transition-colors">
+
+              <Home size={18} />
+              <span>Home</span>
+
             </Link>
             <div className="relative programs-dropdown">
               <button
@@ -132,28 +131,26 @@ export const Navbar = ({
                       <Link
                         href={`/program/${program.id}`}
                         key={program.id}
-                        passHref
-                        legacyBehavior>
-                        <a
-                          className={`flex items-center justify-between py-2 transition-colors ${
-                            isActive
-                              ? "bg-orange-500/10 text-orange-500 font-bold border-l-2 border-orange-500 pl-3.5 pr-4"
-                              : "text-gray-700 dark:text-gray-200 hover:bg-orange-500/10 px-4"
-                          }`}
-                          onClick={() => {
-                            handleProgramClick(program.id);
-                            setIsProgramsOpen(false);
-                          }}>
-                          <div className="flex items-center gap-2">
-                            {isActive && (
-                              <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
-                            )}
-                            <span>{program.name}</span>
-                          </div>
-                          {completedPrograms.includes(program.id) && (
-                            <Check size={14} className="text-green-500 flex-shrink-0" />
+                        className={`flex items-center justify-between py-2 transition-colors ${
+                          isActive
+                            ? "bg-orange-500/10 text-orange-500 font-bold border-l-2 border-orange-500 pl-3.5 pr-4"
+                            : "text-gray-700 dark:text-gray-200 hover:bg-orange-500/10 px-4"
+                        }`}
+                        onClick={() => {
+                          handleProgramClick(program.id);
+                          setIsProgramsOpen(false);
+                        }}>
+
+                        <div className="flex items-center gap-2">
+                          {isActive && (
+                            <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
                           )}
-                        </a>
+                          <span>{program.name}</span>
+                        </div>
+                        {completedPrograms.includes(program.id) && (
+                          <Check size={14} className="text-green-500 flex-shrink-0" />
+                        )}
+
                       </Link>
                     );
                   })}
@@ -188,49 +185,59 @@ export const Navbar = ({
               )}
             </div>
 
-            <Link href="/knapsack" passHref legacyBehavior>
-              <a className="flex items-center space-x-1 hover:text-orange-500 transition-colors">
-                <Package size={18} />
-                <span>Knapsack</span>
-              </a>
+            <Link
+              href="/knapsack"
+              className="flex items-center space-x-1 hover:text-orange-500 transition-colors">
+
+              <Package size={18} />
+              <span>Knapsack</span>
+
             </Link>
-            <Link href="/visualizer" passHref legacyBehavior>
-              <a className="flex items-center space-x-1 hover:text-orange-500 transition-colors">
-                <Map size={18} />
-                <span>Pathfinder</span>
-              </a>
+            <Link
+              href="/visualizer"
+              className="flex items-center space-x-1 hover:text-orange-500 transition-colors">
+
+              <Map size={18} />
+              <span>Pathfinder</span>
+
             </Link>
-            <Link href="/sorting" passHref legacyBehavior>
-              <a className="flex items-center space-x-1 hover:text-orange-500 transition-colors">
-                <BarChart3 size={18} />
-                <span>Sorter</span>
-              </a>
+            <Link
+              href="/sorting"
+              className="flex items-center space-x-1 hover:text-orange-500 transition-colors">
+
+              <BarChart3 size={18} />
+              <span>Sorter</span>
+
             </Link>
-            <Link href="/tree-graph" passHref legacyBehavior>
-              <a className="flex items-center space-x-1 hover:text-orange-500 transition-colors">
-                <Network size={18} />
-                <span>Trees</span>
-              </a>
+            <Link
+              href="/tree-graph"
+              className="flex items-center space-x-1 hover:text-orange-500 transition-colors">
+
+              <Network size={18} />
+              <span>Trees</span>
+
             </Link>
-            <Link href="/system-design" passHref legacyBehavior>
-              <a className="flex items-center space-x-1 hover:text-orange-500 transition-colors">
-                <Server size={18} />
-                <span>Design</span>
-              </a>
+            <Link
+              href="/system-design"
+              className="flex items-center space-x-1 hover:text-orange-500 transition-colors">
+
+              <Server size={18} />
+              <span>Design</span>
+
             </Link>
 
-            <Link href="/about" passHref legacyBehavior>
-              <a className="flex items-center space-x-1 hover:text-orange-500 transition-colors">
-                <User size={18} />
-                <span>About Me</span>
-              </a>
+            <Link
+              href="/about"
+              className="flex items-center space-x-1 hover:text-orange-500 transition-colors">
+
+              <User size={18} />
+              <span>About Me</span>
+
             </Link>
-            <Link href="/report" passHref legacyBehavior>
-              <a
-                className="flex items-center space-x-1 hover:text-orange-500 transition-colors"
-                title="Report Issue">
-                <Bug size={18} />
-              </a>
+            <Link href="/report" className="flex items-center space-x-1 hover:text-orange-500 transition-colors" title="Report Issue">
+
+              <Bug size={18} />
+
             </Link>
           </div>
 
@@ -348,7 +355,6 @@ export const Navbar = ({
           </div>
         </div>
       </div>
-
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
         <div className="md:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg shadow-xl absolute top-16 left-0 w-full flex flex-col border-b border-gray-200 dark:border-gray-700 max-h-[85vh]">
@@ -486,7 +492,7 @@ export const Navbar = ({
           <div className="border-t border-gray-200 dark:border-gray-700 p-4">
             {user ? (
               /* Logged-in user card */
-              <div className="flex items-center gap-3">
+              (<div className="flex items-center gap-3">
                 <button
                   onClick={() => {
                     navigateTo("about");
@@ -522,10 +528,10 @@ export const Navbar = ({
                   title="Logout">
                   <LogOut size={18} />
                 </button>
-              </div>
+              </div>)
             ) : (
               /* Logged-out CTA */
-              <div className="flex flex-col gap-3">
+              (<div className="flex flex-col gap-3">
                 <p className="text-xs text-center text-gray-500 dark:text-gray-400">
                   Track progress, save notes, and unlock all features.
                 </p>
@@ -538,7 +544,7 @@ export const Navbar = ({
                   <span>Get Started</span>
                   <ArrowRight size={18} />
                 </button>
-              </div>
+              </div>)
             )}
           </div>
         </div>
