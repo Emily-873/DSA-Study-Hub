@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { useRouter } from "next/router";
 import { CodeBlock } from "../components/CodeBlock";
 import { Quiz } from "../components/Quiz";
@@ -22,6 +22,20 @@ import {
   programsData,
 } from "../data/programs";
 
+// Visualizer imports
+import CalendarVisualizer from "../components/CalendarVisualizer";
+import StringMatchVisualizer from "../components/StringMatchVisualizer";
+import StackVisualizer from "../components/StackVisualizer";
+import InfixPostfixVisualizer from "../components/InfixPostfixVisualizer";
+import PostfixEvaluator from "../components/PostfixEvaluator";
+import TowerOfHanoi from "../components/TowerOfHanoi";
+import CircularQueue from "../components/CircularQueue";
+import LinkedListVisualizer from "../components/LinkedListVisualizer";
+import PolynomialVisualizer from "../components/PolynomialVisualizer";
+import BSTVisualizer from "../components/BSTVisualizer";
+import GraphVisualizer from "../components/GraphVisualizer";
+import HashTableVisualizer from "../components/HashTableVisualizer";
+
 export interface ProgramViewProps {
   completedPrograms: string[];
   toggleProgramComplete: (id: string) => void;
@@ -40,6 +54,7 @@ export const ProgramView: React.FC<ProgramViewProps> = ({
   const router = useRouter();
   const { id } = router.query;
   const activeView = typeof id === "string" ? id : Array.isArray(id) ? id[0] : "";
+  const [viewMode, setViewMode] = useState<"visualizer" | "console">("visualizer");
 
   const {
     programOutput,
@@ -53,6 +68,25 @@ export const ProgramView: React.FC<ProgramViewProps> = ({
     () => programsData.find((p) => p.id === activeView),
     [activeView],
   );
+
+  const renderInteractiveVisualizer = (progId: string) => {
+    switch (progId) {
+      case "program1": return <CalendarVisualizer />;
+      case "program2": return <StringMatchVisualizer />;
+      case "program3": return <StackVisualizer />;
+      case "program4": return <InfixPostfixVisualizer />;
+      case "program5a": return <PostfixEvaluator />;
+      case "program5b": return <TowerOfHanoi />;
+      case "program6": return <CircularQueue />;
+      case "program7": return <LinkedListVisualizer key="program7" initialIsDLL={false} />;
+      case "program8": return <LinkedListVisualizer key="program8" initialIsDLL={true} />;
+      case "program9": return <PolynomialVisualizer />;
+      case "program10": return <BSTVisualizer />;
+      case "program11": return <GraphVisualizer />;
+      case "program12": return <HashTableVisualizer />;
+      default: return null;
+    }
+  };
 
   if (!program) {
     return (
@@ -95,8 +129,10 @@ export const ProgramView: React.FC<ProgramViewProps> = ({
 
   return (
     <section className="py-20 px-4 pt-32 min-h-screen">
-      <div className="max-w-4xl mx-auto p-6 neo-brutalism bg-white dark:bg-gray-800/20 backdrop-blur-sm">
-        <div className="space-y-6">
+      <div className="max-w-[1500px] mx-auto px-4 md:px-8 flex flex-col lg:flex-row gap-8 items-stretch">
+        {/* Left Column: Program Details & Code */}
+        <div className="w-full lg:w-7/12 lg:min-w-0 p-6 neo-brutalism bg-white dark:bg-gray-800/20 backdrop-blur-sm">
+          <div className="space-y-6">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
               <div className="flex items-center gap-2 text-orange-500 font-bold mb-1">
@@ -283,15 +319,51 @@ export const ProgramView: React.FC<ProgramViewProps> = ({
           </div>
         </div>
       </div>
-      <ProgramSimulator
-        activeView={activeView}
-        darkMode={darkMode}
-        programOutput={programOutput}
-        userInput={userInput}
-        setUserInput={setUserInput}
-        resetProgramState={resetProgramState}
-        handleInputSubmit={handleInputSubmit}
-      />
+
+        {/* Right Column: Interactive Visualizer & Simulator */}
+        <div className="w-full lg:w-5/12 lg:min-w-0 px-2 lg:px-0 flex flex-col pb-20">
+          {viewMode === "visualizer" && program.hasInteractive ? (
+            <div>
+              {renderInteractiveVisualizer(activeView)}
+            </div>
+          ) : (
+            <ProgramSimulator
+              activeView={activeView}
+              darkMode={darkMode}
+              programOutput={programOutput}
+              userInput={userInput}
+              setUserInput={setUserInput}
+              resetProgramState={resetProgramState}
+              handleInputSubmit={handleInputSubmit}
+            />
+          )}
+
+          {program.hasInteractive && (
+            <div className="flex justify-start gap-2 mt-6 bg-gray-100 dark:bg-gray-800 p-1.5 rounded-xl w-fit mr-auto border border-gray-200 dark:border-gray-700">
+              <button
+                onClick={() => setViewMode("visualizer")}
+                className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all ${
+                  viewMode === "visualizer"
+                    ? "bg-orange-500 text-white shadow-sm"
+                    : "text-gray-500 hover:text-orange-500"
+                }`}
+              >
+                Interactive Animation
+              </button>
+              <button
+                onClick={() => setViewMode("console")}
+                className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all ${
+                  viewMode === "console"
+                    ? "bg-orange-500 text-white shadow-sm"
+                    : "text-gray-500 hover:text-orange-500"
+                }`}
+              >
+                Console Simulator
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
     </section>
   );
 };
