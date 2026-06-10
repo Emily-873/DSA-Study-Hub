@@ -927,9 +927,23 @@ const TreeGraphVisualizer: React.FC = () => {
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
-         {/* Canvas Area */}
+         {/* Canvas Area — graph is always centered via viewBox */}
          <div className="flex-1 relative bg-white dark:bg-gray-900 overflow-auto cursor-move min-h-[400px]" ref={canvasRef}>
-            <svg className="w-full h-full min-w-[600px] md:min-w-[1000px] min-h-[500px] md:min-h-[800px]">
+            <svg
+              className="w-full h-full min-w-[600px] md:min-w-[1000px] min-h-[500px] md:min-h-[800px]"
+              viewBox={(() => {
+                if (nodes.length === 0) return "0 0 800 600";
+                const pad = 60;
+                const xs = nodes.map(n => n.x);
+                const ys = nodes.map(n => n.y);
+                const minX = Math.min(...xs) - pad;
+                const minY = Math.min(...ys) - pad;
+                const maxX = Math.max(...xs) + pad;
+                const maxY = Math.max(...ys) + pad;
+                return `${minX} ${minY} ${maxX - minX} ${maxY - minY}`;
+              })()}
+              preserveAspectRatio="xMidYMid meet"
+            >
                 <defs>
                     <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="28" refY="3.5" orient="auto">
                         <polygon points="0 0, 10 3.5, 0 7" fill="#9ca3af" />
