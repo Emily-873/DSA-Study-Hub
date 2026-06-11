@@ -62,10 +62,12 @@ Visualizing Tree Traversals and Graph Algorithms
 
 - **Interactive Program Simulators:** Visualize and interact with algorithms logic (e.g., Stack operations, Graph traversals) without needing a C compiler.
 - **Code Repository:** Access full, copy-ready C source code for 12+ standard DSA programs.
-- **Modern UI/UX:**
+- **Modern Cyberpunk UI/UX:**
+  - **Immersive Theming:** Fully customized sci-fi aesthetic with neon glow effects, floating background nodes, and sleek micro-animations using Tailwind CSS.
   - **Dark/Light Mode** toggle for comfortable reading.
-  - **Responsive Design** using Tailwind CSS.
+  - **Responsive Design** for all devices.
   - **Copy-to-Clipboard** functionality for all code snippets.
+  - **Custom Error Handling:** Thematic "System Breach" 404 error page to maintain immersion.
 - **Portfolio Section:** Integrated "About Me" section for instructor/student details.
 
 ## Tech Stack
@@ -150,6 +152,7 @@ Our development journey with **DSA Study Hub** has been a rich learning experien
 - **Interactive Algorithm Logic:** Transformed complex, static C-language data structures into dynamic, state-driven **React/TypeScript** visualizers (including Sorting, Pathfinding, Knapsack, and Tree/Graph traversal).
 - **Synergistic Visual Documentation:** Adopted a "Documentation-as-Code" approach by integrating **.drawio.svg** diagrams directly into the repository, ensuring system designs evolve alongside implementation.
 - **Automated Developer Storytelling:** Leveraged GitHub Metrics to showcase project impact and technical proficiency, overcoming SVG rendering challenges through streamlined workflow optimization.
+- **Advanced Thematic UI/UX Design:** Successfully built and orchestrated a cohesive, complex cyberpunk design system using Tailwind CSS. This involved engineering global ambient background animations, custom glassmorphism panels, and harmonizing color palettes (migrating off default themes to custom glowing cyan and emerald) across 15+ independent interactive visualizer components.
 
 ---
 
