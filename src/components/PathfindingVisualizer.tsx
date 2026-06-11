@@ -313,14 +313,14 @@ const PathfindingVisualizer: React.FC = () => {
 
   
   return (
-    <div className="flex flex-col items-center w-full max-w-6xl mx-auto p-2 sm:p-4" onMouseUp={handleMouseUp}>
-        <div className="flex flex-col w-full gap-4 mb-6 bg-white dark:bg-gray-800/10 backdrop-blur-md p-4 neo-brutalism">
+    <div className="flex flex-col items-center w-full max-w-6xl mx-auto p-2 sm:p-4 pt-12" onMouseUp={handleMouseUp}>
+        <div className="flex flex-col w-full gap-6 mb-8 glass-panel p-6 rounded-2xl">
             <div className="flex flex-wrap gap-4 items-center justify-center">
                 <div className="flex-1 min-w-[200px]">
                     <select 
                         value={algorithm} 
                         onChange={(e) => setAlgorithm(e.target.value as 'bfs' | 'dfs' | 'astar' | 'dijkstra' | 'prim')}
-                        className="w-full p-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-400 transition-all font-medium"
+                        className="w-full p-2.5 rounded-lg border border-slate-700 bg-slate-900/50 text-cyan-100 focus:outline-none focus:border-cyan-500/50 transition-all font-code text-sm"
                     >
                         <option value="bfs">Breadth-First Search (O(V+E))</option>
                         <option value="dfs">Depth-First Search (O(V+E))</option>
@@ -334,12 +334,12 @@ const PathfindingVisualizer: React.FC = () => {
                     <button 
                         onClick={generateMaze}
                         disabled={isVisualizing}
-                        className="flex items-center space-x-2 px-4 py-2.5 neo-button bg-white dark:bg-gray-800 dark:text-gray-200"
+                        className="btn-ghost-cyber px-4 py-2 flex items-center space-x-2"
                     >
                         <div className="flex gap-0.5">
-                            <div className="w-1 h-3 bg-indigo-500"></div>
-                            <div className="w-1 h-3 bg-indigo-500 translate-y-1"></div>
-                            <div className="w-1 h-3 bg-indigo-500"></div>
+                            <div className="w-1 h-3 bg-cyan-500"></div>
+                            <div className="w-1 h-3 bg-cyan-400 translate-y-1"></div>
+                            <div className="w-1 h-3 bg-cyan-300"></div>
                         </div>
                         <span>Random Maze</span>
                     </button>
@@ -347,7 +347,7 @@ const PathfindingVisualizer: React.FC = () => {
                     <button 
                         onClick={visualize}
                         disabled={isVisualizing}
-                        className={`flex items-center space-x-2 px-6 py-2.5 neo-button font-bold text-white ${isVisualizing ? 'bg-gray-400 cursor-not-allowed' : 'bg-green-500'}`}
+                        className={`btn-cyber px-6 py-2 flex items-center space-x-2 ${isVisualizing ? 'opacity-50 cursor-not-allowed grayscale' : ''}`}
                     >
                         <Play size={18} fill="currentColor" />
                         <span>Visualize</span>
@@ -356,7 +356,7 @@ const PathfindingVisualizer: React.FC = () => {
                     <button 
                         onClick={resetGrid}
                         disabled={isVisualizing}
-                        className="flex items-center space-x-2 px-4 py-2.5 neo-button bg-white dark:bg-gray-800 dark:text-gray-200"
+                        className="btn-ghost-cyber px-4 py-2 flex items-center space-x-2"
                     >
                         <RefreshCw size={18} className={`${isVisualizing ? 'animate-spin' : ''}`} />
                         <span>Reset</span>
@@ -364,18 +364,18 @@ const PathfindingVisualizer: React.FC = () => {
                 </div>
             </div>
 
-            <div className="grid grid-cols-3 sm:flex sm:items-center sm:justify-center gap-2 sm:gap-6 text-[10px] sm:text-xs text-gray-600 dark:text-gray-400 pt-3 border-t border-gray-100 dark:border-gray-700">
-                <div className="flex items-center space-x-2 px-1"><div className="w-3 h-3 bg-green-500 rounded-full shadow-sm"></div><span className="font-medium">Start</span></div>
-                <div className="flex items-center space-x-2 px-1"><div className="w-3 h-3 bg-red-500 rounded-full shadow-sm"></div><span className="font-medium">End</span></div>
-                <div className="flex items-center space-x-2 px-1"><div className="w-3 h-3 bg-slate-800 dark:bg-slate-200 rounded shadow-sm"></div><span className="font-medium">Wall</span></div>
-                <div className="flex items-center space-x-2 px-1"><div className="w-3 h-3 bg-blue-400 rounded shadow-sm animate-pulse"></div><span className="font-medium">Visited</span></div>
-                <div className="flex items-center space-x-2 px-1"><div className="w-3 h-3 bg-yellow-400 rounded shadow-sm"></div><span className="font-medium">Path</span></div>
+            <div className="grid grid-cols-3 sm:flex sm:items-center sm:justify-center gap-2 sm:gap-6 text-[10px] sm:text-xs text-slate-400 font-code uppercase tracking-wider pt-4 border-t border-cyan-500/10">
+                <div className="flex items-center space-x-2 px-1"><div className="w-3 h-3 bg-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.8)] rounded-full"></div><span className="font-medium">Start</span></div>
+                <div className="flex items-center space-x-2 px-1"><div className="w-3 h-3 bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.8)] rounded-full"></div><span className="font-medium">End</span></div>
+                <div className="flex items-center space-x-2 px-1"><div className="w-3 h-3 bg-slate-700 rounded border border-slate-600"></div><span className="font-medium">Wall</span></div>
+                <div className="flex items-center space-x-2 px-1"><div className="w-3 h-3 bg-cyan-500/30 border border-cyan-400/50 rounded"></div><span className="font-medium">Visited</span></div>
+                <div className="flex items-center space-x-2 px-1"><div className="w-3 h-3 bg-cyan-400 shadow-[0_0_8px_rgba(6,182,212,1)] rounded"></div><span className="font-medium">Path</span></div>
             </div>
         </div>
 
         <div className="w-full overflow-x-auto pb-4 scrollbar-hide">
             <div 
-                className="grid gap-[1px] bg-black dark:bg-white p-1 neo-brutalism mx-auto min-w-max sm:min-w-0"
+                className="grid gap-[1px] bg-slate-800 p-1 rounded-xl mx-auto min-w-max sm:min-w-0 border border-cyan-500/20"
                 style={{ 
                     gridTemplateColumns: `repeat(${dimensions.cols}, minmax(20px, 1fr))`,
                     width: dimensions.cols * 25 > 1200 ? 'max-content' : '100%'
@@ -388,13 +388,13 @@ const PathfindingVisualizer: React.FC = () => {
                             onMouseDown={() => handleMouseDown(rowIdx, colIdx)}
                             onMouseEnter={() => handleMouseEnter(rowIdx, colIdx)}
                             className={`
-                                aspect-square transition-all duration-300 ease-in-out cursor-pointer hover:opacity-80 flex items-center justify-center text-[6px] sm:text-[8px] text-gray-400/50
-                                ${node.isStart ? 'bg-green-500 scale-105 shadow-lg z-10 rounded-full' : 
-                                node.isEnd ? 'bg-red-500 scale-105 shadow-lg z-10 rounded-full' : 
-                                node.isWall ? 'bg-slate-800 dark:bg-slate-200 animate-pop' :
-                                node.isPath ? 'bg-yellow-400 animate-path' :
-                                node.isVisited ? 'bg-blue-400 animate-visited' : 
-                                'bg-white dark:bg-gray-800'}
+                                aspect-square transition-all duration-300 ease-in-out cursor-pointer hover:opacity-80 flex items-center justify-center text-[6px] sm:text-[8px] text-cyan-200/30
+                                ${node.isStart ? 'bg-cyan-400 scale-105 shadow-[0_0_15px_rgba(6,182,212,1)] z-10 rounded-full' : 
+                                node.isEnd ? 'bg-rose-500 scale-105 shadow-[0_0_15px_rgba(244,63,94,1)] z-10 rounded-full' : 
+                                node.isWall ? 'bg-slate-700 border border-slate-600 animate-pop' :
+                                node.isPath ? 'bg-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.8)] z-10 animate-path' :
+                                node.isVisited ? 'bg-cyan-500/30 border border-cyan-400/20 animate-visited' : 
+                                'bg-slate-900/80 hover:bg-slate-800/80'}
                             `}
                             style={{ width: '100%' }}
                         >
@@ -404,7 +404,7 @@ const PathfindingVisualizer: React.FC = () => {
                 ))}
             </div>
         </div>
-        <p className="mt-4 text-gray-500 dark:text-gray-400 text-sm flex items-center gap-2">
+        <p className="mt-4 text-cyan-200/50 font-code text-sm flex items-center gap-2">
             <MousePointer2 size={16} /> Click and drag to draw walls.
         </p>
     </div>
