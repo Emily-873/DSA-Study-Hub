@@ -132,12 +132,12 @@ const KnapsackVisualizer: React.FC = () => {
                     <div className="bg-white dark:bg-gray-800/10 backdrop-blur-sm p-6 neo-brutalism">
                         <div className="flex items-center justify-between mb-6">
                             <h2 className="text-xl font-bold flex items-center gap-2">
-                                <Package className="text-orange-500" /> Settings
+                                <Package className="text-orange-500 dark:text-cyan-400" /> Settings
                             </h2>
                             <div className="flex gap-2">
                                 <button 
                                     onClick={resetVisualizer}
-                                    className="p-2 text-gray-500 hover:text-orange-500 transition-colors"
+                                    className="p-2 text-gray-500 hover:text-orange-500 dark:text-cyan-400 transition-colors"
                                     title="Reset"
                                 >
                                     <RotateCcw size={18} />
@@ -174,7 +174,7 @@ const KnapsackVisualizer: React.FC = () => {
                             <div>
                                 <div className="flex justify-between items-center mb-2">
                                     <label className="text-sm font-semibold text-gray-500">Knapsack Capacity</label>
-                                    <span className="text-orange-500 font-bold">{capacity}</span>
+                                    <span className="text-orange-500 dark:text-cyan-400 font-bold">{capacity}</span>
                                 </div>
                                 <input 
                                     type="range" min="1" max="15" value={capacity} 
@@ -195,7 +195,7 @@ const KnapsackVisualizer: React.FC = () => {
                                 </div>
                                 <div className="space-y-3">
                                     {items.map((item, idx) => (
-                                        <div key={item.id} className={`flex items-center gap-3 p-3 rounded-xl border ${selectedItems.includes(item.id) ? 'bg-green-50 border-green-200 dark:bg-green-900/20 dark:border-green-800' : 'bg-gray-50 dark:bg-gray-900/50 border-gray-100 dark:border-gray-800'}`}>
+                                        <div key={item.id} className={`flex items-center gap-3 p-3 rounded-xl border ${selectedItems.includes(item.id) ? 'bg-green-50 border-green-200 dark:bg-green-900/20 dark:border-green-800' : 'bg-gray-50 dark:bg-gray-900/50 border-gray-100 dark:border-cyan-500/20'}`}>
                                             <span className="text-xs font-bold text-gray-400 w-4">{idx + 1}</span>
                                             <div className="flex-1 grid grid-cols-2 gap-2">
                                                 <div className="relative">
@@ -292,7 +292,7 @@ const KnapsackVisualizer: React.FC = () => {
                                                     Item {items.findIndex(it => it.id === res.item.id) + 1}
                                                     <span className="text-xs text-gray-400">(V:{res.item.value} W:{res.item.weight})</span>
                                                 </span>
-                                                <span className="text-orange-500 font-bold">{(res.fraction * 100).toFixed(0)}% Used</span>
+                                                <span className="text-orange-500 dark:text-cyan-400 font-bold">{(res.fraction * 100).toFixed(0)}% Used</span>
                                             </div>
                                             <div className="w-full h-8 bg-gray-100 dark:bg-gray-900 rounded-full overflow-hidden border border-gray-200 dark:border-gray-700 relative">
                                                 <div 
@@ -312,7 +312,7 @@ const KnapsackVisualizer: React.FC = () => {
                                 {greedyResult.length > 0 && (
                                     <div className="mt-8 p-4 bg-orange-500/10 border border-orange-500/20 rounded-2xl flex justify-between items-center">
                                         <span className="font-bold text-gray-600 dark:text-gray-300">Total Profit:</span>
-                                        <span className="text-2xl font-black text-orange-500">
+                                        <span className="text-2xl font-black text-orange-500 dark:text-cyan-400">
                                             {greedyResult.reduce((sum, res) => sum + (res.fraction * res.item.value), 0).toFixed(2)}
                                         </span>
                                     </div>

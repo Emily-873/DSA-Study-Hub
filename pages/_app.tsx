@@ -1,4 +1,5 @@
 import '../src/index.css';
+import '../src/tw-animate.css';
 import type { AppProps } from 'next/app';
 import { Providers } from '../src/components/Providers';
 import { useState, useEffect, useMemo, useCallback } from 'react';
@@ -57,7 +58,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     const checkAuth = async () => {
       try {
-        const res = await secureFetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/me`);
+        const res = await secureFetch("/api/auth/me");
         const data = await res.json();
         if (data.success && data.user) {
           setUser(data.user);
@@ -66,8 +67,8 @@ function MyApp({ Component, pageProps }: AppProps) {
             localStorage.setItem("completedPrograms", JSON.stringify(data.user.completedPrograms));
           }
         }
-      } catch (error) {
-        console.error("Auth check failed:", error);
+      } catch (error: any) {
+        console.warn(`Auth check failed: ${error.message || "Network Error"}`);
       }
     };
     checkAuth();
@@ -221,34 +222,23 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Providers>
 
-      <div className={`min-h-screen relative z-0 transition-colors duration-300 ${darkMode ? "bg-slate-900 text-white" : "bg-gray-50 text-gray-900"}`}>
+      <div className={`min-h-screen relative z-0 transition-colors duration-300 ${darkMode ? "bg-[#070B14] text-white" : "bg-gray-50 text-gray-900"}`}>
         {isWinter && <Snowfall />}
-        <div className={`absolute inset-0 -z-10 bg-[size:30px_30px] ${darkMode ? "bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)]" : "bg-[linear-gradient(to_right,#8080801a_1px,transparent_1px),linear-gradient(to_bottom,#8080801a_1px,transparent_1px)]"}`}></div>
+        <div
+          className="absolute inset-0 -z-10"
+          style={darkMode ? {
+            backgroundImage: "linear-gradient(rgba(6,182,212,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(6,182,212,0.035) 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+          } : {
+            backgroundImage: "linear-gradient(to right, #8080801a 1px, transparent 1px), linear-gradient(to bottom, #8080801a 1px, transparent 1px)",
+            backgroundSize: "30px 30px",
+          }}
+        />
         
         <Navbar
-          isNavbarScrolled={isNavbarScrolled}
-          navigateTo={navigateTo}
           resetProgramState={resetProgramState}
-          isProgramsOpen={isProgramsOpen}
-          setIsProgramsOpen={setIsProgramsOpen}
-          isNotesOpen={isNotesOpen}
-          setIsNotesOpen={setIsNotesOpen}
+          toggleAdminModal={() => setIsAdminModalOpen(true)}
           completedPrograms={completedPrograms}
-          handleProgramClick={handleProgramClick}
-          isSearchOpen={isSearchOpen}
-          setIsSearchOpen={setIsSearchOpen}
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          searchResults={searchResults}
-          darkMode={darkMode}
-          toggleTheme={toggleTheme}
-          isMobileMenuOpen={isMobileMenuOpen}
-          setIsMobileMenuOpen={setIsMobileMenuOpen}
-          user={user}
-          onLogin={setUser}
-          onLogout={() => setUser(null)}
-          isAuthModalOpen={isAuthModalOpen}
-          setIsAuthModalOpen={setIsAuthModalOpen}
         />
 
         <GoogleAuth
@@ -278,72 +268,226 @@ function MyApp({ Component, pageProps }: AppProps) {
           />
         </main>
 
-        <footer className={`py-16 mt-20 border-t-4 border-black dark:border-white font-sans transition-colors duration-300 ${darkMode ? 'bg-slate-900 text-gray-300' : 'bg-white text-gray-700'}`}>
-          <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
-            <div className="space-y-4">
-              <h2 className={`text-2xl font-bold tracking-tight ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                DSA Study <span className="text-orange-500">Hub</span>
-              </h2>
-              <p className={`text-sm leading-relaxed ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                The complete platform to master Data Structures and Algorithms.
-                Interactive visualizations and practice quizzes to help you succeed.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className={`font-semibold mb-6 tracking-wide uppercase text-sm ${darkMode ? 'text-white' : 'text-gray-900'}`}>Learning</h3>
-              <ul className="space-y-3 text-sm font-medium">
-                <li><button onClick={() => navigateTo("home")} className="hover:text-orange-500 transition-colors flex items-center gap-2"><Map size={14} /> Topic Roadmap</button></li>
-                <li><button onClick={() => handleProgramClick("program12")} className="hover:text-orange-500 transition-colors flex items-center gap-2"><Code2 size={14} /> Arrays & Hashing</button></li>
-                <li><button onClick={() => handleProgramClick("program3")} className="hover:text-orange-500 transition-colors flex items-center gap-2"><Code2 size={14} /> Stack & Queues</button></li>
-                <li><button onClick={() => handleProgramClick("program11")} className="hover:text-orange-500 transition-colors flex items-center gap-2"><Network size={14} /> Trees & Graphs</button></li>
-                <li><button onClick={() => navigateTo("system-design")} className="hover:text-orange-500 transition-colors flex items-center gap-2"><Server size={14} /> System Design</button></li>
-              </ul>
+        <footer
+          className={`relative mt-20 overflow-hidden transition-colors duration-300 ${
+            darkMode
+              ? 'border-t border-cyan-500/10'
+              : 'border-t-4 border-black bg-white text-gray-700'
+          }`}
+          style={darkMode ? { background: 'rgba(6,10,20,0.97)', backdropFilter: 'blur(16px)' } : {}}
+        >
+          {/* Dark mode: top glow line */}
+          {darkMode && (
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent" />
+          )}
+
+          {/* Dark mode: subtle grid */}
+          {darkMode && (
+            <div
+              className="absolute inset-0 opacity-30 pointer-events-none"
+              style={{
+                backgroundImage: 'linear-gradient(rgba(6,182,212,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(6,182,212,0.03) 1px, transparent 1px)',
+                backgroundSize: '60px 60px',
+              }}
+            />
+          )}
+
+          <div className="relative z-10 max-w-7xl mx-auto px-6 py-14">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+
+              {/* Brand */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-2.5">
+                  {darkMode ? (
+                    <>
+                      <div
+                        className="w-7 h-7 rounded-lg flex items-center justify-center"
+                        style={{ border: '1px solid rgba(6,182,212,0.35)', background: 'rgba(6,182,212,0.1)' }}
+                      >
+                        <Code2 size={14} className="text-cyan-400" />
+                      </div>
+                      <span className="font-display text-xs font-bold tracking-[0.15em] text-white">
+                        DSA<span className="text-cyan-400">://</span>STUDY HUB
+                      </span>
+                    </>
+                  ) : (
+                    <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+                      DSA Study <span className="text-orange-500">Hub</span>
+                    </h2>
+                  )}
+                </div>
+                <p className={`text-sm leading-relaxed ${
+                  darkMode ? 'font-code text-slate-600' : 'text-gray-500'
+                }`}>
+                  The complete platform to master Data Structures & Algorithms.
+                  Interactive visualizations and practice quizzes to help you succeed.
+                </p>
+              </div>
+
+              {/* Learning */}
+              <div>
+                <h3 className={`mb-6 tracking-[0.2em] uppercase text-xs font-bold ${
+                  darkMode ? 'font-code text-slate-600' : 'font-semibold text-gray-900'
+                }`}>Learning</h3>
+                <ul className="space-y-3 text-sm">
+                  {[
+                    { label: 'Topic Roadmap',    icon: Map,     action: () => navigateTo('home') },
+                    { label: 'Arrays & Hashing', icon: Code2,   action: () => handleProgramClick('program12') },
+                    { label: 'Stack & Queues',   icon: Code2,   action: () => handleProgramClick('program3') },
+                    { label: 'Trees & Graphs',   icon: Network, action: () => handleProgramClick('program11') },
+                    { label: 'System Design',    icon: Server,  action: () => navigateTo('system-design') },
+                  ].map(({ label, icon: Icon, action }) => (
+                    <li key={label}>
+                      <button
+                        onClick={action}
+                        className={`flex items-center gap-2 transition-colors ${
+                          darkMode
+                            ? 'font-code text-[10px] tracking-wider text-slate-600 hover:text-cyan-400'
+                            : 'font-medium text-gray-700 hover:text-orange-500'
+                        }`}
+                      >
+                        <Icon size={13} />
+                        {label}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Visualizers */}
+              <div>
+                <h3 className={`mb-6 tracking-[0.2em] uppercase text-xs font-bold ${
+                  darkMode ? 'font-code text-slate-600' : 'font-semibold text-gray-900'
+                }`}>Visualizers</h3>
+                <ul className="space-y-3 text-sm">
+                  {[
+                    { label: 'Pathfinding',  icon: RouteIcon, action: () => navigateTo('visualizer') },
+                    { label: 'Sorting',      icon: BarChart3, action: () => navigateTo('sorting') },
+                    { label: 'Trees & Graphs', icon: Network, action: () => navigateTo('tree-graph') },
+                    { label: 'Knapsack DP',  icon: Package,   action: () => navigateTo('knapsack') },
+                  ].map(({ label, icon: Icon, action }) => (
+                    <li key={label}>
+                      <button
+                        onClick={action}
+                        className={`flex items-center gap-2 transition-colors ${
+                          darkMode
+                            ? 'font-code text-[10px] tracking-wider text-slate-600 hover:text-cyan-400'
+                            : 'font-medium text-gray-700 hover:text-orange-500'
+                        }`}
+                      >
+                        <Icon size={13} />
+                        {label}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Connect */}
+              <div>
+                <h3 className={`mb-6 tracking-[0.2em] uppercase text-xs font-bold ${
+                  darkMode ? 'font-code text-slate-600' : 'font-semibold text-gray-900'
+                }`}>Connect</h3>
+                <ul className="space-y-3 text-sm">
+                  <li>
+                    <button
+                      onClick={() => navigateTo('about')}
+                      className={`flex items-center gap-2 transition-colors ${
+                        darkMode ? 'font-code text-[10px] tracking-wider text-slate-600 hover:text-cyan-400' : 'font-medium text-gray-700 hover:text-orange-500'
+                      }`}
+                    >
+                      <User size={13} /> About Me
+                    </button>
+                  </li>
+                  <li>
+                    <a
+                      href="mailto:pranavarun19@gmail.com"
+                      className={`flex items-center gap-2 transition-colors ${
+                        darkMode ? 'font-code text-[10px] tracking-wider text-slate-600 hover:text-cyan-400' : 'font-medium text-gray-700 hover:text-orange-500'
+                      }`}
+                    >
+                      <Mail size={13} /> Contact
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
 
-            <div>
-              <h3 className={`font-semibold mb-6 tracking-wide uppercase text-sm ${darkMode ? 'text-white' : 'text-gray-900'}`}>Visualizers</h3>
-              <ul className="space-y-3 text-sm font-medium">
-                <li><button onClick={() => navigateTo("visualizer")} className="hover:text-orange-500 transition-colors flex items-center gap-2"><RouteIcon size={14} /> Pathfinding</button></li>
-                <li><button onClick={() => navigateTo("sorting")} className="hover:text-orange-500 transition-colors flex items-center gap-2"><BarChart3 size={14} /> Sorting</button></li>
-                <li><button onClick={() => navigateTo("tree-graph")} className="hover:text-orange-500 transition-colors flex items-center gap-2"><Network size={14} /> Trees & Graphs</button></li>
-                <li><button onClick={() => navigateTo("knapsack")} className="hover:text-orange-500 transition-colors flex items-center gap-2"><Package size={14} /> Knapsack DP</button></li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className={`font-semibold mb-6 tracking-wide uppercase text-sm ${darkMode ? 'text-white' : 'text-gray-900'}`}>Connect</h3>
-              <ul className="space-y-3 text-sm font-medium">
-                <li><button onClick={() => navigateTo("about")} className="hover:text-orange-500 transition-colors flex items-center gap-2"><User size={14} /> About Me</button></li>
-                <li><a href="mailto:pranavarun19@gmail.com" className="hover:text-orange-500 transition-colors flex items-center gap-2"><Mail size={14} /> Contact</a></li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className={`max-w-7xl mx-auto px-6 mt-12 pt-8 border-t flex flex-col md:flex-row justify-between items-center text-sm ${darkMode ? 'border-slate-800 text-gray-500' : 'border-gray-200 text-gray-400'}`}>
-            <p>© 2026 DSA Study Hub.</p>
-            <div className="flex items-center space-x-6">
-              <button onClick={() => navigateTo("terms")}>Terms</button>
-              <button onClick={() => navigateTo("privacy")}>Privacy</button>
-              <button onClick={() => navigateTo("cookies")}>Cookies</button>
-              <button onClick={() => setIsAdminModalOpen(true)} className="opacity-20 hover:opacity-60 transition-opacity"><Shield size={13} /></button>
+            {/* Bottom bar */}
+            <div
+              className={`pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm ${
+                darkMode ? 'border-t border-cyan-500/[0.08]' : 'border-t border-gray-200'
+              }`}
+            >
+              <div className="flex items-center gap-2">
+                {darkMode && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400/60 animate-pulse" />
+                )}
+                <span className={darkMode ? 'font-code text-[10px] tracking-wider text-slate-700' : 'text-gray-400'}>
+                  © 2026 DSA Study Hub. All rights reserved.
+                </span>
+              </div>
+              <div className="flex items-center gap-4">
+                {[{ label: 'Terms', view: 'terms' }, { label: 'Privacy', view: 'privacy' }, { label: 'Cookies', view: 'cookies' }].map(({ label, view }) => (
+                  <button
+                    key={label}
+                    onClick={() => navigateTo(view)}
+                    className={`transition-colors ${
+                      darkMode ? 'font-code text-[10px] tracking-wider text-slate-700 hover:text-cyan-400' : 'text-gray-400 hover:text-orange-500'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+                <button
+                  onClick={() => setIsAdminModalOpen(true)}
+                  className="opacity-20 hover:opacity-60 transition-opacity"
+                >
+                  <Shield size={13} className={darkMode ? 'text-slate-600' : 'text-gray-400'} />
+                </button>
+              </div>
             </div>
           </div>
         </footer>
 
         {isAdminModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" onClick={() => setIsAdminModalOpen(false)}>
-            <div className="bg-gray-900 border border-gray-700 rounded-2xl p-8 w-full max-w-sm shadow-2xl" onClick={e => e.stopPropagation()}>
-              <h2 className="text-white font-bold text-lg mb-4">Admin Access</h2>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
+            style={{ background: 'rgba(0,0,0,0.8)' }}
+            onClick={() => setIsAdminModalOpen(false)}
+          >
+            <div
+              className="w-full max-w-sm rounded-2xl p-8 shadow-2xl"
+              style={{
+                background: 'rgba(9,14,26,0.97)',
+                border: '1px solid rgba(6,182,212,0.18)',
+                boxShadow: '0 24px 64px rgba(0,0,0,0.65), 0 0 40px rgba(6,182,212,0.05)',
+              }}
+              onClick={e => e.stopPropagation()}
+            >
+              <div className="flex items-center gap-2 mb-6">
+                <div
+                  className="w-7 h-7 rounded-lg flex items-center justify-center"
+                  style={{ border: '1px solid rgba(6,182,212,0.35)', background: 'rgba(6,182,212,0.1)' }}
+                >
+                  <Shield size={13} className="text-cyan-400" />
+                </div>
+                <h2 className="font-display text-sm font-bold tracking-[0.15em] text-white">ADMIN ACCESS</h2>
+              </div>
               <form onSubmit={handleAdminLogin} className="space-y-4">
                 <input
-                  type={showAdminPassword ? "text" : "password"}
+                  type={showAdminPassword ? 'text' : 'password'}
                   value={adminPassword}
                   onChange={e => setAdminPassword(e.target.value)}
                   placeholder="Enter admin password"
-                  className="w-full bg-gray-800 border border-gray-700 text-white rounded-xl px-4 py-3 text-sm"
+                  className="input-cyber"
                 />
-                <button type="submit" className="w-full bg-orange-500 text-white py-3 rounded-xl font-bold">Authenticate</button>
+                <button
+                  type="submit"
+                  className="btn-cyber w-full justify-center"
+                >
+                  Authenticate
+                </button>
               </form>
             </div>
           </div>

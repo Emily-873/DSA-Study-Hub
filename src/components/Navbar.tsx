@@ -1,554 +1,452 @@
-import {
-  Code2,
-  Home,
-  User,
-  Package,
-  Map,
-  BarChart3,
-  Network,
-  Server,
-  Bug,
-  Search,
-  X,
-  ChevronDown,
-  BookOpen,
-  Check,
-  Sun,
-  Moon,
-  Menu,
-  LogOut,
-  ArrowRight,
-  UserCircle,
-} from "lucide-react";
-import { programsData, notes } from "../data/programs";
-import { GoogleAuth, GoogleUser } from "./GoogleAuth";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { Home, Code2, User, ChevronDown, Cpu, X, Menu, Search, Bug, BookOpen, Route, ArrowUpDown, GitFork, Package, Monitor } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { programsData } from "../data/programs";
 
-interface SearchItem {
-  id: string;
-  type: string;
-  title: string;
-  subtitle: string;
-  action: () => void;
-  icon: React.ElementType;
-  content: string;
-}
-export interface NavbarProps {
-  isNavbarScrolled: boolean;
-  navigateTo: (view: string) => void;
+interface NavbarProps {
   resetProgramState: () => void;
-  isProgramsOpen: boolean;
-  setIsProgramsOpen: (val: boolean) => void;
-  isNotesOpen: boolean;
-  setIsNotesOpen: (val: boolean) => void;
+  toggleAdminModal: () => void;
   completedPrograms: string[];
-  handleProgramClick: (name: string) => void;
-  isSearchOpen: boolean;
-  setIsSearchOpen: (val: boolean) => void;
-  searchQuery: string;
-  setSearchQuery: (val: string) => void;
-  searchResults: SearchItem[];
-  darkMode: boolean;
-  toggleTheme: () => void;
-  isMobileMenuOpen: boolean;
-  setIsMobileMenuOpen: (val: boolean) => void;
-  user: GoogleUser | null;
-  onLogin: (user: GoogleUser) => void;
-  onLogout: () => void;
-  isAuthModalOpen: boolean;
-  setIsAuthModalOpen: (val: boolean) => void;
 }
 
-export const Navbar = ({
-  isNavbarScrolled,
-  navigateTo,
-  resetProgramState,
-  isProgramsOpen,
-  setIsProgramsOpen,
-  isNotesOpen,
-  setIsNotesOpen,
-  completedPrograms,
-  handleProgramClick,
-  isSearchOpen,
-  setIsSearchOpen,
-  searchQuery,
-  setSearchQuery,
-  searchResults,
-  darkMode,
-  toggleTheme,
-  isMobileMenuOpen,
-  setIsMobileMenuOpen,
-  user,
-  onLogin,
-  onLogout,
-  isAuthModalOpen,
-  setIsAuthModalOpen,
-}: NavbarProps) => {
-  const router = useRouter();
-  const { id } = router.query;
-  const activeView = typeof id === "string" ? id : Array.isArray(id) ? id[0] : "";
-  return (
-    <nav
-      className={`fixed w-full top-0 z-50 transition-all duration-300 ${isNavbarScrolled ? "glassmorphism !bg-white/70 dark:!bg-black/70 shadow-lg" : "bg-transparent"}`}>
-      <div className="w-full px-4 sm:px-6 lg:px-12">
-        <div className="flex items-center h-16 px-4">
-          {/* Left: Logo */}
-          <div className="flex-1 flex justify-start items-center">
-            <Link href="/" className="text-xl lg:text-2xl font-bold tracking-tight whitespace-nowrap cursor-pointer text-gray-900 dark:text-white" onClick={resetProgramState}>
-              DSA Study <span className="text-orange-500">Hub</span>
+const programGroups = [
+  {
+    title: "Linear Data Structures",
+    color: "text-sky-400",
+    borderColor: "border-sky-500/30",
+    bgColor: "bg-sky-500/5",
+    dotColor: "bg-sky-400",
+    items: [
+      { name: "program1",  label: "Weekly Activity Calendar",     desc: "Array ops & dynamic memory" },
+      { name: "program2",  label: "String Pattern Matching",       desc: "Pattern match & replace" },
+      { name: "program3",  label: "Stack & Palindromes",           desc: "Push, pop, palindrome check" },
+      { name: "program4",  label: "Infix → Postfix Conversion",    desc: "Operator precedence stack" },
+      { name: "program5a", label: "Postfix Evaluator",             desc: "Stack-based evaluation" },
+      { name: "program5b", label: "Tower of Hanoi",                desc: "Recursive peg movement" },
+      { name: "program6",  label: "Circular Queue",                desc: "Insert, delete, overflow" },
+    ],
+  },
+  {
+    title: "Linked Lists",
+    color: "text-emerald-400",
+    borderColor: "border-emerald-500/30",
+    bgColor: "bg-emerald-500/5",
+    dotColor: "bg-emerald-400",
+    items: [
+      { name: "program7", label: "Singly Linked List (SLL)",         desc: "Node insert, delete, traverse" },
+      { name: "program8", label: "Doubly Linked List (DLL)",         desc: "Bidirectional insert & delete" },
+      { name: "program9", label: "Circular Linked List",             desc: "Polynomial eval & addition" },
+    ],
+  },
+  {
+    title: "Non-Linear Structures",
+    color: "text-violet-400",
+    borderColor: "border-violet-500/30",
+    bgColor: "bg-violet-500/5",
+    dotColor: "bg-violet-400",
+    items: [
+      { name: "program10", label: "Binary Search Tree (BST)",  desc: "In/Pre/Post traversal & search" },
+      { name: "program11", label: "Graph BFS / DFS",           desc: "Adjacency matrix traversal" },
+      { name: "program12", label: "Hash Table Resolution",     desc: "Linear probing collision fix" },
+    ],
+  },
+];
 
-            </Link>
-          </div>
-
-          {/* Center: Tabs Container */}
-          <div className="hidden md:flex flex-shrink-0 items-center justify-center space-x-2 lg:space-x-4">
-            <Link
-              href="/"
-              className="flex items-center space-x-1 hover:text-orange-500 transition-colors">
-
-              <Home size={18} />
-              <span>Home</span>
-
-            </Link>
-            <div className="relative programs-dropdown">
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setIsProgramsOpen(!isProgramsOpen);
-                  if (!isProgramsOpen) setIsNotesOpen(false);
-                }}
-                className="flex items-center space-x-1 hover:text-orange-500 transition-colors">
-                <Code2 size={18} />
-                <span>Programs</span>
-                <ChevronDown size={14} />
-              </button>
-              {isProgramsOpen && (
-                <div className="absolute top-full left-0 mt-2 w-48 glassmorphism rounded-lg py-2 h-64 overflow-y-auto z-50">
-                  {programsData.map((program) => {
-                    const isActive = activeView === program.id;
-                    return (
-                      <Link
-                        href={`/program/${program.id}`}
-                        key={program.id}
-                        className={`flex items-center justify-between py-2 transition-colors ${
-                          isActive
-                            ? "bg-orange-500/10 text-orange-500 font-bold border-l-2 border-orange-500 pl-3.5 pr-4"
-                            : "text-gray-700 dark:text-gray-200 hover:bg-orange-500/10 px-4"
-                        }`}
-                        onClick={() => {
-                          handleProgramClick(program.id);
-                          setIsProgramsOpen(false);
-                        }}>
-
-                        <div className="flex items-center gap-2">
-                          {isActive && (
-                            <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
-                          )}
-                          <span>{program.name}</span>
-                        </div>
-                        {completedPrograms.includes(program.id) && (
-                          <Check size={14} className="text-green-500 flex-shrink-0" />
-                        )}
-
-                      </Link>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-            <div className="relative notes-dropdown">
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setIsNotesOpen(!isNotesOpen);
-                  if (!isNotesOpen) setIsProgramsOpen(false);
-                }}
-                className="flex items-center space-x-1 hover:text-orange-500 transition-colors">
-                <BookOpen size={18} />
-                <span>Notes</span>
-                <ChevronDown size={14} />
-              </button>
-              {isNotesOpen && (
-                <div className="absolute top-full left-0 mt-2 w-48 glassmorphism rounded-lg py-2">
-                  {notes.map((note) => (
-                    <a
-                      key={note.name}
-                      href={note.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block px-4 py-2 hover:bg-orange-500/10">
-                      {note.name}
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <Link
-              href="/knapsack"
-              className="flex items-center space-x-1 hover:text-orange-500 transition-colors">
-
-              <Package size={18} />
-              <span>Knapsack</span>
-
-            </Link>
-            <Link
-              href="/visualizer"
-              className="flex items-center space-x-1 hover:text-orange-500 transition-colors">
-
-              <Map size={18} />
-              <span>Pathfinder</span>
-
-            </Link>
-            <Link
-              href="/sorting"
-              className="flex items-center space-x-1 hover:text-orange-500 transition-colors">
-
-              <BarChart3 size={18} />
-              <span>Sorter</span>
-
-            </Link>
-            <Link
-              href="/tree-graph"
-              className="flex items-center space-x-1 hover:text-orange-500 transition-colors">
-
-              <Network size={18} />
-              <span>Trees</span>
-
-            </Link>
-            <Link
-              href="/system-design"
-              className="flex items-center space-x-1 hover:text-orange-500 transition-colors">
-
-              <Server size={18} />
-              <span>Design</span>
-
-            </Link>
-
-            <Link
-              href="/about"
-              className="flex items-center space-x-1 hover:text-orange-500 transition-colors">
-
-              <User size={18} />
-              <span>About Me</span>
-
-            </Link>
-            <Link href="/report" className="flex items-center space-x-1 hover:text-orange-500 transition-colors" title="Report Issue">
-
-              <Bug size={18} />
-
-            </Link>
-          </div>
-
-          {/* Right: Actions */}
-          <div className="flex-1 flex items-center justify-end space-x-2">
-            <div className="relative">
-              <button
-                onClick={() => setIsSearchOpen(!isSearchOpen)}
-                className="p-2 rounded-full hover:bg-orange-500/10 transition-colors text-gray-700 dark:text-gray-200"
-                title="Search">
-                <Search size={22} />
-              </button>
-
-              {isSearchOpen && (
-                <>
-                  <div
-                    className="fixed inset-0 z-40"
-                    onClick={() => setIsSearchOpen(false)}></div>
-                  <div className="fixed top-16 left-2 right-2 sm:absolute sm:top-full sm:left-auto sm:right-0 sm:mt-2 sm:w-[350px] md:w-[450px] bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 z-50 overflow-hidden flex flex-col max-h-[70vh]">
-                    <div className="p-3 border-b border-gray-200 dark:border-gray-700 flex items-center gap-2">
-                      <Search className="text-gray-400" size={18} />
-                      <input
-                        autoFocus
-                        type="text"
-                        placeholder="Search..."
-                        className="flex-1 bg-transparent border-none outline-none text-base text-gray-800 dark:text-gray-100"
-                        value={searchQuery}
-                        maxLength={60}
-                        onChange={(e) => {
-                          const value = e.target.value;
-                          if (value.length <= 60) {
-                            const sanitized = value.replace(/[<>;'"\\`]/g, "");
-                            setSearchQuery(sanitized);
-                          }
-                        }}
-                      />
-                      {searchQuery && (
-                        <button
-                          onClick={() => setSearchQuery("")}
-                          className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full text-gray-400">
-                          <X size={16} />
-                        </button>
-                      )}
-                    </div>
-                    <div className="overflow-y-auto p-2">
-                      {!searchQuery && (
-                        <div className="px-3 py-2 text-xs font-bold text-gray-500 uppercase tracking-wider">
-                          Suggestions
-                        </div>
-                      )}
-                      {searchResults.length > 0 ? (
-                        searchResults.map((item: SearchItem) => (
-                          <button
-                            key={item.id}
-                            onClick={() => {
-                              item.action();
-                              setIsSearchOpen(false);
-                            }}
-                            className="w-full flex items-center justify-between p-3 hover:bg-orange-500/10 rounded-xl transition-colors group text-left">
-                            <div className="flex items-center gap-3">
-                              <div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-lg group-hover:bg-orange-500 group-hover:text-white transition-colors">
-                                <item.icon size={16} />
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <div className="font-bold text-gray-900 dark:text-white text-sm truncate">
-                                  {item.title}
-                                </div>
-                                <div className="text-xs text-gray-500 dark:text-gray-400 truncate">
-                                  {item.subtitle}
-                                </div>
-                              </div>
-                            </div>
-                            {item.type === "program" &&
-                              completedPrograms.includes(item.id) && (
-                                <Check size={14} className="text-green-500" />
-                              )}
-                          </button>
-                        ))
-                      ) : (
-                        <div className="p-6 text-center text-sm text-gray-500 dark:text-gray-400">
-                          No results found
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </>
-              )}
-            </div>
-            <button
-              onClick={toggleTheme}
-              className="hidden md:flex p-2 rounded-full hover:bg-orange-500/10 text-gray-700 dark:text-gray-200"
-              title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}>
-              {darkMode ? <Sun size={22} /> : <Moon size={22} />}
-            </button>
-            {/* Desktop only: Auth button */}
-            <div id="desktop-auth-btn" className="ml-2 hidden md:flex">
-              <GoogleAuth
-                user={user}
-                onLogin={onLogin}
-                onLogout={onLogout}
-                externalIsOpen={isAuthModalOpen}
-                setExternalIsOpen={setIsAuthModalOpen}
-                hideModal={true}
-              />
-            </div>
-
-            {/* Mobile Menu Button - shows on right */}
-            <div className="md:hidden flex items-center">
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 text-gray-700 dark:text-gray-200 hover:text-orange-500 transition-colors">
-                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* Mobile Menu Overlay */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg shadow-xl absolute top-16 left-0 w-full flex flex-col border-b border-gray-200 dark:border-gray-700 max-h-[85vh]">
-          {/* Scrollable nav items */}
-          <div className="overflow-y-auto flex-1 p-4 flex flex-col space-y-1">
-            {/* Top row: Home + Theme toggle */}
-            <div className="flex items-center justify-between mb-2">
-              <button
-                onClick={() => {
-                  navigateTo("home");
-                  setIsMobileMenuOpen(false);
-                }}
-                className="flex items-center space-x-2 p-2 hover:bg-orange-500/10 rounded-lg text-gray-800 dark:text-gray-100">
-                <Home size={20} />
-                <span className="font-medium">Home</span>
-              </button>
-              <button
-                onClick={() => {
-                  toggleTheme();
-                }}
-                className="p-2 rounded-full hover:bg-orange-500/10 text-gray-600 dark:text-gray-300 transition-colors"
-                title={
-                  darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"
-                }>
-                {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-              </button>
-            </div>
-
-            {/* Programs accordion */}
-            <div className="flex flex-col">
-              <button
-                onClick={() => setIsProgramsOpen(!isProgramsOpen)}
-                className="flex items-center justify-between p-2 hover:bg-orange-500/10 rounded-lg w-full text-gray-800 dark:text-gray-100">
-                <div className="flex items-center space-x-2">
-                  <Code2 size={20} />
-                  <span className="font-medium">Programs</span>
-                </div>
-                <ChevronDown
-                  size={16}
-                  className={`transform transition-transform ${isProgramsOpen ? "rotate-180" : ""}`}
-                />
-              </button>
-              {isProgramsOpen && (
-                <div className="pl-8 flex flex-col space-y-1 mt-1">
-                  {programsData.map((program) => {
-                    const isActive = activeView === program.id;
-                    return (
-                      <a
-                        key={program.id}
-                        href={`#${program.id}`}
-                        className={`flex items-center justify-between py-1.5 rounded-md hover:bg-orange-500/5 transition-colors ${
-                          isActive
-                            ? "bg-orange-500/10 text-orange-500 font-semibold border-l-2 border-orange-500 pl-2 pr-2"
-                            : "text-gray-600 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 px-2.5"
-                        }`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handleProgramClick(program.name);
-                          setIsMobileMenuOpen(false);
-                        }}>
-                        <div className="flex items-center gap-2">
-                          {isActive && (
-                            <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
-                          )}
-                          <span>{program.name}</span>
-                        </div>
-                        {completedPrograms.includes(program.id) && (
-                          <Check size={14} className="text-green-500 flex-shrink-0" />
-                        )}
-                      </a>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-
-            {/* Notes accordion */}
-            <div className="flex flex-col">
-              <button
-                onClick={() => setIsNotesOpen(!isNotesOpen)}
-                className="flex items-center justify-between p-2 hover:bg-orange-500/10 rounded-lg w-full text-gray-800 dark:text-gray-100">
-                <div className="flex items-center space-x-2">
-                  <BookOpen size={20} />
-                  <span className="font-medium">Notes</span>
-                </div>
-                <ChevronDown
-                  size={16}
-                  className={`transform transition-transform ${isNotesOpen ? "rotate-180" : ""}`}
-                />
-              </button>
-              {isNotesOpen && (
-                <div className="pl-8 flex flex-col space-y-1 mt-1">
-                  {notes.map((note) => (
-                    <a
-                      key={note.name}
-                      href={note.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block py-1.5 px-2 text-sm text-gray-600 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 rounded-md hover:bg-orange-500/5"
-                      onClick={() => setIsMobileMenuOpen(false)}>
-                      {note.name}
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Feature nav items */}
-            {[
-              { label: "Knapsack Visualizer", icon: Package, view: "knapsack" },
-              { label: "Pathfinder", icon: Map, view: "visualizer" },
-              { label: "Sorter", icon: BarChart3, view: "sorting" },
-              { label: "Trees & Graphs", icon: Network, view: "tree-graph" },
-              { label: "System Design", icon: Server, view: "system-design" },
-              { label: "Report Issue", icon: Bug, view: "report" },
-              { label: "About Me", icon: User, view: "about" },
-            ].map(({ label, icon: Icon, view }) => (
-              <button
-                key={view}
-                onClick={() => {
-                  navigateTo(view);
-                  setIsMobileMenuOpen(false);
-                }}
-                className="flex items-center space-x-2 p-2 hover:bg-orange-500/10 rounded-lg text-gray-800 dark:text-gray-100 w-full text-left">
-                <Icon
-                  size={20}
-                  className="text-gray-500 dark:text-gray-400 flex-shrink-0"
-                />
-                <span className="font-medium">{label}</span>
-              </button>
-            ))}
-          </div>
-
-          {/* Pinned Footer: Auth section */}
-          <div className="border-t border-gray-200 dark:border-gray-700 p-4">
-            {user ? (
-              /* Logged-in user card */
-              (<div className="flex items-center gap-3">
-                <button
-                  onClick={() => {
-                    navigateTo("about");
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="flex items-center gap-3 flex-1 min-w-0 group p-2 rounded-xl hover:bg-orange-500/10 transition-colors">
-                  {user.picture ? (
-                    <img
-                      src={user.picture}
-                      alt={user.name}
-                      className="w-10 h-10 rounded-full border-2 border-orange-500/30 flex-shrink-0"
-                    />
-                  ) : (
-                    <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center text-white flex-shrink-0">
-                      <UserCircle size={20} />
-                    </div>
-                  )}
-                  <div className="flex-1 min-w-0 text-left">
-                    <p className="font-semibold text-gray-900 dark:text-white text-sm truncate">
-                      {user.name}
-                    </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
-                      {user.email}
-                    </p>
-                  </div>
-                </button>
-                <button
-                  onClick={() => {
-                    onLogout();
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="p-2.5 rounded-xl bg-red-500/10 text-red-500 hover:bg-red-500/20 transition-colors flex-shrink-0"
-                  title="Logout">
-                  <LogOut size={18} />
-                </button>
-              </div>)
-            ) : (
-              /* Logged-out CTA */
-              (<div className="flex flex-col gap-3">
-                <p className="text-xs text-center text-gray-500 dark:text-gray-400">
-                  Track progress, save notes, and unlock all features.
-                </p>
-                <button
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    setIsAuthModalOpen(true);
-                  }}
-                  className="w-full flex items-center justify-center gap-2 py-3 bg-orange-500 hover:bg-orange-600 active:scale-95 text-white font-bold rounded-xl transition-all shadow-lg shadow-orange-500/30">
-                  <span>Get Started</span>
-                  <ArrowRight size={18} />
-                </button>
-              </div>)
-            )}
-          </div>
-        </div>
+/* ─────────── Nav Link Button ─────────── */
+const NavLink: React.FC<{
+  onClick?: () => void;
+  href?: string;
+  isActive: boolean;
+  icon: React.ReactNode;
+  children: React.ReactNode;
+  hasArrow?: boolean;
+  arrowOpen?: boolean;
+  id?: string;
+}> = ({ onClick, href, isActive, icon, children, hasArrow, arrowOpen, id }) => {
+  const content = (
+    <button
+      id={id}
+      onClick={onClick}
+      className={`group flex items-center gap-1.5 px-2 py-2 rounded-lg font-code text-[10px] xl:text-xs font-semibold tracking-widest uppercase transition-all duration-200 cursor-pointer select-none ${
+        isActive
+          ? "bg-cyan-500/10 border border-cyan-500/35 text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.2)]"
+          : "border border-transparent text-slate-400 hover:text-slate-200 hover:bg-white/5"
+      }`}
+    >
+      <span className={`transition-colors duration-200 ${isActive ? "text-cyan-400" : "text-slate-500 group-hover:text-slate-300"}`}>
+        {icon}
+      </span>
+      {children}
+      {hasArrow && (
+        <ChevronDown
+          size={11}
+          className={`ml-0.5 transition-transform duration-200 ${arrowOpen ? "rotate-180 text-cyan-400" : ""}`}
+        />
       )}
-    </nav>
+    </button>
+  );
+
+  if (href) {
+    return <Link href={href} onClick={onClick}>{content}</Link>;
+  }
+  return content;
+};
+
+export const Navbar = ({ resetProgramState, toggleAdminModal, completedPrograms }: NavbarProps) => {
+  const router = useRouter();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [isProgramsOpen, setIsProgramsOpen] = useState(false);
+  const [isModulesOpen, setIsModulesOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const modulesRef = useRef<HTMLDivElement>(null);
+  const { id } = router.query;
+  const activeProgram = typeof id === "string" ? id : null;
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 12);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setIsProgramsOpen(false);
+      }
+      if (modulesRef.current && !modulesRef.current.contains(e.target as Node)) {
+        setIsModulesOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    setMobileOpen(false);
+    setIsProgramsOpen(false);
+    setIsModulesOpen(false);
+  }, [router.asPath]);
+
+  return (
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled
+            ? "bg-[#070B14]/90 backdrop-blur-xl border-b border-cyan-500/[0.12] shadow-[0_4px_30px_rgba(0,0,0,0.4)]"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="max-w-[1600px] w-full mx-auto px-4 sm:px-6">
+          <div className="h-16 flex items-center justify-between gap-4">
+
+            {/* ── Logo ── */}
+            <Link href="/" onClick={resetProgramState} className="flex items-center gap-2.5 group shrink-0 cursor-pointer">
+              <div className="relative w-8 h-8 rounded-lg flex items-center justify-center border border-cyan-500/40 bg-cyan-500/10 group-hover:border-cyan-400/70 group-hover:bg-cyan-500/20 transition-all duration-200 group-hover:shadow-[0_0_12px_rgba(6,182,212,0.3)]">
+                <Cpu size={15} className="text-cyan-400" />
+              </div>
+              <div className="flex items-baseline gap-0">
+                <span className="font-display text-xs font-bold tracking-[0.15em] text-white group-hover:text-cyan-300 transition-colors duration-200">
+                  DSA
+                </span>
+                <span className="font-display text-xs font-bold tracking-[0.1em] text-cyan-400 group-hover:text-cyan-300 transition-colors duration-200">
+                  ://
+                </span>
+                <span className="font-display text-xs font-bold tracking-[0.15em] text-white group-hover:text-cyan-300 transition-colors duration-200">
+                  HUB
+                </span>
+              </div>
+            </Link>
+
+            {/* ── Desktop Nav Links ── */}
+            <div className="hidden md:flex flex-nowrap items-center gap-0.5 lg:gap-1 relative">
+              <NavLink href="/" isActive={router.pathname === "/"} icon={<Home size={13} />}>
+                Home
+              </NavLink>
+
+              {/* Programs with dropdown */}
+              <div ref={menuRef} className="relative">
+                <NavLink
+                  id="nav-programs-btn"
+                  onClick={() => setIsProgramsOpen(!isProgramsOpen)}
+                  isActive={router.pathname.startsWith("/program")}
+                  icon={<Code2 size={13} />}
+                  hasArrow
+                  arrowOpen={isProgramsOpen}
+                >
+                  Programs
+                </NavLink>
+
+                {/* Mega Menu Dropdown */}
+                <AnimatePresence>
+                  {isProgramsOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -8, scale: 0.98 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -8, scale: 0.98 }}
+                      transition={{ duration: 0.15, ease: "easeOut" }}
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[820px] max-w-[95vw] rounded-2xl overflow-hidden"
+                      style={{
+                        background: "rgba(9, 14, 26, 0.97)",
+                        backdropFilter: "blur(24px)",
+                        WebkitBackdropFilter: "blur(24px)",
+                        border: "1px solid rgba(6,182,212,0.18)",
+                        boxShadow: "0 24px 64px rgba(0,0,0,0.65), 0 0 0 1px rgba(6,182,212,0.06), 0 0 40px rgba(6,182,212,0.05)",
+                      }}
+                    >
+                      {/* Dropdown Header */}
+                      <div className="px-6 py-4 flex items-center justify-between border-b border-cyan-500/10">
+                        <div>
+                          <p className="font-display text-[10px] tracking-[0.2em] text-cyan-400 uppercase mb-0.5">
+                            Laboratory Modules
+                          </p>
+                          <p className="text-xs text-slate-500">
+                            Select a module to view C implementation + interactive visualizer
+                          </p>
+                        </div>
+                        <span className="neon-badge text-[10px]">12 Programs</span>
+                      </div>
+
+                      {/* Program Grid */}
+                      <div className="p-6 grid grid-cols-3 gap-6">
+                        {programGroups.map((group) => (
+                          <div key={group.title}>
+                            <div className="flex items-center gap-2 mb-3">
+                              <div className={`w-1.5 h-1.5 rounded-full ${group.dotColor}`} />
+                              <h4 className={`font-code text-[9px] font-bold tracking-[0.18em] uppercase ${group.color}`}>
+                                {group.title}
+                              </h4>
+                            </div>
+                            <div className="space-y-1.5">
+                              {group.items.map((item) => {
+                                const isActive = activeProgram === item.name;
+                                const pData = programsData.find(p => p.id === item.name);
+                                return (
+                                  <Link
+                                    key={item.name}
+                                    href={`/program/${item.name}`}
+                                    onClick={() => setIsProgramsOpen(false)}
+                                    className={`w-full block text-left px-3 py-2.5 rounded-xl border transition-all duration-150 cursor-pointer group/item ${
+                                      isActive
+                                        ? `${group.bgColor} ${group.borderColor}`
+                                        : "border-transparent hover:bg-white/[0.04] hover:border-white/[0.06]"
+                                    }`}
+                                  >
+                                    <span className={`font-code text-[9px] font-bold tracking-widest uppercase block mb-0.5 ${
+                                      isActive ? group.color : "text-slate-600 group-hover/item:text-slate-400"
+                                    }`}>
+                                      {pData ? pData.name : item.name.toUpperCase()}
+                                    </span>
+                                    <span className={`text-xs font-medium block leading-tight ${
+                                      isActive ? "text-slate-200" : "text-slate-400 group-hover/item:text-slate-300"
+                                    }`}>
+                                      {item.label}
+                                    </span>
+                                  </Link>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Modules Dropdown */}
+              <div ref={modulesRef} className="relative">
+                <NavLink
+                  id="nav-modules-btn"
+                  onClick={() => setIsModulesOpen(!isModulesOpen)}
+                  isActive={router.pathname.startsWith("/module")}
+                  icon={<BookOpen size={13} />}
+                  hasArrow
+                  arrowOpen={isModulesOpen}
+                >
+                  Notes
+                </NavLink>
+                <AnimatePresence>
+                  {isModulesOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -8, scale: 0.98 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -8, scale: 0.98 }}
+                      transition={{ duration: 0.15, ease: "easeOut" }}
+                      className="absolute top-full left-0 mt-2 w-48 rounded-xl overflow-hidden"
+                      style={{
+                        background: "rgba(9, 14, 26, 0.97)",
+                        backdropFilter: "blur(24px)",
+                        WebkitBackdropFilter: "blur(24px)",
+                        border: "1px solid rgba(6,182,212,0.18)",
+                        boxShadow: "0 24px 64px rgba(0,0,0,0.65)",
+                      }}
+                    >
+                      <div className="p-2 space-y-1">
+                        {[1, 2, 3, 4, 5].map((mod) => (
+                          <Link
+                            key={mod}
+                            href={`/module/${mod}`}
+                            onClick={() => setIsModulesOpen(false)}
+                            className="w-full block text-left px-3 py-2.5 rounded-lg border border-transparent transition-all duration-150 hover:bg-white/[0.04] hover:border-white/[0.06] group/mod"
+                          >
+                            <span className="font-code text-xs font-bold tracking-widest text-slate-300 group-hover/mod:text-cyan-300">
+                              MODULE {mod}
+                            </span>
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              <NavLink href="/knapsack" isActive={router.pathname === "/knapsack"} icon={<Package size={13} />}>
+                Knapsack
+              </NavLink>
+
+              <NavLink href="/visualizer" isActive={router.pathname === "/visualizer"} icon={<Route size={13} />}>
+                PathFinder
+              </NavLink>
+
+              <NavLink href="/sorting" isActive={router.pathname === "/sorting"} icon={<ArrowUpDown size={13} />}>
+                Sorter
+              </NavLink>
+
+              <NavLink href="/tree-graph" isActive={router.pathname === "/tree-graph"} icon={<GitFork size={13} />}>
+                Trees
+              </NavLink>
+
+              <NavLink href="/system-design" isActive={router.pathname === "/system-design"} icon={<Monitor size={13} />}>
+                System Design
+              </NavLink>
+
+              <NavLink href="/about" isActive={router.pathname === "/about"} icon={<User size={13} />}>
+                About me
+              </NavLink>
+
+              <NavLink href="/report" isActive={router.pathname === "/report"} icon={<Bug size={13} />}>
+                Report Bug
+              </NavLink>
+            </div>
+
+            {/* ── Right Status Badge + Mobile Hamburger ── */}
+            <div className="flex items-center gap-3 shrink-0">
+              {/* Status indicator */}
+              <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full border border-cyan-500/[0.18] bg-cyan-500/[0.04] cursor-pointer hover:bg-cyan-500/10 transition-colors" onClick={toggleAdminModal}>
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                <span className="font-code text-[9px] tracking-[0.2em] text-cyan-400/60 uppercase">Lab v2.0</span>
+              </div>
+
+              {/* Mobile hamburger */}
+              <button
+                onClick={() => setMobileOpen(!mobileOpen)}
+                className="md:hidden flex items-center justify-center w-9 h-9 rounded-lg border border-white/10 bg-white/5 text-slate-400 hover:text-white hover:border-cyan-500/30 transition-all duration-200"
+              >
+                {mobileOpen ? <X size={16} /> : <Menu size={16} />}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* ── Mobile Menu ── */}
+        <AnimatePresence>
+          {mobileOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="md:hidden overflow-hidden border-t border-cyan-500/10"
+              style={{
+                background: "rgba(7, 11, 20, 0.98)",
+                backdropFilter: "blur(24px)",
+              }}
+            >
+              <div className="px-5 py-4 space-y-1">
+                <Link href="/" className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent">
+                  <Home size={14} /> Home
+                </Link>
+
+                {/* Mobile Programs */}
+                <div className="space-y-1 pt-3">
+                  <p className="font-code text-[9px] tracking-[0.2em] uppercase text-slate-600 px-2 pb-1">Laboratory Modules</p>
+                  {programGroups.map((group) => (
+                    <div key={group.title} className="mb-3">
+                      <p className={`font-code text-[9px] tracking-[0.15em] uppercase px-2 py-1 ${group.color}`}>
+                        {group.title}
+                      </p>
+                      {group.items.map((item) => {
+                        const pData = programsData.find(p => p.id === item.name);
+                        return (
+                          <Link
+                            href={`/program/${item.name}`}
+                            key={item.name}
+                            className={`w-full text-left flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-150 cursor-pointer ${
+                              activeProgram === item.name
+                                ? "bg-cyan-500/10 text-cyan-300 border border-cyan-500/25"
+                                : "text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent"
+                            }`}
+                          >
+                            <span className="font-code text-[9px] tracking-wider text-slate-600 w-16 shrink-0">{pData ? pData.name : item.name.toUpperCase()}</span>
+                            <span className="text-xs">{item.label}</span>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Mobile Notes */}
+                <div className="space-y-1 pt-2 border-b border-cyan-500/10 pb-3">
+                  <p className="font-code text-[9px] tracking-[0.2em] uppercase text-slate-600 px-2 pb-1">Notes</p>
+                  {[1, 2, 3, 4, 5].map((mod) => (
+                    <Link
+                      key={mod}
+                      href={`/module/${mod}`}
+                      onClick={() => setMobileOpen(false)}
+                      className="w-full text-left flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-150 cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent"
+                    >
+                      <span className="font-code text-[9px] tracking-wider text-slate-600 w-16 shrink-0">MOD {mod}</span>
+                      <span className="text-xs">Module {mod}</span>
+                    </Link>
+                  ))}
+                </div>
+
+                {/* Mobile Visualizers */}
+                <div className="space-y-1 pt-2 border-b border-cyan-500/10 pb-3">
+                  <p className="font-code text-[9px] tracking-[0.2em] uppercase text-slate-600 px-2 pb-1">Visualizers</p>
+                  <Link href="/knapsack" className="w-full text-left flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-150 cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent">
+                    <Package size={14} /> Knapsack
+                  </Link>
+                  <Link href="/visualizer" className="w-full text-left flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-150 cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent">
+                    <Route size={14} /> PathFinder
+                  </Link>
+                  <Link href="/sorting" className="w-full text-left flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-150 cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent">
+                    <ArrowUpDown size={14} /> Sorter
+                  </Link>
+                  <Link href="/tree-graph" className="w-full text-left flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-150 cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent">
+                    <GitFork size={14} /> Trees
+                  </Link>
+                  <Link href="/system-design" className="w-full text-left flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-150 cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent">
+                    <Monitor size={14} /> System Design
+                  </Link>
+                </div>
+
+                <Link href="/about" className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent">
+                  <User size={14} /> About me
+                </Link>
+
+                <Link href="/report" className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent">
+                  <Bug size={14} /> Report Bug
+                </Link>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
+    </>
   );
 };

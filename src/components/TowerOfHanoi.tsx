@@ -113,13 +113,13 @@ export default function TowerOfHanoi() {
   };
 
   return (
-    <div className="p-6 bg-white dark:bg-slate-900 neo-brutalism text-gray-900 dark:text-white">
+    <div className="p-6 bg-white dark:bg-slate-900 neo-brutalism text-gray-900 dark:text-white dark:font-display">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 bg-orange-500 rounded-xl text-white">
+        <div className="p-3 bg-orange-500 dark:bg-cyan-500/20 dark:text-cyan-400 dark:border dark:border-cyan-500/30 rounded-xl text-white">
           <HelpCircle size={24} />
         </div>
         <div>
-          <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white dark:font-display">
             Program 5B: Tower of Hanoi Animation
           </h3>
           <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -182,7 +182,7 @@ export default function TowerOfHanoi() {
           </button>
           <button
             onClick={initSolver}
-            className="p-2.5 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-700 dark:text-gray-200 hover:text-orange-500"
+            className="p-2.5 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-700 dark:text-gray-200 hover:text-orange-500 dark:text-cyan-400"
           >
             <RotateCcw size={16} />
           </button>
@@ -190,7 +190,7 @@ export default function TowerOfHanoi() {
       </div>
 
       {/* Renders Peg layout */}
-      <div className="p-8 bg-gray-50 dark:bg-gray-950/40 rounded-2xl border border-gray-200 dark:border-gray-800 mb-6 flex items-end justify-around h-64 relative">
+      <div className="p-8 bg-gray-50 dark:bg-gray-950/40 rounded-2xl border border-gray-200 dark:border-cyan-500/20 mb-6 flex items-end justify-around h-64 relative">
         {['A', 'B', 'C'].map((pegKey) => {
           const diskList = pegs[pegKey] || [];
           return (
@@ -237,7 +237,7 @@ export default function TowerOfHanoi() {
       {/* Logs info */}
       <div className="p-4 bg-orange-50/50 dark:bg-orange-950/10 rounded-xl border border-orange-200/50 dark:border-orange-900/30 text-xs font-mono flex justify-between">
         <div>
-          <span className="font-bold text-orange-500 mr-2 uppercase tracking-wide">Logs:</span>
+          <span className="font-bold text-orange-500 dark:text-cyan-400 mr-2 uppercase tracking-wide">Logs:</span>
           {moveIdx >= 0 ? (
             `Move Disk ${moves[moveIdx].disk} from Peg ${moves[moveIdx].from} to Peg ${moves[moveIdx].to}`
           ) : (

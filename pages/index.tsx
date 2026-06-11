@@ -1,4 +1,4 @@
-import { HomeView, HomeViewProps } from '../src/views/HomeView';
+import { HomeView } from '../src/views/HomeView';
 import { SEO } from '../src/components/SEO';
 
 
@@ -8,7 +8,7 @@ export default function Home({
   setIsNotesOpen,
   completedPrograms,
   handleProgramClick
-}: HomeViewProps) {
+}: any) {
   return (
     <>
       <SEO 

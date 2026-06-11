@@ -844,7 +844,7 @@ const TreeGraphVisualizer: React.FC = () => {
     <div className="flex flex-col h-full bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       
       {/* Controls Bar */}
-      <div className="p-4 border-b border-gray-200 dark:border-gray-800 flex flex-wrap items-center gap-4 bg-white/10 dark:bg-gray-800/20 backdrop-blur-md sticky top-16 z-10 transition-colors duration-300">
+      <div className="p-4 border-b border-gray-200 dark:border-cyan-500/20 flex flex-wrap items-center gap-4 bg-white/10 dark:bg-gray-800/20 backdrop-blur-md sticky top-16 z-10 transition-colors duration-300">
           
           <div className="flex bg-gray-100 dark:bg-gray-700 p-1 neo-brutalism">
               <button 
@@ -995,7 +995,7 @@ const TreeGraphVisualizer: React.FC = () => {
          </div>
 
          {/* Sidebar / Logs */}
-         <div className="w-full md:w-80 h-48 md:h-auto border-t md:border-t-0 md:border-l border-gray-200 dark:border-gray-800 bg-gray-50/10 dark:bg-gray-900/10 backdrop-blur-md p-4 overflow-y-auto relative neo-brutalism">
+         <div className="w-full md:w-80 h-48 md:h-auto border-t md:border-t-0 md:border-l border-gray-200 dark:border-cyan-500/20 bg-gray-50/10 dark:bg-gray-900/10 backdrop-blur-md p-4 overflow-y-auto relative neo-brutalism">
              {showCode && activeAlgo && ALGO_CODE[activeAlgo] && (
                <div className="absolute inset-0 bg-gray-900/95 backdrop-blur text-white p-4 z-20 font-mono text-[10px] overflow-auto animate-in slide-in-from-right duration-300">
                   <div className="flex justify-between items-center mb-4 border-b border-gray-700 pb-2">

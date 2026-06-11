@@ -179,11 +179,11 @@ export default function InfixPostfixVisualizer() {
   return (
     <div className="p-6 bg-white dark:bg-slate-900 neo-brutalism">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 bg-orange-500 rounded-xl text-white">
+        <div className="p-3 bg-orange-500 dark:bg-cyan-500/20 dark:text-cyan-400 dark:border dark:border-cyan-500/30 rounded-xl text-white">
           <RefreshCw size={24} />
         </div>
         <div>
-          <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white dark:font-display">
             Program 4: Infix to Postfix Conversion
           </h3>
           <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -252,7 +252,7 @@ export default function InfixPostfixVisualizer() {
       {/* Grid Trace */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 font-mono">
         {/* Operator Stack Pile */}
-        <div className="p-4 bg-gray-50/50 dark:bg-gray-950/20 rounded-xl border border-gray-200 dark:border-gray-800 flex flex-col items-center min-h-[200px] justify-between">
+        <div className="p-4 bg-gray-50/50 dark:bg-gray-950/20 rounded-xl border border-gray-200 dark:border-cyan-500/20 flex flex-col items-center min-h-[200px] justify-between">
           <span className="text-xs font-extrabold uppercase text-gray-400 tracking-wider">
             Operator Stack
           </span>
@@ -269,11 +269,11 @@ export default function InfixPostfixVisualizer() {
         </div>
 
         {/* Postfix Output */}
-        <div className="p-4 bg-gray-50/50 dark:bg-gray-950/20 rounded-xl border border-gray-200 dark:border-gray-800 flex flex-col items-center min-h-[200px] justify-between">
+        <div className="p-4 bg-gray-50/50 dark:bg-gray-950/20 rounded-xl border border-gray-200 dark:border-cyan-500/20 flex flex-col items-center min-h-[200px] justify-between">
           <span className="text-xs font-extrabold uppercase text-gray-400 tracking-wider">
             Postfix Output
           </span>
-          <div className="w-full text-center py-6 px-4 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 font-extrabold text-xl text-orange-500 break-words min-h-[90px] mt-4 flex items-center justify-center">
+          <div className="w-full text-center py-6 px-4 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-cyan-500/20 font-extrabold text-xl text-orange-500 dark:text-cyan-400 break-words min-h-[90px] mt-4 flex items-center justify-center">
             {currentInfo.postfix || <span className="text-sm font-medium text-gray-400">Empty</span>}
           </div>
         </div>
@@ -281,14 +281,14 @@ export default function InfixPostfixVisualizer() {
         {/* Current Step Action Description */}
         <div className="p-4 bg-orange-50/20 dark:bg-orange-950/10 rounded-xl border border-orange-200/40 dark:border-orange-900/20 flex flex-col justify-between min-h-[200px]">
           <div>
-            <span className="text-xs font-extrabold uppercase text-orange-500 tracking-wider">
+            <span className="text-xs font-extrabold uppercase text-orange-500 dark:text-cyan-400 tracking-wider">
               Step Logs
             </span>
             <p className="mt-3 text-xs leading-relaxed text-gray-700 dark:text-gray-300 font-medium">
               {currentInfo.action}
             </p>
           </div>
-          <div className="text-[10px] text-gray-400 border-t border-gray-200/40 dark:border-gray-800/40 pt-2 flex justify-between">
+          <div className="text-[10px] text-gray-400 border-t border-gray-200/40 dark:border-cyan-500/20/40 pt-2 flex justify-between">
             <span>Index: {stepIdx}</span>
             <span>Stack size: {currentInfo.stack?.length || 0}</span>
           </div>
