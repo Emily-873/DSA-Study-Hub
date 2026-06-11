@@ -313,7 +313,7 @@ const PathfindingVisualizer: React.FC = () => {
 
   
   return (
-    <div className="flex flex-col items-center w-full max-w-6xl mx-auto p-2 sm:p-4 pt-12" onMouseUp={handleMouseUp}>
+    <div className="flex flex-col items-center w-full max-w-6xl mx-auto p-2 sm:p-4" onMouseUp={handleMouseUp}>
         <div className="flex flex-col w-full gap-6 mb-8 glass-panel p-6 rounded-2xl">
             <div className="flex flex-wrap gap-4 items-center justify-center">
                 <div className="flex-1 min-w-[200px]">

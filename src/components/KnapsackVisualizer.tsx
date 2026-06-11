@@ -117,7 +117,7 @@ const KnapsackVisualizer: React.FC = () => {
     };
 
     return (
-        <div className="flex flex-col items-center w-full max-w-7xl mx-auto p-4 animate-fade-in space-y-8 pt-24">
+        <div className="flex flex-col items-center w-full max-w-7xl mx-auto p-4 animate-fade-in space-y-8">
             <div className="text-center space-y-3">
                 <h1 className="text-4xl md:text-5xl font-display font-bold text-white tracking-widest uppercase mb-2 drop-shadow-[0_0_15px_rgba(6,182,212,0.5)]">
                     Knapsack <span className="text-cyan-400">Visualizer</span>
