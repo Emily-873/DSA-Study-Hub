@@ -219,13 +219,13 @@ export default function BSTVisualizer() {
   };
 
   return (
-    <div className="p-6 bg-white dark:bg-slate-900 neo-brutalism text-gray-900 dark:text-white">
+    <div className="p-6 bg-white dark:bg-slate-900 neo-brutalism text-gray-900 dark:text-white dark:font-display">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 bg-orange-500 rounded-xl text-white">
+        <div className="p-3 bg-orange-500 dark:bg-cyan-500/20 dark:text-cyan-400 dark:border dark:border-cyan-500/30 rounded-xl text-white">
           <GitCommit size={24} />
         </div>
         <div>
-          <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white dark:font-display">
             Program 10: Binary Search Tree (BST)
           </h3>
           <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -238,7 +238,7 @@ export default function BSTVisualizer() {
         {/* Sidebar Controls */}
         <div className="space-y-4">
           {/* Insertion */}
-          <div className="p-4 bg-gray-50 dark:bg-gray-800/40 rounded-xl border border-gray-200 dark:border-gray-800">
+          <div className="p-4 bg-gray-50 dark:bg-gray-800/40 rounded-xl border border-gray-200 dark:border-cyan-500/20">
             <label className="block text-xs font-bold uppercase text-gray-400 mb-1">Insert Value</label>
             <div className="flex flex-wrap gap-2">
               <input
@@ -246,7 +246,7 @@ export default function BSTVisualizer() {
                 value={insertInput}
                 onChange={(e) => setInsertInput(e.target.value)}
                 placeholder="Val"
-                className="flex-grow min-w-[60px] px-2 py-1 bg-white dark:bg-gray-950 border border-gray-300 dark:border-gray-700 rounded-lg text-xs"
+                className="flex-grow min-w-[60px] px-2 py-1 bg-white dark:bg-[#070B14] border border-gray-300 dark:border-cyan-500/30 dark:text-slate-200 rounded-lg text-xs"
               />
               <button
                 onClick={handleInsert}
@@ -258,7 +258,7 @@ export default function BSTVisualizer() {
           </div>
 
           {/* Search */}
-          <div className="p-4 bg-gray-50 dark:bg-gray-800/40 rounded-xl border border-gray-200 dark:border-gray-800">
+          <div className="p-4 bg-gray-50 dark:bg-gray-800/40 rounded-xl border border-gray-200 dark:border-cyan-500/20">
             <label className="block text-xs font-bold uppercase text-gray-400 mb-1">Search Tree</label>
             <div className="flex flex-wrap gap-2">
               <input
@@ -266,7 +266,7 @@ export default function BSTVisualizer() {
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
                 placeholder="Val"
-                className="flex-grow min-w-[60px] px-2 py-1 bg-white dark:bg-gray-950 border border-gray-300 dark:border-gray-700 rounded-lg text-xs"
+                className="flex-grow min-w-[60px] px-2 py-1 bg-white dark:bg-[#070B14] border border-gray-300 dark:border-cyan-500/30 dark:text-slate-200 rounded-lg text-xs"
               />
               <button
                 onClick={handleSearch}
@@ -278,7 +278,7 @@ export default function BSTVisualizer() {
           </div>
 
           {/* Traversals */}
-          <div className="p-4 bg-gray-50 dark:bg-gray-800/40 rounded-xl border border-gray-200 dark:border-gray-800 space-y-2">
+          <div className="p-4 bg-gray-50 dark:bg-gray-800/40 rounded-xl border border-gray-200 dark:border-cyan-500/20 space-y-2">
             <label className="block text-xs font-bold uppercase text-gray-400 mb-1">Traversals</label>
             <button
               onClick={() => traverse('inorder')}
@@ -309,7 +309,7 @@ export default function BSTVisualizer() {
         </div>
 
         {/* Canvas Display */}
-        <div className="xl:col-span-3 p-4 bg-gray-50/50 dark:bg-gray-950/20 border border-gray-200 dark:border-gray-800 rounded-2xl flex flex-col justify-between items-center min-h-[360px]">
+        <div className="xl:col-span-3 p-4 bg-gray-50/50 dark:bg-gray-950/20 border border-gray-200 dark:border-cyan-500/20 rounded-2xl flex flex-col justify-between items-center min-h-[360px]">
           <svg className="w-full max-w-[500px] h-[260px]">
             {activeTree ? renderNodes(activeTree) : (
               <text x="250" y="130" textAnchor="middle" className="fill-gray-400 font-mono text-xs">
@@ -319,16 +319,16 @@ export default function BSTVisualizer() {
           </svg>
 
           {/* Status logs */}
-          <div className="w-full p-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl text-xs font-mono text-gray-700 dark:text-gray-300">
-            <span className="font-bold text-orange-500 mr-2 uppercase tracking-wide">STATUS:</span>
+          <div className="w-full p-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-cyan-500/20 rounded-xl text-xs font-mono text-gray-700 dark:text-gray-300">
+            <span className="font-bold text-orange-500 dark:text-cyan-400 mr-2 uppercase tracking-wide">STATUS:</span>
             {status}
           </div>
         </div>
       </div>
 
-      <div className="mt-6 flex items-start gap-3 p-4 rounded-xl bg-orange-50 dark:bg-orange-950/20 border border-orange-200 dark:border-orange-900/50">
-        <Info className="text-orange-500 shrink-0 mt-0.5" size={18} />
-        <p className="text-xs text-orange-800 dark:text-orange-300 leading-relaxed font-medium">
+      <div className="mt-6 flex items-start gap-3 p-4 rounded-xl bg-orange-50 dark:bg-cyan-500/5 border border-orange-200 dark:border-cyan-500/20">
+        <Info className="text-orange-500 dark:text-cyan-400 dark:text-cyan-400 shrink-0 mt-0.5" size={18} />
+        <p className="text-xs text-orange-800 dark:text-cyan-300 dark:font-code leading-relaxed font-medium">
           <strong>BST Concept:</strong> In a Binary Search Tree, for any given node, values in its left subtree must be less than the node's value, and values in its right subtree must be greater. Searching runs in average O(log N) time, partitioning the search space at each level.
         </p>
       </div>

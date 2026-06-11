@@ -721,7 +721,7 @@ const SortingVisualizer: React.FC = () => {
       {/* Controls */}
       <div className="sticky top-4 z-10 flex flex-wrap gap-4 items-center justify-center bg-white/10 dark:bg-gray-800/20 backdrop-blur-md p-4 neo-brutalism w-full transition-all">
         <div className="flex items-center gap-2">
-          <BarChart3 className="text-orange-500" />
+          <BarChart3 className="text-orange-500 dark:text-cyan-400" />
           <select
             value={algorithm}
             onChange={(e) => setAlgorithm(e.target.value)}
@@ -781,7 +781,7 @@ const SortingVisualizer: React.FC = () => {
 
         <div className="ml-auto px-4 py-2 bg-orange-50 dark:bg-orange-900/20 neo-brutalism text-sm font-mono">
           Comparisons:{" "}
-          <span className="font-bold text-orange-500 dark:text-orange-400">
+          <span className="font-bold text-orange-500 dark:text-cyan-400 dark:text-orange-400">
             {comparisons}
           </span>
         </div>

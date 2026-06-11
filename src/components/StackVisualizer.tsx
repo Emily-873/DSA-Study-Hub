@@ -160,11 +160,11 @@ export default function StackVisualizer() {
   return (
     <div className="p-6 bg-white dark:bg-slate-900 neo-brutalism">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 bg-orange-500 rounded-xl text-white">
+        <div className="p-3 bg-orange-500 dark:bg-cyan-500/20 dark:text-cyan-400 dark:border dark:border-cyan-500/30 rounded-xl text-white">
           <Layers size={24} />
         </div>
         <div>
-          <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white dark:font-display">
             Program 3: Stack Operations & Palindrome Checker
           </h3>
           <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -176,8 +176,8 @@ export default function StackVisualizer() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Operations & Control */}
         <div className="space-y-6">
-          <div className="p-4 bg-gray-50 dark:bg-gray-800/40 rounded-xl border border-gray-200 dark:border-gray-800">
-            <h4 className="font-extrabold text-sm uppercase tracking-wide mb-3 text-orange-500">
+          <div className="p-4 bg-gray-50 dark:bg-gray-800/40 rounded-xl border border-gray-200 dark:border-cyan-500/20">
+            <h4 className="font-extrabold text-sm uppercase tracking-wide mb-3 text-orange-500 dark:text-cyan-400">
               Stack Push & Pop
             </h4>
             <div className="flex flex-wrap gap-2 mb-3">
@@ -187,7 +187,7 @@ export default function StackVisualizer() {
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Enter value (e.g. A, 1)"
                 maxLength={4}
-                className="flex-grow min-w-[120px] px-3 py-2 bg-white dark:bg-gray-950 border border-gray-300 dark:border-gray-700 rounded-lg outline-none focus:ring-2 focus:ring-orange-500 font-mono text-sm"
+                className="flex-grow min-w-[120px] px-3 py-2 bg-white dark:bg-[#070B14] border border-gray-300 dark:border-cyan-500/30 dark:text-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-orange-500 font-mono text-sm"
               />
               <button
                 onClick={() => push(inputValue)}
@@ -208,15 +208,15 @@ export default function StackVisualizer() {
                 ? 'bg-green-50 dark:bg-green-950/20 border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-300'
                 : statusType === 'error'
                   ? 'bg-red-50 dark:bg-red-950/20 border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-300'
-                  : 'bg-gray-50 dark:bg-gray-950 border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400'
+                  : 'bg-gray-50 dark:bg-gray-950 border-gray-200 dark:border-cyan-500/20 text-gray-600 dark:text-gray-400'
             }`}>
               {statusType === 'success' ? <CheckCircle size={14} /> : statusType === 'error' ? <AlertCircle size={14} /> : <Info size={14} />}
               {statusMessage}
             </div>
           </div>
 
-          <div className="p-4 bg-gray-50 dark:bg-gray-800/40 rounded-xl border border-gray-200 dark:border-gray-800">
-            <h4 className="font-extrabold text-sm uppercase tracking-wide mb-3 text-orange-500">
+          <div className="p-4 bg-gray-50 dark:bg-gray-800/40 rounded-xl border border-gray-200 dark:border-cyan-500/20">
+            <h4 className="font-extrabold text-sm uppercase tracking-wide mb-3 text-orange-500 dark:text-cyan-400">
               Check for Palindrome
             </h4>
             <div className="flex flex-wrap gap-2 mb-3">
@@ -225,7 +225,7 @@ export default function StackVisualizer() {
                 value={palindromeInput}
                 onChange={(e) => setPalindromeInput(e.target.value.toUpperCase())}
                 placeholder="Enter string"
-                className="flex-grow min-w-[120px] px-3 py-2 bg-white dark:bg-gray-950 border border-gray-300 dark:border-gray-700 rounded-lg outline-none focus:ring-2 focus:ring-orange-500 font-mono text-sm"
+                className="flex-grow min-w-[120px] px-3 py-2 bg-white dark:bg-[#070B14] border border-gray-300 dark:border-cyan-500/30 dark:text-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-orange-500 font-mono text-sm"
               />
               <button
                 onClick={startPalindromeCheck}
@@ -238,8 +238,8 @@ export default function StackVisualizer() {
 
             {/* Palindrome logs */}
             {palindromeSteps.length > 0 && (
-              <div className="mt-3 p-3 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg text-xs leading-relaxed">
-                <div className="font-bold text-orange-500 mb-1 uppercase tracking-wide">
+              <div className="mt-3 p-3 bg-white dark:bg-gray-950 border border-gray-200 dark:border-cyan-500/20 rounded-lg text-xs leading-relaxed">
+                <div className="font-bold text-orange-500 dark:text-cyan-400 mb-1 uppercase tracking-wide">
                   Step {currentStep} of {palindromeSteps.length - 1}
                 </div>
                 <p className="text-gray-700 dark:text-gray-300 font-medium">
@@ -247,7 +247,7 @@ export default function StackVisualizer() {
                 </p>
                 {activeStepInfo.scannedChar && (
                   <div className="flex gap-4 mt-2 border-t border-gray-100 dark:border-gray-900 pt-2 font-mono">
-                    <div>Scanned: <span className="font-bold text-orange-500">{activeStepInfo.scannedChar}</span></div>
+                    <div>Scanned: <span className="font-bold text-orange-500 dark:text-cyan-400">{activeStepInfo.scannedChar}</span></div>
                     {activeStepInfo.poppedChar && (
                       <div>Popped: <span className="font-bold text-pink-500">{activeStepInfo.poppedChar}</span></div>
                     )}
@@ -264,7 +264,7 @@ export default function StackVisualizer() {
         </div>
 
         {/* Stack Cylinder / Visual Display */}
-        <div className="flex flex-col items-center justify-end min-h-[350px] bg-gray-50/50 dark:bg-gray-950/20 rounded-2xl border border-gray-200 dark:border-gray-800 p-6">
+        <div className="flex flex-col items-center justify-end min-h-[350px] bg-gray-50/50 dark:bg-gray-950/20 rounded-2xl border border-gray-200 dark:border-cyan-500/20 p-6">
           <div className="text-center mb-6">
             <span className="text-xs font-bold text-gray-400 uppercase tracking-widest block">
               Stack Container
@@ -287,7 +287,7 @@ export default function StackVisualizer() {
                   {Array.from({ length: emptySlots }).map((_, i) => (
                     <div
                       key={`empty-${i}`}
-                      className="w-full h-10 border border-dashed border-gray-300 dark:border-gray-800 rounded-lg flex items-center justify-center text-[10px] text-gray-400 font-mono"
+                      className="w-full h-10 border border-dashed border-gray-300 dark:border-cyan-500/20 rounded-lg flex items-center justify-center text-[10px] text-gray-400 font-mono"
                     >
                       Empty
                     </div>
@@ -299,7 +299,7 @@ export default function StackVisualizer() {
                     return (
                       <div
                         key={`${item}-${originalIdx}`}
-                        className={`w-full h-10 flex items-center justify-center border-2 border-black dark:border-white rounded-lg font-bold text-sm text-gray-900 dark:text-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] animate-pop ${
+                        className={`w-full h-10 flex items-center justify-center border-2 border-black dark:border-white rounded-lg font-bold text-sm text-gray-900 dark:text-white dark:font-display shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] animate-pop ${
                           isTop ? 'bg-orange-500 text-white' : 'bg-gray-100 dark:bg-gray-800'
                         }`}
                       >

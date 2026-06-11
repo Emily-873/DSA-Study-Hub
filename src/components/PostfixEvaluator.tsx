@@ -142,13 +142,13 @@ export default function PostfixEvaluator() {
   };
 
   return (
-    <div className="p-6 bg-white dark:bg-slate-900 neo-brutalism font-mono text-gray-900 dark:text-white">
+    <div className="p-6 bg-white dark:bg-slate-900 neo-brutalism font-mono text-gray-900 dark:text-white dark:font-display">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 bg-orange-500 rounded-xl text-white">
+        <div className="p-3 bg-orange-500 dark:bg-cyan-500/20 dark:text-cyan-400 dark:border dark:border-cyan-500/30 rounded-xl text-white">
           <Settings size={24} />
         </div>
         <div>
-          <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white font-sans">
+          <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white dark:font-display font-sans">
             Program 5A: Postfix Evaluation Visualizer
           </h3>
           <p className="text-sm text-gray-500 dark:text-gray-400 font-sans">
@@ -217,7 +217,7 @@ export default function PostfixEvaluator() {
       {/* Visual Workspace */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Stack pile */}
-        <div className="p-6 bg-gray-50 dark:bg-gray-950/20 rounded-2xl border border-gray-200 dark:border-gray-800 flex flex-col items-center justify-end min-h-[220px]">
+        <div className="p-6 bg-gray-50 dark:bg-gray-950/20 rounded-2xl border border-gray-200 dark:border-cyan-500/20 flex flex-col items-center justify-end min-h-[220px]">
           <span className="text-xs font-extrabold uppercase text-gray-400 tracking-wider mb-4 font-sans">
             Operand Evaluation Stack
           </span>
@@ -236,14 +236,14 @@ export default function PostfixEvaluator() {
         {/* Logs */}
         <div className="p-4 bg-orange-50/20 dark:bg-orange-950/10 rounded-xl border border-orange-200/40 dark:border-orange-900/20 flex flex-col justify-between">
           <div>
-            <span className="text-xs font-extrabold uppercase text-orange-500 tracking-wider font-sans">
+            <span className="text-xs font-extrabold uppercase text-orange-500 dark:text-cyan-400 tracking-wider font-sans">
               Step Logs
             </span>
             <p className="mt-3 text-xs leading-relaxed text-gray-700 dark:text-gray-300 font-medium">
               {currentInfo.action}
             </p>
           </div>
-          <div className="text-[10px] text-gray-400 border-t border-gray-200/40 dark:border-gray-800/40 pt-2 flex justify-between font-sans">
+          <div className="text-[10px] text-gray-400 border-t border-gray-200/40 dark:border-cyan-500/20/40 pt-2 flex justify-between font-sans">
             <span>Step: {stepIdx}</span>
             <span>Items on Stack: {currentInfo.stack?.length || 0}</span>
           </div>

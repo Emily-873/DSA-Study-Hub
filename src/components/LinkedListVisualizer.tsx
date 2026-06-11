@@ -85,14 +85,14 @@ export default function LinkedListVisualizer({ initialIsDLL = false }: LinkedLis
   };
 
   return (
-    <div className="p-6 bg-white dark:bg-slate-900 neo-brutalism text-gray-900 dark:text-white">
+    <div className="p-6 bg-white dark:bg-slate-900 neo-brutalism text-gray-900 dark:text-white dark:font-display">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <div className="flex items-center gap-3">
-          <div className="p-3 bg-orange-500 rounded-xl text-white">
+          <div className="p-3 bg-orange-500 dark:bg-cyan-500/20 dark:text-cyan-400 dark:border dark:border-cyan-500/30 rounded-xl text-white">
             <Network size={24} />
           </div>
           <div>
-            <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white dark:font-display">
               Program {isDLL ? '8: Doubly' : '7: Singly'} Linked List
             </h3>
             <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -109,15 +109,15 @@ export default function LinkedListVisualizer({ initialIsDLL = false }: LinkedLis
           }}
           className="flex items-center gap-2 px-4 py-2 border-2 border-black dark:border-white rounded-xl font-bold text-xs hover:bg-gray-100 dark:hover:bg-gray-800 transition-all active:scale-95"
         >
-          {isDLL ? <ToggleRight className="text-orange-500" size={20} /> : <ToggleLeft size={20} />}
+          {isDLL ? <ToggleRight className="text-orange-500 dark:text-cyan-400" size={20} /> : <ToggleLeft size={20} />}
           <span>{isDLL ? 'DLL Active' : 'SLL Active'}</span>
         </button>
       </div>
 
       <div className="flex flex-col gap-6 mb-6">
         {/* Controls Panel */}
-        <div className="p-4 bg-gray-50 dark:bg-gray-800/40 rounded-xl border border-gray-200 dark:border-gray-800">
-          <h4 className="font-extrabold text-sm uppercase tracking-wide mb-3 text-orange-500">
+        <div className="p-4 bg-gray-50 dark:bg-gray-800/40 rounded-xl border border-gray-200 dark:border-cyan-500/20">
+          <h4 className="font-extrabold text-sm uppercase tracking-wide mb-3 text-orange-500 dark:text-cyan-400">
             Node Fields
           </h4>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
@@ -128,7 +128,7 @@ export default function LinkedListVisualizer({ initialIsDLL = false }: LinkedLis
                 value={usn}
                 onChange={(e) => setUsn(e.target.value.toUpperCase())}
                 placeholder="1RV21CS001"
-                className="w-full px-3 py-1.5 bg-white dark:bg-gray-950 border border-gray-300 dark:border-gray-700 rounded-lg outline-none focus:ring-2 focus:ring-orange-500 text-xs font-semibold"
+                className="w-full px-3 py-1.5 bg-white dark:bg-[#070B14] border border-gray-300 dark:border-cyan-500/30 dark:text-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-orange-500 text-xs font-semibold"
               />
             </div>
             <div>
@@ -138,7 +138,7 @@ export default function LinkedListVisualizer({ initialIsDLL = false }: LinkedLis
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Student Name"
-                className="w-full px-3 py-1.5 bg-white dark:bg-gray-950 border border-gray-300 dark:border-gray-700 rounded-lg outline-none focus:ring-2 focus:ring-orange-500 text-xs font-semibold"
+                className="w-full px-3 py-1.5 bg-white dark:bg-[#070B14] border border-gray-300 dark:border-cyan-500/30 dark:text-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-orange-500 text-xs font-semibold"
               />
             </div>
             <div>
@@ -146,7 +146,7 @@ export default function LinkedListVisualizer({ initialIsDLL = false }: LinkedLis
               <select
                 value={branch}
                 onChange={(e) => setBranch(e.target.value)}
-                className="w-full px-3 py-1.5 bg-white dark:bg-gray-950 border border-gray-300 dark:border-gray-700 rounded-lg outline-none text-xs font-semibold"
+                className="w-full px-3 py-1.5 bg-white dark:bg-[#070B14] border border-gray-300 dark:border-cyan-500/30 dark:text-slate-200 rounded-lg outline-none text-xs font-semibold"
               >
                 {['CSE', 'ISE', 'ECE', 'ME', 'CIVIL'].map((b) => (
                   <option key={b} value={b}>
@@ -190,7 +190,7 @@ export default function LinkedListVisualizer({ initialIsDLL = false }: LinkedLis
         </div>
 
         {/* Logs */}
-        <div className="p-4 bg-gray-50 dark:bg-gray-800/40 rounded-xl border border-gray-200 dark:border-gray-800">
+        <div className="p-4 bg-gray-50 dark:bg-gray-800/40 rounded-xl border border-gray-200 dark:border-cyan-500/20">
           <h4 className="font-extrabold text-sm uppercase tracking-wide mb-2 text-gray-400">
             Operations Log
           </h4>
@@ -205,7 +205,7 @@ export default function LinkedListVisualizer({ initialIsDLL = false }: LinkedLis
       </div>
 
       {/* Nodes visual representation */}
-      <div className="p-6 bg-gray-50 dark:bg-gray-950/40 rounded-2xl border border-gray-200 dark:border-gray-800 flex items-center gap-2 overflow-x-auto min-h-[160px] pb-4">
+      <div className="p-6 bg-gray-50 dark:bg-gray-950/40 rounded-2xl border border-gray-200 dark:border-cyan-500/20 flex items-center gap-2 overflow-x-auto min-h-[160px] pb-4">
         {/* Starting pointer */}
         <div className="flex items-center shrink-0">
           <div className="px-3 py-1.5 bg-orange-500 text-white rounded-md text-[10px] font-extrabold tracking-widest uppercase">
@@ -228,7 +228,7 @@ export default function LinkedListVisualizer({ initialIsDLL = false }: LinkedLis
               <React.Fragment key={node.id}>
                 {/* Node Box */}
                 <div className="p-3 bg-white dark:bg-gray-900 border-2 border-black dark:border-white rounded-xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] dark:shadow-[3px_3px_0px_0px_rgba(255,255,255,1)] shrink-0 min-w-[130px] font-mono text-[10px] leading-tight flex flex-col justify-between">
-                  <div className="flex justify-between items-center mb-1 text-orange-500 font-extrabold uppercase">
+                  <div className="flex justify-between items-center mb-1 text-orange-500 dark:text-cyan-400 font-extrabold uppercase">
                     <span>Node {index + 1}</span>
                     <span className="px-1 py-0.2 bg-orange-500/10 text-[8px] rounded">{node.branch}</span>
                   </div>
@@ -261,9 +261,9 @@ export default function LinkedListVisualizer({ initialIsDLL = false }: LinkedLis
         )}
       </div>
 
-      <div className="mt-6 flex items-start gap-3 p-4 rounded-xl bg-orange-50 dark:bg-orange-950/20 border border-orange-200 dark:border-orange-900/50">
-        <Info className="text-orange-500 shrink-0 mt-0.5" size={18} />
-        <p className="text-xs text-orange-800 dark:text-orange-300 leading-relaxed font-medium">
+      <div className="mt-6 flex items-start gap-3 p-4 rounded-xl bg-orange-50 dark:bg-cyan-500/5 border border-orange-200 dark:border-cyan-500/20">
+        <Info className="text-orange-500 dark:text-cyan-400 dark:text-cyan-400 shrink-0 mt-0.5" size={18} />
+        <p className="text-xs text-orange-800 dark:text-cyan-300 dark:font-code leading-relaxed font-medium">
           <strong>LinkedList Physics:</strong> Singly Linked Lists (SLL) contain values and a single `next` reference pointer linking sequentially. Doubly Linked Lists (DLL) extend this with double links (`prev` and `next`), allowing bidirectional traversal at the expense of extra memory pointer configurations.
         </p>
       </div>
