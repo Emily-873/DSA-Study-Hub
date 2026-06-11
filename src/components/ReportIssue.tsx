@@ -323,7 +323,7 @@ const ReportIssue: React.FC = () => {
         <button
           type="submit"
           disabled={isSubmitting}
-          className={`w-full py-4 px-6 neo-button bg-orange-500 text-white font-bold flex items-center justify-center gap-2 ${
+          className={`btn-cyber w-full py-4 text-lg font-bold flex items-center justify-center gap-2 ${
             isSubmitting ? "opacity-60 cursor-not-allowed" : ""
           }`}>
           {isSubmitting ? (
