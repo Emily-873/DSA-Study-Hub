@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ArrowRight, Code2, Layers, GitBranch, Zap, Cpu, User } from "lucide-react";
 import { useRouter } from "next/router";
+import { InteractiveRoadmap } from "../components/InteractiveRoadmap";
 
 interface HomeViewProps {
   navigateTo: (view: string) => void;
@@ -45,7 +46,7 @@ function useTypewriter(text: string, speed = 40, startDelay = 900) {
   return { displayed, done };
 }
 
-export const HomeView = ({ navigateTo }: HomeViewProps) => {
+export const HomeView = ({ navigateTo, completedPrograms = [] }: HomeViewProps) => {
   const router = useRouter();
   
   const { displayed, done } = useTypewriter(
@@ -55,7 +56,9 @@ export const HomeView = ({ navigateTo }: HomeViewProps) => {
   );
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-cyber">
+    <main className="min-h-screen bg-cyber">
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Ambient gradient orbs */}
       <div className="absolute inset-0 pointer-events-none">
         <div
@@ -212,6 +215,10 @@ export const HomeView = ({ navigateTo }: HomeViewProps) => {
           <span className="font-code text-[9px] tracking-[0.3em] text-slate-700 uppercase">scroll</span>
         </div>
       </div>
-    </section>
+      </section>
+
+      {/* Interactive Roadmap Section */}
+      <InteractiveRoadmap completedPrograms={completedPrograms} />
+    </main>
   );
 };
