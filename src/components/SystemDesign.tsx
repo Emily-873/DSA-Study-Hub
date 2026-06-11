@@ -16,16 +16,16 @@ export const SystemDesign: React.FC = () => {
 
             {/* NEW: System Design Essentials Overview */}
             <section className="space-y-8">
-                <div className="flex items-center gap-4 p-4 glass-panel border border-orange-500/20 rounded-xl">
-                    <div className="p-3 bg-orange-500 text-slate-900 rounded-lg shadow-[0_0_15px_rgba(249,115,22,0.8)]">
+                <div className="flex items-center gap-4 p-4 glass-panel border border-emerald-500/20 rounded-xl">
+                    <div className="p-3 bg-emerald-500 text-slate-900 rounded-lg shadow-[0_0_15px_rgba(16,185,129,0.8)]">
                         <Server size={24} />
                     </div>
                     <h2 className="text-2xl font-bold text-white uppercase tracking-wider">System Design Essentials</h2>
                 </div>
                 <div className="grid md:grid-cols-2 gap-6">
                     {/* Scalability */}
-                    <div className="glass-panel p-6 border border-slate-700 border-l-4 border-l-orange-500 rounded-r-xl hover:translate-x-1 transition-transform">
-                        <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-orange-600 dark:text-orange-400">
+                    <div className="glass-panel p-6 border border-slate-700 border-l-4 border-l-emerald-500 rounded-r-xl hover:translate-x-1 transition-transform">
+                        <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
                             <ArrowRightLeft size={18} /> Scalability
                         </h3>
                         <ul className="list-disc pl-4 text-sm text-slate-400 font-code space-y-2 marker:text-cyan-500">
@@ -37,25 +37,25 @@ export const SystemDesign: React.FC = () => {
                             {/* Visual: Scaling - LB to multiple nodes */}
                             <svg width="100%" height="80" viewBox="0 0 240 60" className="max-w-[320px]">
                                 <defs>
-                                    <marker id="arrow-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#f97316" />
+                                    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#10b981" />
                                     </marker>
                                 </defs>
                                 {/* Load Balancer */}
-                                <rect x="20" y="10" width="40" height="40" rx="6" fill="#f97316" stroke="#c2410c" strokeWidth="2" />
+                                <rect x="20" y="10" width="40" height="40" rx="6" fill="#10b981" stroke="#c2410c" strokeWidth="2" />
                                 <text x="40" y="34" fontSize="10" fill="white" textAnchor="middle" fontWeight="bold">LB</text>
                                 
                                 {/* Servers */}
                                 <g transform="translate(180, 0)">
-                                    <rect x="0" y="5" width="30" height="14" rx="2" fill="#fed7aa" stroke="#f97316" />
-                                    <rect x="0" y="23" width="30" height="14" rx="2" fill="#fed7aa" stroke="#f97316" />
-                                    <rect x="0" y="41" width="30" height="14" rx="2" fill="#fed7aa" stroke="#f97316" />
+                                    <rect x="0" y="5" width="30" height="14" rx="2" fill="#fed7aa" stroke="#10b981" />
+                                    <rect x="0" y="23" width="30" height="14" rx="2" fill="#fed7aa" stroke="#10b981" />
+                                    <rect x="0" y="41" width="30" height="14" rx="2" fill="#fed7aa" stroke="#10b981" />
                                 </g>
 
                                 {/* Connections */}
-                                <path d="M 60 30 C 120 30, 120 12, 174 12" stroke="#f97316" strokeWidth="2" fill="none" markerEnd="url(#arrow-orange)" className="opacity-80" />
-                                <path d="M 60 30 L 174 30" stroke="#f97316" strokeWidth="2" fill="none" markerEnd="url(#arrow-orange)" className="opacity-80" />
-                                <path d="M 60 30 C 120 30, 120 48, 174 48" stroke="#f97316" strokeWidth="2" fill="none" markerEnd="url(#arrow-orange)" className="opacity-80" />
+                                <path d="M 60 30 C 120 30, 120 12, 174 12" stroke="#10b981" strokeWidth="2" fill="none" markerEnd="url(#arrow-emerald)" className="opacity-80" />
+                                <path d="M 60 30 L 174 30" stroke="#10b981" strokeWidth="2" fill="none" markerEnd="url(#arrow-emerald)" className="opacity-80" />
+                                <path d="M 60 30 C 120 30, 120 48, 174 48" stroke="#10b981" strokeWidth="2" fill="none" markerEnd="url(#arrow-emerald)" className="opacity-80" />
                             </svg>
                         </div>
                     </div>
@@ -273,18 +273,18 @@ export const SystemDesign: React.FC = () => {
                 <div className="space-y-6">
                      {/* Consistent Hashing */}
                     <div className="group relative glass-panel border border-slate-700 p-8 rounded-xl transition-all overflow-hidden">
-                        <div className="absolute top-0 left-0 w-2 h-full bg-orange-500"></div>
+                        <div className="absolute top-0 left-0 w-2 h-full bg-emerald-500"></div>
                         
                         <div className="flex flex-col md:flex-row gap-8">
                             <div className="flex-1">
                                 <h3 className="text-xl font-bold mb-2 flex items-center gap-2 text-white">
-                                    <GitBranch className="text-orange-500" /> Consistent Hashing
+                                    <GitBranch className="text-emerald-500" /> Consistent Hashing
                                 </h3>
                                 <p className="text-slate-400 font-code mb-4">
                                     Used in Load Balancers and Distributed Caches (like DynamoDB, Cassandra).
                                 </p>
                                 <div className="space-y-2 text-sm">
-                                    <p><strong className="text-orange-500">Concept:</strong> It's essentially a BST or Circular Linked List!</p>
+                                    <p><strong className="text-emerald-500">Concept:</strong> It's essentially a BST or Circular Linked List!</p>
                                     <p>Nodes are placed on a "ring" (0-360°). A key maps to a point on the ring, and the "owner" is the stored node found by moving clockwise (Next Greater Element).</p>
                                     <p className="mt-2 text-gray-500"><em>When a node is added/removed, only k/N keys need to be remapped, unlike Modulo Hashing where almost ALL keys move.</em></p>
                                 </div>
@@ -447,19 +447,19 @@ export const SystemDesign: React.FC = () => {
 
                     {/* Load Balancing Algorithms */}
                     <div className="group relative glass-panel border border-slate-700 p-8 rounded-xl transition-all overflow-hidden">
-                        <div className="absolute top-0 left-0 w-2 h-full bg-orange-500"></div>
+                        <div className="absolute top-0 left-0 w-2 h-full bg-emerald-500"></div>
                         
                         <div className="flex flex-col md:flex-row gap-8">
                             <div className="flex-1">
                                 <h3 className="text-xl font-bold mb-2 flex items-center gap-2 text-white">
-                                    <ArrowRightLeft className="text-orange-500" /> Load Balancing Algorithms
+                                    <ArrowRightLeft className="text-emerald-500" /> Load Balancing Algorithms
                                 </h3>
                                 <p className="text-slate-400 font-code mb-4 text-sm leading-relaxed">
                                     How a load balancer decides which server should handle the incoming request.
                                 </p>
                                 <div className="space-y-4 text-sm">
-                                    <div className="bg-orange-500/10 border border-orange-500/20 p-4 border-l-4 border-l-orange-500 rounded-r-xl">
-                                        <p><strong className="text-orange-600 dark:text-orange-400">Round Robin:</strong> Cycles through all servers sequentially. Best when servers have equal capacity.</p>
+                                    <div className="bg-emerald-500/10 border border-emerald-500/20 p-4 border-l-4 border-l-emerald-500 rounded-r-xl">
+                                        <p><strong className="text-emerald-600 dark:text-emerald-400">Round Robin:</strong> Cycles through all servers sequentially. Best when servers have equal capacity.</p>
                                     </div>
                                     <div className="bg-blue-500/10 border border-blue-500/20 p-4 border-l-4 border-l-blue-500 rounded-r-xl">
                                         <p><strong className="text-blue-600 dark:text-blue-400">Least Connections:</strong> Sends traffic to the server with fewest active requests. Ideal for long-lived connections.</p>
@@ -472,7 +472,7 @@ export const SystemDesign: React.FC = () => {
                             <div className="flex-1 flex items-center justify-center bg-slate-900/50 p-6 min-h-[220px] border border-slate-700 rounded-xl shadow-[inset_0_0_20px_rgba(0,0,0,0.5)]">
                                 <svg width="280" height="200" viewBox="0 0 160 120">
                                     {/* LB Node */}
-                                    <rect x="10" y="45" width="40" height="30" rx="4" fill="#f97316" className="drop-shadow-lg" />
+                                    <rect x="10" y="45" width="40" height="30" rx="4" fill="#10b981" className="drop-shadow-lg" />
                                     <text x="30" y="65" fontSize="10" fill="white" textAnchor="middle" fontWeight="bold">LB</text>
                                     
                                     {/* Server Nodes */}
@@ -490,10 +490,10 @@ export const SystemDesign: React.FC = () => {
 
                                     {/* Animated Request Lines */}
                                     <path d="M 50 60 C 70 60, 80 22, 100 22" stroke="#94a3b8" strokeWidth="2" fill="none" strokeDasharray="4,4" className="opacity-40" />
-                                    <path d="M 50 60 L 100 60" stroke="#f97316" strokeWidth="3" fill="none" markerEnd="url(#arrow-orange)" className="animate-dash" />
+                                    <path d="M 50 60 L 100 60" stroke="#10b981" strokeWidth="3" fill="none" markerEnd="url(#arrow-emerald)" className="animate-dash" />
                                     <path d="M 50 60 C 70 60, 80 98, 100 98" stroke="#94a3b8" strokeWidth="2" fill="none" strokeDasharray="4,4" className="opacity-40" />
                                     
-                                    <text x="75" y="115" fontSize="7" fill="#f97316" textAnchor="middle" className="italic font-bold">Round Robin Dispatching...</text>
+                                    <text x="75" y="115" fontSize="7" fill="#10b981" textAnchor="middle" className="italic font-bold">Round Robin Dispatching...</text>
                                 </svg>
                             </div>
                         </div>
