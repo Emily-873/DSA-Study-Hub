@@ -94,7 +94,7 @@ export const ProgramView: React.FC<ProgramViewProps> = ({
         <h2 className="text-2xl font-bold">Program Not Found</h2>
         <button
           onClick={() => router.push("/")}
-          className="mt-4 px-4 py-2 bg-orange-500 text-white rounded-lg">
+          className="btn-cyber font-code mt-4 px-6 py-3">
           Go Home
         </button>
       </div>
@@ -294,14 +294,14 @@ export const ProgramView: React.FC<ProgramViewProps> = ({
           <div className="mt-8 flex justify-between items-center bg-gray-50 dark:bg-[#070B14] p-4 rounded-xl dark:border dark:border-cyan-500/20">
             <button
               onClick={() => router.push("/")}
-              className="flex items-center gap-2 px-4 py-2 text-gray-500 dark:text-slate-400 hover:text-orange-500 dark:hover:text-cyan-400 font-semibold transition-colors">
+              className="flex items-center gap-2 px-4 py-2 text-gray-500 dark:text-slate-400 hover:text-cyan-500 dark:hover:text-cyan-400 font-code transition-colors">
               <Home size={20} /> <span className="hidden sm:inline">Home</span>
             </button>
 
             {activeView === "program12" ? (
               <button
                 onClick={() => router.push("/")}
-                className="flex items-center gap-2 px-6 py-3 bg-gray-800 dark:bg-orange-500 text-white rounded-lg font-semibold hover:bg-gray-700 dark:hover:bg-orange-600 transition-all transform hover:scale-105 shadow-md">
+                className="btn-cyber font-code flex items-center gap-2 px-6 py-3">
                 Perfect! Back Home
               </button>
             ) : (
@@ -310,7 +310,7 @@ export const ProgramView: React.FC<ProgramViewProps> = ({
                 return nextName ? (
                   <button
                     onClick={() => handleNextClick(nextName)}
-                    className="flex items-center gap-2 px-6 py-3 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 transition-all transform hover:scale-105 shadow-md shadow-orange-500/20">
+                    className="btn-cyber font-code flex items-center gap-2 px-6 py-3">
                     Next <ArrowRight size={20} />
                   </button>
                 ) : null;
@@ -344,8 +344,8 @@ export const ProgramView: React.FC<ProgramViewProps> = ({
                 onClick={() => setViewMode("visualizer")}
                 className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all dark:font-code ${
                   viewMode === "visualizer"
-                    ? "bg-orange-500 text-white shadow-sm dark:bg-cyan-500/20 dark:text-cyan-300 dark:border dark:border-cyan-500/50 dark:shadow-[0_0_10px_rgba(6,182,212,0.2)]"
-                    : "text-gray-500 hover:text-orange-500 dark:text-slate-500 dark:hover:text-cyan-400"
+                    ? "bg-cyan-500 text-white shadow-sm dark:bg-cyan-500/20 dark:text-cyan-300 dark:border dark:border-cyan-500/50 dark:shadow-[0_0_10px_rgba(6,182,212,0.2)]"
+                    : "text-slate-500 hover:text-cyan-500 dark:text-slate-500 dark:hover:text-cyan-400"
                 }`}
               >
                 Interactive Animation
@@ -354,8 +354,8 @@ export const ProgramView: React.FC<ProgramViewProps> = ({
                 onClick={() => setViewMode("console")}
                 className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all dark:font-code ${
                   viewMode === "console"
-                    ? "bg-orange-500 text-white shadow-sm dark:bg-cyan-500/20 dark:text-cyan-300 dark:border dark:border-cyan-500/50 dark:shadow-[0_0_10px_rgba(6,182,212,0.2)]"
-                    : "text-gray-500 hover:text-orange-500 dark:text-slate-500 dark:hover:text-cyan-400"
+                    ? "bg-cyan-500 text-white shadow-sm dark:bg-cyan-500/20 dark:text-cyan-300 dark:border dark:border-cyan-500/50 dark:shadow-[0_0_10px_rgba(6,182,212,0.2)]"
+                    : "text-slate-500 hover:text-cyan-500 dark:text-slate-500 dark:hover:text-cyan-400"
                 }`}
               >
                 Console Simulator
