@@ -25,6 +25,17 @@ import {
   Route as RouteIcon 
 } from 'lucide-react';
 
+
+const floatingNodes = [
+  { x: "8%",  y: "22%", size: 5, delay: 0,   color: "rgba(6,182,212,0.5)" },
+  { x: "90%", y: "15%", size: 8, delay: 1.5, color: "rgba(37,99,235,0.5)" },
+  { x: "85%", y: "72%", size: 5, delay: 3,   color: "rgba(6,182,212,0.4)" },
+  { x: "5%",  y: "78%", size: 7, delay: 2,   color: "rgba(139,92,246,0.5)" },
+  { x: "50%", y: "6%",  size: 4, delay: 4,   color: "rgba(249,115,22,0.4)" },
+  { x: "93%", y: "50%", size: 6, delay: 1,   color: "rgba(6,182,212,0.3)" },
+  { x: "2%",  y: "50%", size: 4, delay: 3.5, color: "rgba(37,99,235,0.4)" },
+];
+
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const [darkMode, setDarkMode] = useState(false);
@@ -224,6 +235,25 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       <div className={`min-h-screen relative z-0 transition-colors duration-300 ${darkMode ? "bg-[#070B14] text-white" : "bg-gray-50 text-gray-900"}`}>
         {isWinter && <Snowfall />}
+        
+        {darkMode && (
+          <div className="fixed inset-0 pointer-events-none z-[-5] overflow-hidden">
+            {/* Ambient gradient orbs */}
+            <div className="absolute w-[600px] h-[600px] rounded-full blur-[130px] animate-float" style={{ top: "-15%", left: "5%", background: "radial-gradient(circle, rgba(37,99,235,0.08) 0%, transparent 70%)" }} />
+            <div className="absolute w-[500px] h-[500px] rounded-full blur-[110px] animate-float-delayed" style={{ bottom: "-10%", right: "5%", background: "radial-gradient(circle, rgba(6,182,212,0.08) 0%, transparent 70%)" }} />
+            <div className="absolute w-[350px] h-[350px] rounded-full blur-[80px] animate-float-slow" style={{ top: "35%", right: "25%", background: "radial-gradient(circle, rgba(139,92,246,0.05) 0%, transparent 70%)" }} />
+            {/* Floating node dots */}
+            {floatingNodes.map((node, i) => (
+              <div key={i} className="absolute rounded-full pointer-events-none" style={{ left: node.x, top: node.y, width: node.size, height: node.size, background: node.color, boxShadow: `0 0 ${node.size * 3}px ${node.color}`, animation: `float ${6 + i * 0.5}s ease-in-out ${node.delay}s infinite` }} />
+            ))}
+            {/* Corner bracket decorations */}
+            <div className="absolute top-24 left-6 sm:left-10 w-12 h-12 border-t border-l border-cyan-500/20 pointer-events-none" />
+            <div className="absolute top-24 right-6 sm:right-10 w-12 h-12 border-t border-r border-cyan-500/20 pointer-events-none" />
+            <div className="absolute bottom-20 left-6 sm:left-10 w-12 h-12 border-b border-l border-cyan-500/12 pointer-events-none" />
+            <div className="absolute bottom-20 right-6 sm:right-10 w-12 h-12 border-b border-r border-cyan-500/12 pointer-events-none" />
+          </div>
+        )}
+
         <div
           className="absolute inset-0 -z-10"
           style={darkMode ? {
