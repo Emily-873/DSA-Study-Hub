@@ -928,8 +928,8 @@ const TreeGraphVisualizer: React.FC = () => {
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col md:flex-row gap-6 overflow-hidden min-h-[600px]">
          {/* Canvas Area */}
-         <div className="flex-1 relative glass-panel rounded-2xl overflow-auto cursor-move min-h-[400px]" ref={canvasRef}>
-            <svg className="w-full h-full min-w-[600px] md:min-w-[1000px] min-h-[500px] md:min-h-[800px]">
+         <div className="flex-1 relative bg-white dark:bg-gray-900 overflow-auto cursor-move min-h-[400px]" ref={canvasRef}>
+            <svg className="w-full h-full min-w-[600px] md:min-w-[1000px] min-h-[500px] md:min-h-[800px]" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet">
                 <defs>
                     <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="28" refY="3.5" orient="auto">
                         <polygon points="0 0, 10 3.5, 0 7" fill="#475569" />
