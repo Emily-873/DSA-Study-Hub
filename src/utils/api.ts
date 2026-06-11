@@ -62,8 +62,8 @@ export async function secureFetch(url: string, options: RequestInit = {}) {
   let response;
   try {
     response = await fetch(requestUrl, defaultOptions);
-  } catch (err) {
-    console.error("[secureFetch] Fetch failed for URL:", requestUrl, err);
+  } catch (err: any) {
+    console.warn(`[secureFetch] Network error for URL: ${requestUrl} - ${err.message}`);
     throw err;
   }
 
