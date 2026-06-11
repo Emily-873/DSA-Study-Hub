@@ -6,6 +6,7 @@ import {
   Settings2,
   Volume2,
   VolumeX,
+  Square,
 } from "lucide-react";
 import ComplexityChart from "./ComplexityChart";
 import useLocalStorage from "../hooks/useLocalStorage";
@@ -17,16 +18,26 @@ const randomIntFromInterval = (min: number, max: number) =>
 const SortingVisualizer: React.FC = () => {
   const [array, setArray] = useState<number[]>([]);
   const [isSorting, setIsSorting] = useState(false);
+  const [isSortedState, setIsSortedState] = useState(false); // true = finished naturally
   const [speed, setSpeed] = useLocalStorage("sortingSpeed", 50);
   const [algorithm, setAlgorithm] = useLocalStorage(
     "sortingAlgorithm",
     "bubble",
   );
   const [comparisons, setComparisons] = useState(0);
+  const isSortedRef = useRef(false); // ref mirror so the effect closure is always fresh
 
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMuted, setIsMuted] = useState(false);
+  const isMutedRef = useRef(false); // ref so playSound always sees the latest value
   const audioCtxRef = useRef<AudioContext | null>(null);
+  const isSortingRef = useRef(false);
+  const checkIfSorting = () => isSortingRef.current;
+
+  // Keep isMutedRef in sync whenever the toggle fires
+  useEffect(() => {
+    isMutedRef.current = isMuted;
+  }, [isMuted]);
 
   // Audio Context initialization helper
   const getAudioContext = () => {
@@ -41,7 +52,7 @@ const SortingVisualizer: React.FC = () => {
   };
 
   const playSound = (value: number) => {
-    if (isMuted) return;
+    if (isMutedRef.current) return; // always reads the latest toggle
     const ctx = getAudioContext();
     if (ctx.state === "suspended") ctx.resume();
 
@@ -61,8 +72,10 @@ const SortingVisualizer: React.FC = () => {
     osc.stop(ctx.currentTime + 0.1);
   };
 
+  const [mounted, setMounted] = useState(false);
+
   const resetArray = useCallback(() => {
-    if (isSorting) return;
+    if (isSortingRef.current) return;
     const width = containerRef.current?.offsetWidth || 800;
     const numBars = Math.floor(width / (width < 600 ? 8 : 12)); // Responsive bar count
     const newArray: number[] = [];
@@ -79,11 +92,19 @@ const SortingVisualizer: React.FC = () => {
     for (let i = 0; i < bars.length; i++) {
       bars[i].style.backgroundColor = "#06b6d4"; // Default Orange
     }
-  }, [isSorting]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Stable — uses isSortingRef.current, not isSorting state
 
   useEffect(() => {
-    resetArray();
-  }, [resetArray]);
+    setMounted(true);
+  }, []);
+
+  // Only fire once when the component mounts on the client
+  useEffect(() => {
+    if (mounted) {
+      resetArray();
+    }
+  }, [mounted]); // intentionally omit resetArray — it is stable and should not retrigger
 
   const sleep = (ms: number) =>
     new Promise((resolve) => setTimeout(resolve, ms));
@@ -98,7 +119,7 @@ const SortingVisualizer: React.FC = () => {
 
     for (let i = 0; i < arr.length; i++) {
       for (let j = 0; j < arr.length - i - 1; j++) {
-        if (!isSorting && !checkIfSorting()) return; // Stop if reset
+        if (!isSortingRef.current) return; // Stop if reset
 
         // Highlight comparison
         bars[j].style.backgroundColor = "#f43f5e"; // Pink
@@ -139,8 +160,8 @@ const SortingVisualizer: React.FC = () => {
       bars[i].style.backgroundColor = "#f43f5e"; // Current Pivot
 
       for (let j = i + 1; j < arr.length; j++) {
-        if (!isSorting && !checkIfSorting()) return;
-        bars[j].style.backgroundColor = "#6366f1"; // Scanning
+        if (!isSortingRef.current) return;
+        bars[j].style.backgroundColor = "#eab308"; // Scanning
         playSound(arr[j]);
         await sleep(100 - speed);
 
@@ -472,12 +493,12 @@ const SortingVisualizer: React.FC = () => {
     setIsSorting(false);
   };
 
-  // Need a special check for the async loop break
-  const isSortingRef = useRef(false);
-  const checkIfSorting = () => isSortingRef.current;
+
 
   const handleSort = async () => {
     setIsSorting(true);
+    setIsSortedState(false);
+    isSortedRef.current = false;
     isSortingRef.current = true;
     if (algorithm === "bubble") await bubbleSort();
     else if (algorithm === "selection") await selectionSort();
@@ -492,9 +513,31 @@ const SortingVisualizer: React.FC = () => {
     else if (algorithm === "shell") await shellSort();
     else if (algorithm === "bogo") await bogoSort();
 
+    // Only mark as sorted if the algorithm ran to completion (not stopped)
+    if (isSortingRef.current) {
+      setIsSortedState(true);
+      isSortedRef.current = true;
+    }
     setIsSorting(false);
     isSortingRef.current = false;
   };
+
+  const handleStop = () => {
+    isSortingRef.current = false;
+    setIsSortedState(false); // stopped mid-way — not sorted
+    isSortedRef.current = false;
+    setIsSorting(false);
+  };
+
+  // Auto-shuffle when user switches algorithm after a completed sort
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (isSortedRef.current) {
+      isSortedRef.current = false;
+      setIsSortedState(false);
+      resetArray();
+    }
+  }, [algorithm]); // algorithm change is the only trigger
 
   // --- QUICK SORT ---
   const quickSortHelper = async () => {
@@ -763,13 +806,21 @@ const SortingVisualizer: React.FC = () => {
         </button>
 
         <div className="flex gap-2">
-          <button
-            onClick={handleSort}
-            disabled={isSorting}
-            className={`btn-cyber px-6 py-2 flex items-center space-x-2 ${isSorting ? "opacity-50 cursor-not-allowed grayscale" : ""}`}>
-            <Play size={18} />
-            <span>Sort</span>
-          </button>
+          {isSorting ? (
+            <button
+              onClick={handleStop}
+              className="flex items-center space-x-2 px-6 py-2 neo-button font-bold text-white bg-red-500 hover:bg-red-600 transition-all">
+              <Square size={18} className="fill-white" />
+              <span>Stop</span>
+            </button>
+          ) : (
+            <button
+              onClick={handleSort}
+              className="flex items-center space-x-2 px-6 py-2 neo-button font-bold text-white bg-orange-500 hover:bg-orange-600 transition-all">
+              <Play size={18} />
+              <span>Sort</span>
+            </button>
+          )}
           <button
             onClick={resetArray}
             disabled={isSorting}
