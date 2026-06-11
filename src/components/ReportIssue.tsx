@@ -95,13 +95,13 @@ const ReportIssue: React.FC = () => {
   if (submitted) {
     return (
       <div className="flex flex-col items-center justify-center p-12 text-center animate-fade-in glassmorphism rounded-xl max-w-lg mx-auto">
-        <div className="w-20 h-20 neo-brutalism bg-green-100 dark:bg-green-900/30 flex items-center justify-center mb-6 text-green-600 dark:text-green-400 hover:translate-x-0 hover:translate-y-0 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+        <div className="w-20 h-20 rounded-xl bg-cyan-500/20 border border-cyan-500 flex items-center justify-center mb-6 text-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.5)]">
           <CheckCircle2 size={40} />
         </div>
-        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+        <h3 className="text-2xl font-bold text-white mb-2">
           Thank you!
         </h3>
-        <p className="text-gray-600 dark:text-gray-300">
+        <p className="text-slate-400 font-code text-sm">
           Your feedback has been submitted successfully. We'll look into it.
         </p>
       </div>
@@ -109,17 +109,17 @@ const ReportIssue: React.FC = () => {
   }
 
   return (
-    <div className="max-w-2xl mx-auto bg-white dark:bg-gray-800/20 backdrop-blur-sm p-8 neo-brutalism">
+    <div className="max-w-2xl mx-auto glass-panel border border-slate-700 p-8 rounded-2xl">
       <div className="mb-8">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-3">
+        <h2 className="text-3xl font-bold text-white mb-2 flex items-center gap-3">
           {type === "bug" ? (
             <Bug className="text-red-500" />
           ) : (
-            <Lightbulb className="text-yellow-500" />
+            <Lightbulb className="text-cyan-400" />
           )}
           {type === "bug" ? "Report an Issue" : "Submit a Suggestion"}
         </h2>
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className="text-slate-400 font-code text-sm">
           Help us improve the DSA Study Hub. Whether it's a bug or a brilliant
           idea, we want to hear it.
         </p>
@@ -131,10 +131,10 @@ const ReportIssue: React.FC = () => {
           <button
             type="button"
             onClick={() => setType("bug")}
-            className={`p-4 neo-brutalism flex flex-col items-center justify-center gap-2 ${
+            className={`p-4 rounded-xl flex flex-col items-center justify-center gap-2 ${
               type === "bug"
-                ? "bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 border-red-500"
-                : "bg-gray-50 dark:bg-gray-700/50 text-gray-500"
+                ? "bg-rose-500/20 text-rose-400 border-rose-500 shadow-[0_0_15px_rgba(244,63,94,0.5)]"
+                : "bg-slate-800/50 text-slate-400 border border-slate-700"
             }`}>
             <Bug size={24} />
             <span className="font-semibold">Report Bug</span>
@@ -142,10 +142,10 @@ const ReportIssue: React.FC = () => {
           <button
             type="button"
             onClick={() => setType("suggestion")}
-            className={`p-4 neo-brutalism flex flex-col items-center justify-center gap-2 ${
+            className={`p-4 rounded-xl flex flex-col items-center justify-center gap-2 ${
               type === "suggestion"
-                ? "bg-yellow-50 dark:bg-yellow-900/20 text-yellow-600 dark:text-yellow-400 border-yellow-500"
-                : "bg-gray-50 dark:bg-gray-700/50 text-gray-500"
+                ? "bg-cyan-500/20 text-cyan-400 border-cyan-500 shadow-[0_0_15px_rgba(6,182,212,0.5)]"
+                : "bg-slate-800/50 text-slate-400 border border-slate-700"
             }`}>
             <Lightbulb size={24} />
             <span className="font-semibold">Suggestion</span>
@@ -157,7 +157,7 @@ const ReportIssue: React.FC = () => {
           <div className="space-y-2">
             <label
               htmlFor="name"
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              className="block text-sm font-medium text-slate-400 font-code">
               Name
             </label>
             <div className="relative">
@@ -177,7 +177,7 @@ const ReportIssue: React.FC = () => {
                 maxLength={50}
                 required
                 placeholder="Your Name"
-                className="w-full pl-10 pr-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-orange-500 outline-none transition-all dark:text-white"
+                className="w-full pl-10 pr-4 py-3 rounded-lg bg-slate-900/50 border border-slate-700 focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500 outline-none transition-all text-white font-code"
               />
             </div>
           </div>
@@ -185,7 +185,7 @@ const ReportIssue: React.FC = () => {
           <div className="space-y-2">
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              className="block text-sm font-medium text-slate-400 font-code">
               Email
             </label>
             <div className="relative">
@@ -211,7 +211,7 @@ const ReportIssue: React.FC = () => {
                 }}
                 required
                 placeholder="john@example.com"
-                className="w-full pl-10 pr-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-orange-500 outline-none transition-all dark:text-white"
+                className="w-full pl-10 pr-4 py-3 rounded-lg bg-slate-900/50 border border-slate-700 focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500 outline-none transition-all text-white font-code"
               />
             </div>
           </div>
@@ -220,7 +220,7 @@ const ReportIssue: React.FC = () => {
         {/* Severity - Only show for Bugs */}
         {type === "bug" && (
           <div className="space-y-2 animate-fade-in">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label className="block text-sm font-medium text-slate-400 font-code">
               Severity Level
             </label>
             <div className="flex gap-4">
@@ -244,11 +244,11 @@ const ReportIssue: React.FC = () => {
                                 ${
                                   severity === level
                                     ? level === "critical"
-                                      ? "bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-300 border-red-500"
+                                      ? "bg-rose-500/20 text-rose-400 border-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.5)]"
                                       : level === "moderate"
-                                        ? "bg-orange-100 dark:bg-orange-900/40 text-orange-700 dark:text-orange-300 border-orange-500"
-                                        : "bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-300 border-green-500"
-                                    : "bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-500 hover:bg-gray-100"
+                                        ? "bg-cyan-500/20 text-cyan-400 border-cyan-500 shadow-[0_0_10px_rgba(6,182,212,0.5)]"
+                                        : "bg-teal-500/20 text-teal-400 border-teal-500 shadow-[0_0_10px_rgba(45,212,191,0.5)]"
+                                    : "bg-slate-900/50 border-slate-700 text-slate-500 hover:bg-slate-800 hover:text-slate-300"
                                 }
                             `}>
                     {level}
@@ -263,7 +263,7 @@ const ReportIssue: React.FC = () => {
         <div className="space-y-2">
           <label
             htmlFor="title"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            className="block text-sm font-medium text-slate-400 font-code">
             Title
           </label>
           <input
@@ -285,7 +285,7 @@ const ReportIssue: React.FC = () => {
             }}
             required
             placeholder="Brief summary of the issue"
-            className="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-orange-500 outline-none transition-all dark:text-white"
+            className="w-full px-4 py-3 rounded-lg bg-slate-900/50 border border-slate-700 focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500 outline-none transition-all text-white font-code"
           />
         </div>
 
@@ -293,7 +293,7 @@ const ReportIssue: React.FC = () => {
         <div className="space-y-2">
           <label
             htmlFor="description"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            className="block text-sm font-medium text-slate-400 font-code">
             Description
           </label>
           <textarea
@@ -315,7 +315,7 @@ const ReportIssue: React.FC = () => {
             required
             rows={5}
             placeholder="Please describe what happened..."
-            className="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-orange-500 outline-none transition-all dark:text-white resize-none"
+            className="w-full px-4 py-3 rounded-lg bg-slate-900/50 border border-slate-700 focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500 outline-none transition-all text-white font-code resize-none"
           />
         </div>
 
