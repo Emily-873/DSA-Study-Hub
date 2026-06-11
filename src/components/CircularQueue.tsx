@@ -96,7 +96,7 @@ export default function CircularQueue() {
   return (
     <div className="p-6 bg-white dark:bg-slate-900 neo-brutalism text-gray-900 dark:text-white dark:font-display">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 bg-orange-500 dark:bg-cyan-500/20 dark:text-cyan-400 dark:border dark:border-cyan-500/30 rounded-xl text-white">
+        <div className="p-3 bg-cyan-500 dark:bg-cyan-500/20 dark:text-cyan-400 dark:border dark:border-cyan-500/30 rounded-xl text-white">
           <RefreshCw size={24} />
         </div>
         <div>
@@ -113,7 +113,7 @@ export default function CircularQueue() {
         {/* Controls */}
         <div className="space-y-6">
           <div className="p-4 bg-gray-50 dark:bg-gray-800/40 rounded-xl border border-gray-200 dark:border-cyan-500/20">
-            <h4 className="font-extrabold text-sm uppercase tracking-wide mb-3 text-orange-500 dark:text-cyan-400">
+            <h4 className="font-extrabold text-sm uppercase tracking-wide mb-3 text-cyan-500 dark:text-cyan-400">
               Operations
             </h4>
             <div className="flex flex-wrap gap-2 mb-3">
@@ -123,11 +123,11 @@ export default function CircularQueue() {
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Char (A-Z)"
                 maxLength={1}
-                className="flex-grow min-w-[80px] px-3 py-2 bg-white dark:bg-[#070B14] border border-gray-300 dark:border-cyan-500/30 dark:text-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-orange-500 font-mono text-sm"
+                className="flex-grow min-w-[80px] px-3 py-2 bg-white dark:bg-[#070B14] border border-gray-300 dark:border-cyan-500/30 dark:text-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-cyan-500 font-mono text-sm"
               />
               <button
                 onClick={() => enqueue(inputValue)}
-                className="flex-grow sm:flex-grow-0 px-4 py-2 bg-orange-500 text-white rounded-lg font-bold text-xs hover:scale-105 active:scale-95 transition-all shadow-md"
+                className="flex-grow sm:flex-grow-0 px-4 py-2 bg-cyan-500 text-white rounded-lg font-bold text-xs hover:scale-105 active:scale-95 transition-all shadow-md"
               >
                 Enqueue
               </button>
@@ -156,7 +156,7 @@ export default function CircularQueue() {
           <div className="grid grid-cols-2 gap-4">
             <div className="p-3 bg-gray-50 dark:bg-gray-800/40 rounded-xl border border-gray-200 dark:border-cyan-500/20 text-center">
               <span className="text-xs text-gray-400 font-bold block">FRONT</span>
-              <span className="text-lg font-mono font-extrabold text-orange-500 dark:text-cyan-400">{front}</span>
+              <span className="text-lg font-mono font-extrabold text-cyan-500 dark:text-cyan-400">{front}</span>
             </div>
             <div className="p-3 bg-gray-50 dark:bg-gray-800/40 rounded-xl border border-gray-200 dark:border-cyan-500/20 text-center">
               <span className="text-xs text-gray-400 font-bold block">REAR</span>
@@ -200,7 +200,7 @@ export default function CircularQueue() {
               if (isFront && isRear) {
                 border = 'border-purple-500 bg-purple-500/10 scale-105';
               } else if (isFront) {
-                border = 'border-orange-500 bg-orange-500/10 scale-105';
+                border = 'border-cyan-500 bg-cyan-500/10 scale-105';
               } else if (isRear) {
                 border = 'border-pink-500 bg-pink-500/10 scale-105';
               }
@@ -217,7 +217,7 @@ export default function CircularQueue() {
                   <span className="text-[8px] text-gray-400 absolute mt-8">i={index}</span>
                   {/* Indicators */}
                   {isFront && (
-                    <span className="absolute -top-5 text-[8px] px-1 bg-orange-500 text-white rounded font-sans uppercase">
+                    <span className="absolute -top-5 text-[8px] px-1 bg-cyan-500 text-white rounded font-sans uppercase">
                       F
                     </span>
                   )}
@@ -233,9 +233,9 @@ export default function CircularQueue() {
         </div>
       </div>
 
-      <div className="mt-6 flex items-start gap-3 p-4 rounded-xl bg-orange-50 dark:bg-cyan-500/5 border border-orange-200 dark:border-cyan-500/20">
-        <Info className="text-orange-500 dark:text-cyan-400 dark:text-cyan-400 shrink-0 mt-0.5" size={18} />
-        <p className="text-xs text-orange-800 dark:text-cyan-300 dark:font-code leading-relaxed font-medium">
+      <div className="mt-6 flex items-start gap-3 p-4 rounded-xl bg-cyan-50 dark:bg-cyan-500/5 border border-cyan-200 dark:border-cyan-500/20">
+        <Info className="text-cyan-500 dark:text-cyan-400 dark:text-cyan-400 shrink-0 mt-0.5" size={18} />
+        <p className="text-xs text-cyan-800 dark:text-cyan-300 dark:font-code leading-relaxed font-medium">
           <strong>Circular Logic:</strong> When enqueueing or dequeueing, the pointer index moves circularly: `idx = (idx + 1) % MAX`. This prevents memory fragmentation by reusing released slots at the beginning of the array once the pointers wrap around.
         </p>
       </div>

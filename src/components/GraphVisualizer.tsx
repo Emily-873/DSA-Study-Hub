@@ -127,7 +127,7 @@ export default function GraphVisualizer() {
   return (
     <div className="p-6 bg-white dark:bg-slate-900 neo-brutalism text-gray-900 dark:text-white dark:font-display">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 bg-orange-500 dark:bg-cyan-500/20 dark:text-cyan-400 dark:border dark:border-cyan-500/30 rounded-xl text-white">
+        <div className="p-3 bg-cyan-500 dark:bg-cyan-500/20 dark:text-cyan-400 dark:border dark:border-cyan-500/30 rounded-xl text-white">
           <Route size={24} />
         </div>
         <div>
@@ -144,7 +144,7 @@ export default function GraphVisualizer() {
         {/* Adjacency Matrix Builder */}
         <div className="p-4 bg-gray-50 dark:bg-gray-800/40 border border-gray-200 dark:border-cyan-500/20 rounded-xl space-y-4">
           <div>
-            <h4 className="font-extrabold text-sm uppercase tracking-wide text-orange-500 dark:text-cyan-400 mb-2 font-sans">
+            <h4 className="font-extrabold text-sm uppercase tracking-wide text-cyan-500 dark:text-cyan-400 mb-2 font-sans">
               Start Node
             </h4>
             <select
@@ -161,7 +161,7 @@ export default function GraphVisualizer() {
           </div>
 
           <div>
-            <h4 className="font-extrabold text-sm uppercase tracking-wide text-orange-500 dark:text-cyan-400 mb-2 font-sans">
+            <h4 className="font-extrabold text-sm uppercase tracking-wide text-cyan-500 dark:text-cyan-400 mb-2 font-sans">
               Adjacency Matrix
             </h4>
             <div className="grid grid-cols-5 gap-1 text-center font-bold">
@@ -181,7 +181,7 @@ export default function GraphVisualizer() {
                       onClick={() => toggleEdge(u, v)}
                       className={`w-6 h-6 border flex items-center justify-center rounded transition-all ${
                         val === 1
-                          ? 'bg-orange-500 border-orange-600 text-white font-extrabold'
+                          ? 'bg-cyan-500 border-cyan-600 text-white font-extrabold'
                           : 'bg-white dark:bg-gray-950 border-gray-200 dark:border-cyan-500/20 text-gray-400'
                       }`}
                     >
@@ -199,7 +199,7 @@ export default function GraphVisualizer() {
           <div className="flex gap-2 font-sans">
             <button
               onClick={runBFS}
-              className="flex-1 py-2 bg-orange-500 text-white rounded-lg font-bold text-xs"
+              className="flex-1 py-2 bg-cyan-500 text-white rounded-lg font-bold text-xs"
             >
               Play BFS
             </button>
@@ -264,7 +264,7 @@ export default function GraphVisualizer() {
               let text = 'fill-gray-900 dark:fill-white';
 
               if (isActive) {
-                fill = 'fill-orange-500 stroke-orange-600';
+                fill = 'fill-cyan-500 stroke-cyan-600';
                 text = 'fill-white';
               } else if (isVisited) {
                 fill = 'fill-green-500 stroke-green-600';
@@ -289,7 +289,7 @@ export default function GraphVisualizer() {
 
           {/* Logs */}
           <div className="w-full p-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-cyan-500/20 rounded-xl text-xs font-mono text-gray-700 dark:text-gray-300">
-            <span className="font-bold text-orange-500 dark:text-cyan-400 mr-2 uppercase tracking-wide">STATUS:</span>
+            <span className="font-bold text-cyan-500 dark:text-cyan-400 mr-2 uppercase tracking-wide">STATUS:</span>
             {log}
           </div>
         </div>

@@ -115,7 +115,7 @@ export default function TowerOfHanoi() {
   return (
     <div className="p-6 bg-white dark:bg-slate-900 neo-brutalism text-gray-900 dark:text-white dark:font-display">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 bg-orange-500 dark:bg-cyan-500/20 dark:text-cyan-400 dark:border dark:border-cyan-500/30 rounded-xl text-white">
+        <div className="p-3 bg-cyan-500 dark:bg-cyan-500/20 dark:text-cyan-400 dark:border dark:border-cyan-500/30 rounded-xl text-white">
           <HelpCircle size={24} />
         </div>
         <div>
@@ -153,7 +153,7 @@ export default function TowerOfHanoi() {
             step={200}
             value={speed}
             onChange={(e) => setSpeed(Number(e.target.value))}
-            className="w-full accent-orange-500 mt-2"
+            className="w-full accent-cyan-500 mt-2"
           />
           <div className="text-[10px] text-gray-400 text-right mt-1 font-mono">{speed}ms</div>
         </div>
@@ -161,7 +161,7 @@ export default function TowerOfHanoi() {
         <div className="md:col-span-2 flex items-end gap-2">
           <button
             onClick={() => setIsPlaying(!isPlaying)}
-            className="flex-1 py-2.5 bg-orange-500 text-white rounded-xl font-bold text-xs hover:scale-105 active:scale-95 transition-all shadow-md flex justify-center items-center gap-1.5"
+            className="flex-1 py-2.5 bg-cyan-500 text-white rounded-xl font-bold text-xs hover:scale-105 active:scale-95 transition-all shadow-md flex justify-center items-center gap-1.5"
           >
             {isPlaying ? <Pause size={14} /> : <Play size={14} />}
             {isPlaying ? 'Pause' : 'Play Auto'}
@@ -182,7 +182,7 @@ export default function TowerOfHanoi() {
           </button>
           <button
             onClick={initSolver}
-            className="p-2.5 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-700 dark:text-gray-200 hover:text-orange-500 dark:text-cyan-400"
+            className="p-2.5 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-700 dark:text-gray-200 hover:text-cyan-500 dark:text-cyan-400"
           >
             <RotateCcw size={16} />
           </button>
@@ -205,7 +205,7 @@ export default function TowerOfHanoi() {
                   const widthPercent = 25 + (diskSize / numDisks) * 60;
                   const colors = [
                     'bg-red-500 dark:bg-red-600',
-                    'bg-orange-500 dark:bg-orange-600',
+                    'bg-cyan-500 dark:bg-cyan-600',
                     'bg-yellow-500 dark:bg-yellow-600',
                     'bg-green-500 dark:bg-green-600',
                     'bg-blue-500 dark:bg-blue-600',
@@ -235,9 +235,9 @@ export default function TowerOfHanoi() {
       </div>
 
       {/* Logs info */}
-      <div className="p-4 bg-orange-50/50 dark:bg-orange-950/10 rounded-xl border border-orange-200/50 dark:border-orange-900/30 text-xs font-mono flex justify-between">
+      <div className="p-4 bg-cyan-50/50 dark:bg-cyan-950/10 rounded-xl border border-cyan-200/50 dark:border-cyan-900/30 text-xs font-mono flex justify-between">
         <div>
-          <span className="font-bold text-orange-500 dark:text-cyan-400 mr-2 uppercase tracking-wide">Logs:</span>
+          <span className="font-bold text-cyan-500 dark:text-cyan-400 mr-2 uppercase tracking-wide">Logs:</span>
           {moveIdx >= 0 ? (
             `Move Disk ${moves[moveIdx].disk} from Peg ${moves[moveIdx].from} to Peg ${moves[moveIdx].to}`
           ) : (

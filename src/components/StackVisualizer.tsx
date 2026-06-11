@@ -160,7 +160,7 @@ export default function StackVisualizer() {
   return (
     <div className="p-6 bg-white dark:bg-slate-900 neo-brutalism">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 bg-orange-500 dark:bg-cyan-500/20 dark:text-cyan-400 dark:border dark:border-cyan-500/30 rounded-xl text-white">
+        <div className="p-3 bg-cyan-500 dark:bg-cyan-500/20 dark:text-cyan-400 dark:border dark:border-cyan-500/30 rounded-xl text-white">
           <Layers size={24} />
         </div>
         <div>
@@ -177,7 +177,7 @@ export default function StackVisualizer() {
         {/* Operations & Control */}
         <div className="space-y-6">
           <div className="p-4 bg-gray-50 dark:bg-gray-800/40 rounded-xl border border-gray-200 dark:border-cyan-500/20">
-            <h4 className="font-extrabold text-sm uppercase tracking-wide mb-3 text-orange-500 dark:text-cyan-400">
+            <h4 className="font-extrabold text-sm uppercase tracking-wide mb-3 text-cyan-500 dark:text-cyan-400">
               Stack Push & Pop
             </h4>
             <div className="flex flex-wrap gap-2 mb-3">
@@ -187,11 +187,11 @@ export default function StackVisualizer() {
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Enter value (e.g. A, 1)"
                 maxLength={4}
-                className="flex-grow min-w-[120px] px-3 py-2 bg-white dark:bg-[#070B14] border border-gray-300 dark:border-cyan-500/30 dark:text-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-orange-500 font-mono text-sm"
+                className="flex-grow min-w-[120px] px-3 py-2 bg-white dark:bg-[#070B14] border border-gray-300 dark:border-cyan-500/30 dark:text-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-cyan-500 font-mono text-sm"
               />
               <button
                 onClick={() => push(inputValue)}
-                className="flex-grow sm:flex-grow-0 flex items-center justify-center gap-1 px-4 py-2 bg-orange-500 text-white rounded-lg font-bold text-xs hover:scale-105 active:scale-95 transition-all shadow-md"
+                className="flex-grow sm:flex-grow-0 flex items-center justify-center gap-1 px-4 py-2 bg-cyan-500 text-white rounded-lg font-bold text-xs hover:scale-105 active:scale-95 transition-all shadow-md"
               >
                 <ArrowUp size={14} /> Push
               </button>
@@ -216,7 +216,7 @@ export default function StackVisualizer() {
           </div>
 
           <div className="p-4 bg-gray-50 dark:bg-gray-800/40 rounded-xl border border-gray-200 dark:border-cyan-500/20">
-            <h4 className="font-extrabold text-sm uppercase tracking-wide mb-3 text-orange-500 dark:text-cyan-400">
+            <h4 className="font-extrabold text-sm uppercase tracking-wide mb-3 text-cyan-500 dark:text-cyan-400">
               Check for Palindrome
             </h4>
             <div className="flex flex-wrap gap-2 mb-3">
@@ -225,12 +225,12 @@ export default function StackVisualizer() {
                 value={palindromeInput}
                 onChange={(e) => setPalindromeInput(e.target.value.toUpperCase())}
                 placeholder="Enter string"
-                className="flex-grow min-w-[120px] px-3 py-2 bg-white dark:bg-[#070B14] border border-gray-300 dark:border-cyan-500/30 dark:text-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-orange-500 font-mono text-sm"
+                className="flex-grow min-w-[120px] px-3 py-2 bg-white dark:bg-[#070B14] border border-gray-300 dark:border-cyan-500/30 dark:text-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-cyan-500 font-mono text-sm"
               />
               <button
                 onClick={startPalindromeCheck}
                 disabled={isAnimatingPalindrome}
-                className="flex-grow sm:flex-grow-0 px-4 py-2 bg-orange-500 text-white rounded-lg font-bold text-xs hover:scale-105 active:scale-95 transition-all shadow-md disabled:opacity-50"
+                className="flex-grow sm:flex-grow-0 px-4 py-2 bg-cyan-500 text-white rounded-lg font-bold text-xs hover:scale-105 active:scale-95 transition-all shadow-md disabled:opacity-50"
               >
                 Validate
               </button>
@@ -239,7 +239,7 @@ export default function StackVisualizer() {
             {/* Palindrome logs */}
             {palindromeSteps.length > 0 && (
               <div className="mt-3 p-3 bg-white dark:bg-gray-950 border border-gray-200 dark:border-cyan-500/20 rounded-lg text-xs leading-relaxed">
-                <div className="font-bold text-orange-500 dark:text-cyan-400 mb-1 uppercase tracking-wide">
+                <div className="font-bold text-cyan-500 dark:text-cyan-400 mb-1 uppercase tracking-wide">
                   Step {currentStep} of {palindromeSteps.length - 1}
                 </div>
                 <p className="text-gray-700 dark:text-gray-300 font-medium">
@@ -247,7 +247,7 @@ export default function StackVisualizer() {
                 </p>
                 {activeStepInfo.scannedChar && (
                   <div className="flex gap-4 mt-2 border-t border-gray-100 dark:border-gray-900 pt-2 font-mono">
-                    <div>Scanned: <span className="font-bold text-orange-500 dark:text-cyan-400">{activeStepInfo.scannedChar}</span></div>
+                    <div>Scanned: <span className="font-bold text-cyan-500 dark:text-cyan-400">{activeStepInfo.scannedChar}</span></div>
                     {activeStepInfo.poppedChar && (
                       <div>Popped: <span className="font-bold text-pink-500">{activeStepInfo.poppedChar}</span></div>
                     )}
@@ -300,7 +300,7 @@ export default function StackVisualizer() {
                       <div
                         key={`${item}-${originalIdx}`}
                         className={`w-full h-10 flex items-center justify-center border-2 border-black dark:border-white rounded-lg font-bold text-sm text-gray-900 dark:text-white dark:font-display shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] animate-pop ${
-                          isTop ? 'bg-orange-500 text-white' : 'bg-gray-100 dark:bg-gray-800'
+                          isTop ? 'bg-cyan-500 text-white' : 'bg-gray-100 dark:bg-gray-800'
                         }`}
                       >
                         {item}

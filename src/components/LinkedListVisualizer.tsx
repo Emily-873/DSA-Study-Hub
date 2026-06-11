@@ -88,7 +88,7 @@ export default function LinkedListVisualizer({ initialIsDLL = false }: LinkedLis
     <div className="p-6 bg-white dark:bg-slate-900 neo-brutalism text-gray-900 dark:text-white dark:font-display">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <div className="flex items-center gap-3">
-          <div className="p-3 bg-orange-500 dark:bg-cyan-500/20 dark:text-cyan-400 dark:border dark:border-cyan-500/30 rounded-xl text-white">
+          <div className="p-3 bg-cyan-500 dark:bg-cyan-500/20 dark:text-cyan-400 dark:border dark:border-cyan-500/30 rounded-xl text-white">
             <Network size={24} />
           </div>
           <div>
@@ -109,7 +109,7 @@ export default function LinkedListVisualizer({ initialIsDLL = false }: LinkedLis
           }}
           className="flex items-center gap-2 px-4 py-2 border-2 border-black dark:border-white rounded-xl font-bold text-xs hover:bg-gray-100 dark:hover:bg-gray-800 transition-all active:scale-95"
         >
-          {isDLL ? <ToggleRight className="text-orange-500 dark:text-cyan-400" size={20} /> : <ToggleLeft size={20} />}
+          {isDLL ? <ToggleRight className="text-cyan-500 dark:text-cyan-400" size={20} /> : <ToggleLeft size={20} />}
           <span>{isDLL ? 'DLL Active' : 'SLL Active'}</span>
         </button>
       </div>
@@ -117,7 +117,7 @@ export default function LinkedListVisualizer({ initialIsDLL = false }: LinkedLis
       <div className="flex flex-col gap-6 mb-6">
         {/* Controls Panel */}
         <div className="p-4 bg-gray-50 dark:bg-gray-800/40 rounded-xl border border-gray-200 dark:border-cyan-500/20">
-          <h4 className="font-extrabold text-sm uppercase tracking-wide mb-3 text-orange-500 dark:text-cyan-400">
+          <h4 className="font-extrabold text-sm uppercase tracking-wide mb-3 text-cyan-500 dark:text-cyan-400">
             Node Fields
           </h4>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
@@ -128,7 +128,7 @@ export default function LinkedListVisualizer({ initialIsDLL = false }: LinkedLis
                 value={usn}
                 onChange={(e) => setUsn(e.target.value.toUpperCase())}
                 placeholder="1RV21CS001"
-                className="w-full px-3 py-1.5 bg-white dark:bg-[#070B14] border border-gray-300 dark:border-cyan-500/30 dark:text-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-orange-500 text-xs font-semibold"
+                className="w-full px-3 py-1.5 bg-white dark:bg-[#070B14] border border-gray-300 dark:border-cyan-500/30 dark:text-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-cyan-500 text-xs font-semibold"
               />
             </div>
             <div>
@@ -138,7 +138,7 @@ export default function LinkedListVisualizer({ initialIsDLL = false }: LinkedLis
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Student Name"
-                className="w-full px-3 py-1.5 bg-white dark:bg-[#070B14] border border-gray-300 dark:border-cyan-500/30 dark:text-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-orange-500 text-xs font-semibold"
+                className="w-full px-3 py-1.5 bg-white dark:bg-[#070B14] border border-gray-300 dark:border-cyan-500/30 dark:text-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-cyan-500 text-xs font-semibold"
               />
             </div>
             <div>
@@ -161,14 +161,14 @@ export default function LinkedListVisualizer({ initialIsDLL = false }: LinkedLis
             <button
               onClick={insertFront}
               disabled={!usn.trim() || !name.trim()}
-              className="flex items-center gap-1 px-3 py-2 bg-orange-500 text-white rounded-lg font-bold text-xs hover:scale-105 active:scale-95 disabled:opacity-50 transition-all shadow"
+              className="flex items-center gap-1 px-3 py-2 bg-cyan-500 text-white rounded-lg font-bold text-xs hover:scale-105 active:scale-95 disabled:opacity-50 transition-all shadow"
             >
               <Plus size={14} /> Insert Front
             </button>
             <button
               onClick={insertEnd}
               disabled={!usn.trim() || !name.trim()}
-              className="flex items-center gap-1 px-3 py-2 bg-orange-500 text-white rounded-lg font-bold text-xs hover:scale-105 active:scale-95 disabled:opacity-50 transition-all shadow"
+              className="flex items-center gap-1 px-3 py-2 bg-cyan-500 text-white rounded-lg font-bold text-xs hover:scale-105 active:scale-95 disabled:opacity-50 transition-all shadow"
             >
               <Plus size={14} /> Insert End
             </button>
@@ -208,12 +208,12 @@ export default function LinkedListVisualizer({ initialIsDLL = false }: LinkedLis
       <div className="p-6 bg-gray-50 dark:bg-gray-950/40 rounded-2xl border border-gray-200 dark:border-cyan-500/20 flex items-center gap-2 overflow-x-auto min-h-[160px] pb-4">
         {/* Starting pointer */}
         <div className="flex items-center shrink-0">
-          <div className="px-3 py-1.5 bg-orange-500 text-white rounded-md text-[10px] font-extrabold tracking-widest uppercase">
+          <div className="px-3 py-1.5 bg-cyan-500 text-white rounded-md text-[10px] font-extrabold tracking-widest uppercase">
             Head
           </div>
-          <div className="w-6 h-0.5 bg-orange-500" />
-          {isDLL && <div className="border-l-4 border-y-4 border-y-transparent border-l-orange-500 -ml-1" />}
-          <div className="border-r-4 border-y-4 border-y-transparent border-r-orange-500 -mr-1" />
+          <div className="w-6 h-0.5 bg-cyan-500" />
+          {isDLL && <div className="border-l-4 border-y-4 border-y-transparent border-l-cyan-500 -ml-1" />}
+          <div className="border-r-4 border-y-4 border-y-transparent border-r-cyan-500 -mr-1" />
         </div>
 
         {nodes.length === 0 ? (
@@ -228,9 +228,9 @@ export default function LinkedListVisualizer({ initialIsDLL = false }: LinkedLis
               <React.Fragment key={node.id}>
                 {/* Node Box */}
                 <div className="p-3 bg-white dark:bg-gray-900 border-2 border-black dark:border-white rounded-xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] dark:shadow-[3px_3px_0px_0px_rgba(255,255,255,1)] shrink-0 min-w-[130px] font-mono text-[10px] leading-tight flex flex-col justify-between">
-                  <div className="flex justify-between items-center mb-1 text-orange-500 dark:text-cyan-400 font-extrabold uppercase">
+                  <div className="flex justify-between items-center mb-1 text-cyan-500 dark:text-cyan-400 font-extrabold uppercase">
                     <span>Node {index + 1}</span>
-                    <span className="px-1 py-0.2 bg-orange-500/10 text-[8px] rounded">{node.branch}</span>
+                    <span className="px-1 py-0.2 bg-cyan-500/10 text-[8px] rounded">{node.branch}</span>
                   </div>
                   <div>USN: <span className="font-bold text-gray-800 dark:text-gray-200">{node.usn}</span></div>
                   <div>Name: <span className="font-bold text-gray-800 dark:text-gray-200">{node.name}</span></div>
@@ -261,9 +261,9 @@ export default function LinkedListVisualizer({ initialIsDLL = false }: LinkedLis
         )}
       </div>
 
-      <div className="mt-6 flex items-start gap-3 p-4 rounded-xl bg-orange-50 dark:bg-cyan-500/5 border border-orange-200 dark:border-cyan-500/20">
-        <Info className="text-orange-500 dark:text-cyan-400 dark:text-cyan-400 shrink-0 mt-0.5" size={18} />
-        <p className="text-xs text-orange-800 dark:text-cyan-300 dark:font-code leading-relaxed font-medium">
+      <div className="mt-6 flex items-start gap-3 p-4 rounded-xl bg-cyan-50 dark:bg-cyan-500/5 border border-cyan-200 dark:border-cyan-500/20">
+        <Info className="text-cyan-500 dark:text-cyan-400 dark:text-cyan-400 shrink-0 mt-0.5" size={18} />
+        <p className="text-xs text-cyan-800 dark:text-cyan-300 dark:font-code leading-relaxed font-medium">
           <strong>LinkedList Physics:</strong> Singly Linked Lists (SLL) contain values and a single `next` reference pointer linking sequentially. Doubly Linked Lists (DLL) extend this with double links (`prev` and `next`), allowing bidirectional traversal at the expense of extra memory pointer configurations.
         </p>
       </div>

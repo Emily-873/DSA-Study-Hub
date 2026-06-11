@@ -52,7 +52,7 @@ export default function CalendarVisualizer() {
   return (
     <div className="p-6 bg-white neo-brutalism bg-white dark:bg-[#0D1424]/80 dark:border-0 dark:border dark:border-cyan-500/20 dark:shadow-[0_0_15px_rgba(6,182,212,0.15)] dark:backdrop-blur-xl rounded-xl">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 bg-orange-500 dark:bg-cyan-500/20 dark:text-cyan-400 dark:border dark:border-cyan-500/30 rounded-xl text-white">
+        <div className="p-3 bg-cyan-500 dark:bg-cyan-500/20 dark:text-cyan-400 dark:border dark:border-cyan-500/30 rounded-xl text-white">
           <Calendar size={24} />
         </div>
         <div>
@@ -73,7 +73,7 @@ export default function CalendarVisualizer() {
           >
             <div>
               <div className="flex justify-between items-start mb-2 gap-2 flex-wrap">
-                <span className="text-sm font-extrabold uppercase tracking-wider text-orange-500 dark:text-cyan-400 break-words">
+                <span className="text-sm font-extrabold uppercase tracking-wider text-cyan-500 dark:text-cyan-400 break-words">
                   {item.dayName}
                 </span>
                 <span className="px-2 py-0.5 rounded-full text-xs bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 font-bold font-mono whitespace-nowrap shrink-0">
@@ -94,7 +94,7 @@ export default function CalendarVisualizer() {
                     value={editActivity}
                     onChange={(e) => setEditActivity(e.target.value)}
                     rows={2}
-                    className="w-full p-2 bg-white dark:bg-[#070B14] border border-gray-300 dark:border-cyan-500/30 dark:text-slate-200 rounded-lg outline-none resize-none focus:border-orange-500"
+                    className="w-full p-2 bg-white dark:bg-[#070B14] border border-gray-300 dark:border-cyan-500/30 dark:text-slate-200 rounded-lg outline-none resize-none focus:border-cyan-500"
                   />
                 ) : (
                   item.activity
@@ -114,7 +114,7 @@ export default function CalendarVisualizer() {
               ) : (
                 <button
                   onClick={() => startEditing(index)}
-                  className="p-1.5 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg hover:text-orange-500 dark:text-cyan-400 hover:scale-105 active:scale-95 transition-all"
+                  className="p-1.5 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg hover:text-cyan-500 dark:text-cyan-400 hover:scale-105 active:scale-95 transition-all"
                   title="Edit Day Details"
                 >
                   <Edit3 size={16} />
@@ -132,9 +132,9 @@ export default function CalendarVisualizer() {
         ))}
       </div>
 
-      <div className="mt-6 flex items-start gap-3 p-4 rounded-xl bg-orange-50 dark:bg-cyan-500/5 border border-orange-200 dark:border-cyan-500/20">
-        <Info className="text-orange-500 dark:text-cyan-400 dark:text-cyan-400 shrink-0 mt-0.5" size={18} />
-        <p className="text-xs text-orange-800 dark:text-cyan-300 dark:font-code leading-relaxed font-medium">
+      <div className="mt-6 flex items-start gap-3 p-4 rounded-xl bg-cyan-50 dark:bg-cyan-500/5 border border-cyan-200 dark:border-cyan-500/20">
+        <Info className="text-cyan-500 dark:text-cyan-400 dark:text-cyan-400 shrink-0 mt-0.5" size={18} />
+        <p className="text-xs text-cyan-800 dark:text-cyan-300 dark:font-code leading-relaxed font-medium">
           <strong>DSA Concept Connection:</strong> This visualizer mimics a dynamic memory array of structures (`struct Day*`). Each calendar item acts as an index containing pointer properties mapping to values. Inline editing simulates reading from user input and saving to designated memory structures.
         </p>
       </div>

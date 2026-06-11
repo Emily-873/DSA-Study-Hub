@@ -77,7 +77,7 @@ export default function HashTableVisualizer() {
   return (
     <div className="p-6 bg-white dark:bg-slate-900 neo-brutalism text-gray-900 dark:text-white dark:font-display font-mono">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 bg-orange-500 dark:bg-cyan-500/20 dark:text-cyan-400 dark:border dark:border-cyan-500/30 rounded-xl text-white">
+        <div className="p-3 bg-cyan-500 dark:bg-cyan-500/20 dark:text-cyan-400 dark:border dark:border-cyan-500/30 rounded-xl text-white">
           <Hash size={24} />
         </div>
         <div>
@@ -101,11 +101,11 @@ export default function HashTableVisualizer() {
                 value={keyInput}
                 onChange={(e) => setKeyInput(e.target.value)}
                 placeholder="Key (e.g. 25)"
-                className="flex-grow min-w-[120px] px-3 py-2 bg-white dark:bg-[#070B14] border border-gray-300 dark:border-cyan-500/30 dark:text-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-orange-500 text-xs font-semibold"
+                className="flex-grow min-w-[120px] px-3 py-2 bg-white dark:bg-[#070B14] border border-gray-300 dark:border-cyan-500/30 dark:text-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-cyan-500 text-xs font-semibold"
               />
               <button
                 onClick={insertKey}
-                className="flex-grow sm:flex-grow-0 flex items-center justify-center gap-1.5 px-4 py-2 bg-orange-500 text-white rounded-lg font-bold text-xs hover:scale-105 active:scale-95 transition-all shadow"
+                className="flex-grow sm:flex-grow-0 flex items-center justify-center gap-1.5 px-4 py-2 bg-cyan-500 text-white rounded-lg font-bold text-xs hover:scale-105 active:scale-95 transition-all shadow"
               >
                 <Plus size={14} /> Insert
               </button>
@@ -128,7 +128,7 @@ export default function HashTableVisualizer() {
 
         {/* Logs */}
         <div className="p-4 bg-gray-50/50 dark:bg-gray-950/20 border border-gray-200 dark:border-cyan-500/20 rounded-xl font-mono text-xs">
-          <span className="font-extrabold uppercase text-orange-500 dark:text-cyan-400 tracking-wider font-sans">
+          <span className="font-extrabold uppercase text-cyan-500 dark:text-cyan-400 tracking-wider font-sans">
             Hash Trace Logger
           </span>
           <div className="h-28 overflow-y-auto font-mono text-[10px] space-y-1 bg-white dark:bg-gray-950 p-3 rounded-lg border border-gray-200 dark:border-gray-900 mt-2">
@@ -154,8 +154,8 @@ export default function HashTableVisualizer() {
             border = 'border-green-500 bg-green-500/10 scale-105';
             textColor = 'text-green-600 dark:text-green-400 font-extrabold';
           } else if (isProbed) {
-            border = 'border-orange-500 bg-orange-500/10 scale-105 animate-pulse';
-            textColor = 'text-orange-600 dark:text-orange-400 font-extrabold';
+            border = 'border-cyan-500 bg-cyan-500/10 scale-105 animate-pulse';
+            textColor = 'text-cyan-600 dark:text-cyan-400 font-extrabold';
           }
 
           return (
@@ -174,9 +174,9 @@ export default function HashTableVisualizer() {
         })}
       </div>
 
-      <div className="mt-6 flex items-start gap-3 p-4 rounded-xl bg-orange-50 dark:bg-cyan-500/5 border border-orange-200 dark:border-cyan-500/20">
-        <Info className="text-orange-500 dark:text-cyan-400 dark:text-cyan-400 shrink-0 mt-0.5 font-sans" size={18} />
-        <p className="text-xs text-orange-800 dark:text-cyan-300 dark:font-code leading-relaxed font-medium font-sans">
+      <div className="mt-6 flex items-start gap-3 p-4 rounded-xl bg-cyan-50 dark:bg-cyan-500/5 border border-cyan-200 dark:border-cyan-500/20">
+        <Info className="text-cyan-500 dark:text-cyan-400 dark:text-cyan-400 shrink-0 mt-0.5 font-sans" size={18} />
+        <p className="text-xs text-cyan-800 dark:text-cyan-300 dark:font-code leading-relaxed font-medium font-sans">
           <strong>Linear Probing:</strong> When collision occurs (two keys map to same index), the algorithm probes sequentially: `idx = (idx + 1) % TABLE_SIZE` until an empty slot is encountered.
         </p>
       </div>

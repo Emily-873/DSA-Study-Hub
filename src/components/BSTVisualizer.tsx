@@ -171,7 +171,7 @@ export default function BSTVisualizer() {
     let text = 'fill-gray-900 dark:fill-white';
 
     if (isSearchResult) {
-      fill = 'fill-orange-500 stroke-orange-600';
+      fill = 'fill-cyan-500 stroke-cyan-600';
       text = 'fill-white';
     } else if (isTraversalActive) {
       fill = 'fill-green-500 stroke-green-600';
@@ -221,7 +221,7 @@ export default function BSTVisualizer() {
   return (
     <div className="p-6 bg-white dark:bg-slate-900 neo-brutalism text-gray-900 dark:text-white dark:font-display">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 bg-orange-500 dark:bg-cyan-500/20 dark:text-cyan-400 dark:border dark:border-cyan-500/30 rounded-xl text-white">
+        <div className="p-3 bg-cyan-500 dark:bg-cyan-500/20 dark:text-cyan-400 dark:border dark:border-cyan-500/30 rounded-xl text-white">
           <GitCommit size={24} />
         </div>
         <div>
@@ -250,7 +250,7 @@ export default function BSTVisualizer() {
               />
               <button
                 onClick={handleInsert}
-                className="flex-grow flex items-center justify-center gap-1 py-1.5 bg-orange-500 text-white rounded-lg font-bold text-xs"
+                className="flex-grow flex items-center justify-center gap-1 py-1.5 bg-cyan-500 text-white rounded-lg font-bold text-xs"
               >
                 <Plus size={12} /> Insert
               </button>
@@ -282,19 +282,19 @@ export default function BSTVisualizer() {
             <label className="block text-xs font-bold uppercase text-gray-400 mb-1">Traversals</label>
             <button
               onClick={() => traverse('inorder')}
-              className="w-full py-1.5 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-lg text-xs font-bold hover:bg-orange-500 hover:text-white transition-all"
+              className="w-full py-1.5 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-lg text-xs font-bold hover:bg-cyan-500 hover:text-white transition-all"
             >
               Inorder (LVR)
             </button>
             <button
               onClick={() => traverse('preorder')}
-              className="w-full py-1.5 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-lg text-xs font-bold hover:bg-orange-500 hover:text-white transition-all"
+              className="w-full py-1.5 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-lg text-xs font-bold hover:bg-cyan-500 hover:text-white transition-all"
             >
               Preorder (VLR)
             </button>
             <button
               onClick={() => traverse('postorder')}
-              className="w-full py-1.5 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-lg text-xs font-bold hover:bg-orange-500 hover:text-white transition-all"
+              className="w-full py-1.5 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-lg text-xs font-bold hover:bg-cyan-500 hover:text-white transition-all"
             >
               Postorder (LRV)
             </button>
@@ -320,15 +320,15 @@ export default function BSTVisualizer() {
 
           {/* Status logs */}
           <div className="w-full p-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-cyan-500/20 rounded-xl text-xs font-mono text-gray-700 dark:text-gray-300">
-            <span className="font-bold text-orange-500 dark:text-cyan-400 mr-2 uppercase tracking-wide">STATUS:</span>
+            <span className="font-bold text-cyan-500 dark:text-cyan-400 mr-2 uppercase tracking-wide">STATUS:</span>
             {status}
           </div>
         </div>
       </div>
 
-      <div className="mt-6 flex items-start gap-3 p-4 rounded-xl bg-orange-50 dark:bg-cyan-500/5 border border-orange-200 dark:border-cyan-500/20">
-        <Info className="text-orange-500 dark:text-cyan-400 dark:text-cyan-400 shrink-0 mt-0.5" size={18} />
-        <p className="text-xs text-orange-800 dark:text-cyan-300 dark:font-code leading-relaxed font-medium">
+      <div className="mt-6 flex items-start gap-3 p-4 rounded-xl bg-cyan-50 dark:bg-cyan-500/5 border border-cyan-200 dark:border-cyan-500/20">
+        <Info className="text-cyan-500 dark:text-cyan-400 dark:text-cyan-400 shrink-0 mt-0.5" size={18} />
+        <p className="text-xs text-cyan-800 dark:text-cyan-300 dark:font-code leading-relaxed font-medium">
           <strong>BST Concept:</strong> In a Binary Search Tree, for any given node, values in its left subtree must be less than the node's value, and values in its right subtree must be greater. Searching runs in average O(log N) time, partitioning the search space at each level.
         </p>
       </div>

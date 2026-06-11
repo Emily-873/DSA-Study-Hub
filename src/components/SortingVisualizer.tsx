@@ -816,7 +816,7 @@ const SortingVisualizer: React.FC = () => {
           ) : (
             <button
               onClick={handleSort}
-              className="flex items-center space-x-2 px-6 py-2 neo-button font-bold text-white bg-orange-500 hover:bg-orange-600 transition-all">
+              className="flex items-center space-x-2 px-6 py-2 neo-button font-bold text-white bg-cyan-500 hover:bg-cyan-600 transition-all">
               <Play size={18} />
               <span>Sort</span>
             </button>

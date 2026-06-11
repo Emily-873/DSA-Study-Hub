@@ -179,7 +179,7 @@ export default function InfixPostfixVisualizer() {
   return (
     <div className="p-6 bg-white dark:bg-slate-900 neo-brutalism">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 bg-orange-500 dark:bg-cyan-500/20 dark:text-cyan-400 dark:border dark:border-cyan-500/30 rounded-xl text-white">
+        <div className="p-3 bg-cyan-500 dark:bg-cyan-500/20 dark:text-cyan-400 dark:border dark:border-cyan-500/30 rounded-xl text-white">
           <RefreshCw size={24} />
         </div>
         <div>
@@ -200,13 +200,13 @@ export default function InfixPostfixVisualizer() {
             value={expression}
             onChange={(e) => setExpression(e.target.value.toUpperCase())}
             placeholder="Enter infix (e.g. A+B*C)"
-            className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border-2 border-black dark:border-white rounded-xl outline-none focus:ring-2 focus:ring-orange-500 font-mono font-bold text-sm"
+            className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border-2 border-black dark:border-white rounded-xl outline-none focus:ring-2 focus:ring-cyan-500 font-mono font-bold text-sm"
           />
         </div>
         <div className="flex items-end gap-2">
           <button
             onClick={() => setIsPlaying(!isPlaying)}
-            className="flex-1 py-3 bg-orange-500 text-white rounded-xl font-bold text-xs hover:scale-105 active:scale-95 transition-all shadow-md flex justify-center items-center gap-1.5"
+            className="flex-1 py-3 bg-cyan-500 text-white rounded-xl font-bold text-xs hover:scale-105 active:scale-95 transition-all shadow-md flex justify-center items-center gap-1.5"
           >
             {isPlaying ? <Pause size={14} /> : <Play size={14} />}
             {isPlaying ? 'Pause' : 'Auto Play'}
@@ -236,7 +236,7 @@ export default function InfixPostfixVisualizer() {
                 key={index}
                 className={`w-9 h-9 shrink-0 flex items-center justify-center border-2 rounded-lg font-bold text-sm transition-all ${
                   isScanning
-                    ? 'bg-orange-500 text-white border-orange-600 scale-110 shadow-lg'
+                    ? 'bg-cyan-500 text-white border-cyan-600 scale-110 shadow-lg'
                     : isScanned
                       ? 'bg-gray-200/50 dark:bg-gray-800/50 border-gray-300 dark:border-gray-700 text-gray-400 dark:text-gray-600'
                       : 'bg-white dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300'
@@ -273,15 +273,15 @@ export default function InfixPostfixVisualizer() {
           <span className="text-xs font-extrabold uppercase text-gray-400 tracking-wider">
             Postfix Output
           </span>
-          <div className="w-full text-center py-6 px-4 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-cyan-500/20 font-extrabold text-xl text-orange-500 dark:text-cyan-400 break-words min-h-[90px] mt-4 flex items-center justify-center">
+          <div className="w-full text-center py-6 px-4 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-cyan-500/20 font-extrabold text-xl text-cyan-500 dark:text-cyan-400 break-words min-h-[90px] mt-4 flex items-center justify-center">
             {currentInfo.postfix || <span className="text-sm font-medium text-gray-400">Empty</span>}
           </div>
         </div>
 
         {/* Current Step Action Description */}
-        <div className="p-4 bg-orange-50/20 dark:bg-orange-950/10 rounded-xl border border-orange-200/40 dark:border-orange-900/20 flex flex-col justify-between min-h-[200px]">
+        <div className="p-4 bg-cyan-50/20 dark:bg-cyan-950/10 rounded-xl border border-cyan-200/40 dark:border-cyan-900/20 flex flex-col justify-between min-h-[200px]">
           <div>
-            <span className="text-xs font-extrabold uppercase text-orange-500 dark:text-cyan-400 tracking-wider">
+            <span className="text-xs font-extrabold uppercase text-cyan-500 dark:text-cyan-400 tracking-wider">
               Step Logs
             </span>
             <p className="mt-3 text-xs leading-relaxed text-gray-700 dark:text-gray-300 font-medium">

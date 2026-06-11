@@ -138,7 +138,7 @@ export default function StringMatchVisualizer() {
   return (
     <div className="p-6 bg-white dark:bg-slate-900 neo-brutalism">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 bg-orange-500 dark:bg-cyan-500/20 dark:text-cyan-400 dark:border dark:border-cyan-500/30 rounded-xl text-white">
+        <div className="p-3 bg-cyan-500 dark:bg-cyan-500/20 dark:text-cyan-400 dark:border dark:border-cyan-500/30 rounded-xl text-white">
           <ArrowRight size={24} />
         </div>
         <div>
@@ -159,7 +159,7 @@ export default function StringMatchVisualizer() {
             type="text"
             value={str}
             onChange={(e) => setStr(e.target.value.toUpperCase())}
-            className="w-full px-3 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl outline-none focus:ring-2 focus:ring-orange-500 font-mono text-sm"
+            className="w-full px-3 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl outline-none focus:ring-2 focus:ring-cyan-500 font-mono text-sm"
           />
         </div>
         <div>
@@ -168,7 +168,7 @@ export default function StringMatchVisualizer() {
             type="text"
             value={pat}
             onChange={(e) => setPat(e.target.value.toUpperCase())}
-            className="w-full px-3 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl outline-none focus:ring-2 focus:ring-orange-500 font-mono text-sm"
+            className="w-full px-3 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl outline-none focus:ring-2 focus:ring-cyan-500 font-mono text-sm"
           />
         </div>
         <div>
@@ -177,7 +177,7 @@ export default function StringMatchVisualizer() {
             type="text"
             value={rep}
             onChange={(e) => setRep(e.target.value.toUpperCase())}
-            className="w-full px-3 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl outline-none focus:ring-2 focus:ring-orange-500 font-mono text-sm"
+            className="w-full px-3 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl outline-none focus:ring-2 focus:ring-cyan-500 font-mono text-sm"
           />
         </div>
       </div>
@@ -186,7 +186,7 @@ export default function StringMatchVisualizer() {
       <div className="flex gap-2 mb-6">
         <button
           onClick={() => setIsPlaying(!isPlaying)}
-          className="flex items-center gap-1 px-4 py-2 bg-orange-500 text-white rounded-lg font-bold text-sm hover:scale-105 active:scale-95 transition-all shadow-md"
+          className="flex items-center gap-1 px-4 py-2 bg-cyan-500 text-white rounded-lg font-bold text-sm hover:scale-105 active:scale-95 transition-all shadow-md"
         >
           {isPlaying ? <Pause size={16} /> : <Play size={16} />}
           {isPlaying ? 'Pause' : 'Play'}
@@ -216,7 +216,7 @@ export default function StringMatchVisualizer() {
             setIsPlaying(false);
             setStep(0);
           }}
-          className="p-2 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:text-orange-500 dark:text-cyan-400"
+          className="p-2 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:text-cyan-500 dark:text-cyan-400"
           title="Reset"
         >
           <RotateCcw size={16} />
@@ -236,7 +236,7 @@ export default function StringMatchVisualizer() {
 
               let bg = 'bg-white dark:bg-gray-900 border-gray-300 dark:border-gray-700';
               if (isMatched) bg = 'bg-green-500 text-white border-green-600';
-              else if (isChecking) bg = currentInfo.type === 'mismatch' ? 'bg-red-500 text-white border-red-600' : 'bg-orange-500 text-white border-orange-600';
+              else if (isChecking) bg = currentInfo.type === 'mismatch' ? 'bg-red-500 text-white border-red-600' : 'bg-cyan-500 text-white border-cyan-600';
               else if (isPassed) bg = 'bg-gray-200/50 dark:bg-gray-800/50 border-gray-300 dark:border-gray-700 opacity-60';
 
               return (
@@ -260,7 +260,7 @@ export default function StringMatchVisualizer() {
               let bg = 'bg-white dark:bg-gray-900 border-gray-300 dark:border-gray-700';
               if (isActive) {
                 bg = currentInfo.type === 'match' ? 'bg-green-500 text-white border-green-600' :
-                  currentInfo.type === 'mismatch' ? 'bg-red-500 text-white border-red-600' : 'bg-orange-500 text-white border-orange-600';
+                  currentInfo.type === 'mismatch' ? 'bg-red-500 text-white border-red-600' : 'bg-cyan-500 text-white border-cyan-600';
               }
               return (
                 <div
@@ -291,8 +291,8 @@ export default function StringMatchVisualizer() {
       </div>
 
       {/* Info Status */}
-      <div className="p-4 bg-orange-50/50 dark:bg-orange-950/10 rounded-xl border border-orange-200/50 dark:border-orange-900/30 text-sm font-medium text-gray-700 dark:text-gray-300">
-        <span className="font-bold text-orange-500 dark:text-cyan-400 mr-2 uppercase tracking-wide">STATUS:</span>
+      <div className="p-4 bg-cyan-50/50 dark:bg-cyan-950/10 rounded-xl border border-cyan-200/50 dark:border-cyan-900/30 text-sm font-medium text-gray-700 dark:text-gray-300">
+        <span className="font-bold text-cyan-500 dark:text-cyan-400 mr-2 uppercase tracking-wide">STATUS:</span>
         {currentInfo.status}
       </div>
     </div>
