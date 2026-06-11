@@ -131,7 +131,7 @@ export const ProgramView: React.FC<ProgramViewProps> = ({
     <section className="py-20 px-4 pt-32 min-h-screen">
       <div className="max-w-[1500px] mx-auto px-4 md:px-8 flex flex-col lg:flex-row gap-8 items-stretch">
         {/* Left Column: Program Details & Code */}
-        <div className="w-full lg:w-[55%] xl:w-[50%] lg:min-w-0 p-6 neo-brutalism bg-white dark:bg-gray-800/20 backdrop-blur-sm">
+        <div className="w-full lg:w-[55%] xl:w-[50%] lg:min-w-0 p-6 neo-brutalism bg-white dark:border-0 dark:bg-[#0D1424]/80 dark:backdrop-blur-xl dark:border dark:border-cyan-500/12 dark:rounded-xl">
           <div className="space-y-6">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
@@ -151,17 +151,17 @@ export const ProgramView: React.FC<ProgramViewProps> = ({
                   {program.difficulty || "Medium"}
                 </span>
               </div>
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white dark:font-display">
                 Program {activeView.replace("program", "").toUpperCase()}
               </h2>
             </div>
 
             <button
               onClick={() => toggleProgramComplete(activeView)}
-              className={`flex items-center gap-2 px-4 py-2 font-bold transition-all neo-button ${
+              className={`flex items-center gap-2 px-4 py-2 font-bold transition-all neo-button dark:border-0 dark:rounded-lg dark:font-code ${
                 completedPrograms.includes(activeView)
-                  ? "bg-green-500 text-white"
-                  : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:text-green-500"
+                  ? "bg-green-500 text-white dark:bg-cyan-500/20 dark:border dark:border-cyan-500/40 dark:text-cyan-300 dark:shadow-[0_0_15px_rgba(6,182,212,0.2)]"
+                  : "bg-gray-100 dark:bg-transparent dark:border dark:border-cyan-500/30 text-gray-600 dark:text-cyan-400 hover:text-green-500 dark:hover:bg-cyan-500/10 dark:active:translate-y-[2px]"
               }`}>
               {completedPrograms.includes(activeView) ? (
                 <>
@@ -177,35 +177,35 @@ export const ProgramView: React.FC<ProgramViewProps> = ({
 
           {/* Complexity Badges */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            <div className="p-3 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700">
-              <div className="flex items-center gap-2 text-gray-400 mb-1 text-xs font-bold uppercase tracking-tight">
+            <div className="p-3 rounded-xl bg-gray-50 dark:bg-[#070B14] border border-gray-100 dark:border-cyan-500/20">
+              <div className="flex items-center gap-2 text-gray-400 mb-1 text-xs font-bold uppercase tracking-tight dark:font-code dark:text-slate-500">
                 <Clock size={14} /> Time
               </div>
-              <div className="font-mono text-orange-500">
+              <div className="font-mono text-orange-500 dark:text-cyan-400">
                 {program.time || "O(N)"}
               </div>
             </div>
-            <div className="p-3 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700">
-              <div className="flex items-center gap-2 text-gray-400 mb-1 text-xs font-bold uppercase tracking-tight">
+            <div className="p-3 rounded-xl bg-gray-50 dark:bg-[#070B14] border border-gray-100 dark:border-cyan-500/20">
+              <div className="flex items-center gap-2 text-gray-400 mb-1 text-xs font-bold uppercase tracking-tight dark:font-code dark:text-slate-500">
                 <Server size={14} /> Space
               </div>
-              <div className="font-mono text-pink-500">
+              <div className="font-mono text-pink-500 dark:text-purple-400">
                 {program.space || "O(N)"}
               </div>
             </div>
-            <div className="p-3 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700">
-              <div className="flex items-center gap-2 text-gray-400 mb-1 text-xs font-bold uppercase tracking-tight">
+            <div className="p-3 rounded-xl bg-gray-50 dark:bg-[#070B14] border border-gray-100 dark:border-cyan-500/20">
+              <div className="flex items-center gap-2 text-gray-400 mb-1 text-xs font-bold uppercase tracking-tight dark:font-code dark:text-slate-500">
                 <Zap size={14} /> Difficulty
               </div>
-              <div className="font-semibold text-gray-700 dark:text-gray-300">
+              <div className="font-semibold text-gray-700 dark:text-slate-300">
                 {program.difficulty || "Medium"}
               </div>
             </div>
-            <div className="p-3 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700">
-              <div className="flex items-center gap-2 text-gray-400 mb-1 text-xs font-bold uppercase tracking-tight">
+            <div className="p-3 rounded-xl bg-gray-50 dark:bg-[#070B14] border border-gray-100 dark:border-cyan-500/20">
+              <div className="flex items-center gap-2 text-gray-400 mb-1 text-xs font-bold uppercase tracking-tight dark:font-code dark:text-slate-500">
                 <Terminal size={14} /> Lang
               </div>
-              <div className="font-semibold text-gray-700 dark:text-gray-300">
+              <div className="font-semibold text-gray-700 dark:text-slate-300">
                 C Language
               </div>
             </div>
@@ -213,15 +213,15 @@ export const ProgramView: React.FC<ProgramViewProps> = ({
 
           {/* Language Selector */}
           <div className="flex items-center justify-between mb-2">
-            <div className="flex bg-gray-100 dark:bg-gray-800 p-1 rounded-xl">
+            <div className="flex bg-gray-100 dark:bg-[#070B14] p-1 rounded-xl border dark:border-cyan-500/20">
               {["c", "cpp", "python", "java"].map((lang) => (
                 <button
                   key={lang}
                   onClick={() => setSelectedLanguage(lang)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all dark:font-code ${
                     selectedLanguage === lang
-                      ? "bg-orange-500 text-white shadow-sm"
-                      : "text-gray-500 hover:text-orange-500"
+                      ? "bg-orange-500 text-white shadow-sm dark:bg-cyan-500/20 dark:border dark:border-cyan-500/50 dark:text-cyan-300 dark:shadow-[0_0_10px_rgba(6,182,212,0.2)]"
+                      : "text-gray-500 hover:text-orange-500 dark:text-slate-500 dark:hover:text-cyan-400"
                   }`}>
                   {lang}
                 </button>
@@ -264,13 +264,13 @@ export const ProgramView: React.FC<ProgramViewProps> = ({
 
           {/* Concept breakdown */}
           <div className="mt-8">
-            <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-              <BookOpen size={20} className="text-orange-500" /> Concept
+            <h3 className="text-xl font-bold mb-4 flex items-center gap-2 dark:font-display">
+              <BookOpen size={20} className="text-orange-500 dark:text-cyan-400" /> Concept
               Breakdown
             </h3>
             <div className="space-y-4">
-              <div className="p-4 rounded-xl bg-orange-500/5 border border-orange-500/10">
-                <h4 className="font-bold text-orange-500 mb-2 underline decoration-orange-500/30 underline-offset-4">
+              <div className="p-4 rounded-xl bg-orange-500/5 dark:bg-cyan-500/5 border border-orange-500/10 dark:border-cyan-500/20">
+                <h4 className="font-bold text-orange-500 dark:text-cyan-400 mb-2 underline decoration-orange-500/30 dark:decoration-cyan-500/30 underline-offset-4 dark:font-code">
                   How it works?
                 </h4>
                 <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
@@ -291,10 +291,10 @@ export const ProgramView: React.FC<ProgramViewProps> = ({
           <Quiz programId={activeView} darkMode={darkMode} />
 
           {/* Navigation Buttons */}
-          <div className="mt-8 flex justify-between items-center bg-gray-50 dark:bg-gray-800/30 p-4 rounded-xl">
+          <div className="mt-8 flex justify-between items-center bg-gray-50 dark:bg-[#070B14] p-4 rounded-xl dark:border dark:border-cyan-500/20">
             <button
               onClick={() => router.push("/")}
-              className="flex items-center gap-2 px-4 py-2 text-gray-500 hover:text-orange-500 font-semibold transition-colors">
+              className="flex items-center gap-2 px-4 py-2 text-gray-500 dark:text-slate-400 hover:text-orange-500 dark:hover:text-cyan-400 font-semibold transition-colors">
               <Home size={20} /> <span className="hidden sm:inline">Home</span>
             </button>
 
@@ -339,23 +339,23 @@ export const ProgramView: React.FC<ProgramViewProps> = ({
           )}
 
           {program.hasInteractive && (
-            <div className="flex justify-start gap-2 mt-6 bg-gray-100 dark:bg-gray-800 p-1.5 rounded-xl w-fit mr-auto border border-gray-200 dark:border-gray-700">
+            <div className="flex justify-start gap-2 mt-6 bg-gray-100 dark:bg-[#070B14] p-1.5 rounded-xl w-fit mr-auto border border-gray-200 dark:border-cyan-500/20">
               <button
                 onClick={() => setViewMode("visualizer")}
-                className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all ${
+                className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all dark:font-code ${
                   viewMode === "visualizer"
-                    ? "bg-orange-500 text-white shadow-sm"
-                    : "text-gray-500 hover:text-orange-500"
+                    ? "bg-orange-500 text-white shadow-sm dark:bg-cyan-500/20 dark:text-cyan-300 dark:border dark:border-cyan-500/50 dark:shadow-[0_0_10px_rgba(6,182,212,0.2)]"
+                    : "text-gray-500 hover:text-orange-500 dark:text-slate-500 dark:hover:text-cyan-400"
                 }`}
               >
                 Interactive Animation
               </button>
               <button
                 onClick={() => setViewMode("console")}
-                className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all ${
+                className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all dark:font-code ${
                   viewMode === "console"
-                    ? "bg-orange-500 text-white shadow-sm"
-                    : "text-gray-500 hover:text-orange-500"
+                    ? "bg-orange-500 text-white shadow-sm dark:bg-cyan-500/20 dark:text-cyan-300 dark:border dark:border-cyan-500/50 dark:shadow-[0_0_10px_rgba(6,182,212,0.2)]"
+                    : "text-gray-500 hover:text-orange-500 dark:text-slate-500 dark:hover:text-cyan-400"
                 }`}
               >
                 Console Simulator
