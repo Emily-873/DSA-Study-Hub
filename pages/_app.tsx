@@ -233,7 +233,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Providers>
 
-      <div className={`min-h-screen relative z-0 transition-colors duration-300 ${darkMode ? "bg-[#070B14] text-white" : "bg-gray-50 text-gray-900"}`}>
+      <div className={`min-h-screen relative z-0 overflow-x-hidden transition-colors duration-300 ${darkMode ? "bg-[#070B14] text-white" : "bg-gray-50 text-gray-900"}`}>
         {isWinter && <Snowfall />}
         
         {darkMode && (

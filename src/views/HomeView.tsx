@@ -73,13 +73,13 @@ export const HomeView = ({ navigateTo, completedPrograms = [] }: HomeViewProps) 
             style={{ animationDelay: "0.1s", animationFillMode: "both" }}
           >
             <span
-              className="block text-white text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem]"
+              className="block text-white text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem]"
               style={{ textShadow: "0 0 40px rgba(255,255,255,0.12)" }}
             >
               MASTER
             </span>
             <span
-              className="block text-gradient-cyan text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] mt-1"
+              className="block text-gradient-cyan text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] mt-1"
               style={{ filter: "drop-shadow(0 0 20px rgba(6,182,212,0.3))" }}
             >
               DATA STRUCTURES
