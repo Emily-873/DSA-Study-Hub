@@ -269,15 +269,9 @@ function MyApp({ Component, pageProps }: AppProps) {
           resetProgramState={resetProgramState}
           toggleAdminModal={() => setIsAdminModalOpen(true)}
           completedPrograms={completedPrograms}
-        />
-
-        <GoogleAuth
           user={user}
           onLogin={setUser}
           onLogout={() => setUser(null)}
-          externalIsOpen={isAuthModalOpen}
-          setExternalIsOpen={setIsAuthModalOpen}
-          hideTrigger={true}
         />
 
         <main>
