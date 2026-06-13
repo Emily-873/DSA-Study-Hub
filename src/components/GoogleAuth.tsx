@@ -171,20 +171,20 @@ export const GoogleAuth = ({
         <div className="flex items-center gap-2">
           <button
             onClick={() => router.push("/profile")}
-            className="flex items-center gap-2 group p-0.5 rounded-full hover:bg-orange-500/10 transition-all"
+            className="flex items-center gap-2 group p-0.5 rounded-full hover:bg-cyan-500/10 transition-all"
             title="View Profile">
             {user.picture ? (
               <img
                 src={user.picture}
                 alt={user.name}
-                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-gray-300 dark:border-gray-600 group-hover:border-orange-500 transition-colors"
+                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-gray-300 dark:border-gray-600 group-hover:border-cyan-500 transition-colors"
               />
             ) : (
-              <div className="w-7 h-7 sm:w-8 sm:h-8 bg-orange-500 rounded-full flex items-center justify-center text-white">
+              <div className="w-7 h-7 sm:w-8 sm:h-8 bg-cyan-500/10 border border-cyan-500/30 rounded-full flex items-center justify-center text-cyan-400">
                 <User size={14} className="sm:size-[16px]" />
               </div>
             )}
-            <span className="hidden lg:block text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-orange-500 transition-colors">
+            <span className="hidden lg:block text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-cyan-400 transition-colors">
               {user.name}
             </span>
           </button>
@@ -204,12 +204,10 @@ export const GoogleAuth = ({
       {!hideTrigger && (
         <button
           onClick={() => setIsOpen(true)}
-          className="group flex items-center gap-2 px-3 sm:px-6 py-1.5 sm:py-2 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-full transition-all duration-300 shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 active:scale-95 text-xs sm:text-base">
+          className="btn-cyber group relative overflow-hidden px-3 py-1.5 sm:px-4 sm:py-2 text-[9px] sm:text-[10px] uppercase font-bold tracking-widest flex items-center gap-1.5"
+        >
           <span>Get Started</span>
-          <ArrowRight
-            size={18}
-            className="hidden sm:block transition-transform group-hover:translate-x-1"
-          />
+          <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-cyan-400/10 to-transparent group-hover:translate-x-full transition-transform duration-500 pointer-events-none" />
         </button>
       )}
 

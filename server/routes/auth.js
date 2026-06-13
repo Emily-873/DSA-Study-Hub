@@ -269,8 +269,8 @@ router.post(
   [
     body("email").isEmail().normalizeEmail().withMessage("Invalid email"),
     body("password")
-      .isLength({ min: 6 })
-      .withMessage("Password must be at least 6 characters"),
+      .isLength({ min: 6, max: 64 })
+      .withMessage("Password must be between 6 and 64 characters"),
     body("name").trim().notEmpty().escape().withMessage("Name is required"),
   ],
   async (req, res) => {
@@ -335,7 +335,7 @@ router.post(
   authLimiter,
   [
     body("email").isEmail().normalizeEmail().withMessage("Invalid email"),
-    body("password").notEmpty().withMessage("Password is required"),
+    body("password").notEmpty().isLength({ max: 64 }).withMessage("Password is required and must be under 64 chars"),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -495,8 +495,8 @@ router.post(
   authLimiter,
   [
     body("password")
-      .isLength({ min: 6 })
-      .withMessage("Password must be 6+ chars"),
+      .isLength({ min: 6, max: 64 })
+      .withMessage("Password must be 6-64 chars"),
   ],
   async (req, res) => {
     try {

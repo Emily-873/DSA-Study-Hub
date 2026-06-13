@@ -119,11 +119,11 @@ router.put("/profile", verifyToken, async (req, res) => {
     if (
       username !== undefined &&
       username !== null &&
-      typeof username !== "string"
+      (typeof username !== "string" || username.length > 30)
     ) {
       return res
         .status(400)
-        .json({ success: false, message: "Invalid username" });
+        .json({ success: false, message: "Invalid username or exceeds 30 characters" });
     }
     if (age !== undefined) {
       // allow empty string (handled below), number, or numeric string

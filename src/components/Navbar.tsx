@@ -4,11 +4,15 @@ import { useRouter } from "next/router";
 import { Home, Code2, User, ChevronDown, Cpu, X, Menu, Search, Bug, BookOpen, Route, ArrowUpDown, GitFork, Package, Monitor } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { programsData } from "../data/programs";
+import { GoogleAuth, GoogleUser } from "./GoogleAuth";
 
 interface NavbarProps {
   resetProgramState: () => void;
   toggleAdminModal: () => void;
   completedPrograms: string[];
+  user?: GoogleUser | null;
+  onLogin?: (user: GoogleUser) => void;
+  onLogout?: () => void;
 }
 
 const programGroups = [
@@ -94,7 +98,7 @@ const NavLink: React.FC<{
   return content;
 };
 
-export const Navbar = ({ resetProgramState, toggleAdminModal, completedPrograms }: NavbarProps) => {
+export const Navbar = ({ resetProgramState, toggleAdminModal, completedPrograms, user, onLogin, onLogout }: NavbarProps) => {
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -339,6 +343,17 @@ export const Navbar = ({ resetProgramState, toggleAdminModal, completedPrograms 
                 <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
                 <span className="font-code text-[9px] tracking-[0.2em] text-cyan-400/60 uppercase">Lab v2.0</span>
               </div>
+
+              {onLogin && onLogout && (
+                <div className="flex items-center">
+                  <GoogleAuth
+                    user={user || null}
+                    onLogin={onLogin}
+                    onLogout={onLogout}
+                    hideTrigger={false}
+                  />
+                </div>
+              )}
 
               {/* Mobile hamburger */}
               <button
