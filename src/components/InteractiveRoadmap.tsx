@@ -158,7 +158,7 @@ export const InteractiveRoadmap: React.FC<InteractiveRoadmapProps> = ({ complete
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.5, delay: 0.1 }}
                     onClick={() => unlocked && router.push(node.route)}
-                    className={`relative p-6 rounded-2xl border transition-all duration-300 w-full max-w-sm
+                    className={`relative p-6 rounded-2xl border transition-all duration-300 w-full max-w-md
                       ${unlocked 
                         ? 'bg-slate-900/80 border-cyan-500/30 hover:border-cyan-400 hover:bg-slate-800 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] cursor-pointer' 
                         : 'bg-slate-900/40 border-slate-800 opacity-60 cursor-not-allowed grayscale'
