@@ -143,7 +143,13 @@ export const HomeView = ({ navigateTo, completedPrograms = [] }: HomeViewProps) 
           style={{ animationDelay: "0.62s", animationFillMode: "both" }}
         >
           <button
-            onClick={() => document.getElementById('nav-programs-btn')?.click()}
+            onClick={() => {
+              if (window.innerWidth < 768) {
+                document.getElementById('roadmap')?.scrollIntoView({ behavior: 'smooth' });
+              } else {
+                document.getElementById('nav-programs-btn')?.click();
+              }
+            }}
             className="btn-cyber group relative overflow-hidden px-7 py-3 text-[11px]"
           >
             <Code2 size={14} className="shrink-0" />

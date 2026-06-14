@@ -212,25 +212,25 @@ export const GoogleAuth = ({
       )}
 
       {isOpen && !hideModal && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl w-full max-w-sm overflow-hidden relative border border-gray-200 dark:border-gray-700">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-[#070B14]/80 backdrop-blur-md">
+          <div className="glass-card w-full max-w-sm overflow-hidden relative border border-cyan-500/30">
             <button
               onClick={() => {
                 setIsOpen(false);
                 setCurrentView("login");
               }}
-              className="absolute top-4 right-4 p-1 text-gray-400 hover:text-gray-800 dark:hover:text-white transition-colors">
+              className="absolute top-4 right-4 p-1 text-slate-400 hover:text-cyan-400 transition-colors">
               <X size={20} />
             </button>
             <div className="p-6">
               {currentView === "login" && (
                 <>
-                  <h2 className="text-2xl font-bold text-center text-gray-900 dark:text-white mb-6">
+                  <h2 className="font-display text-2xl font-bold text-center text-white mb-6 glow-white">
                     {isRegistering ? "Create Account" : "Welcome Back"}
                   </h2>
 
                   {errorText && (
-                    <div className="mb-4 p-3 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-sm rounded-lg border border-red-200 dark:border-red-800 text-center">
+                    <div className="mb-4 p-3 bg-red-500/10 text-red-400 text-sm rounded-lg border border-red-500/30 text-center font-code">
                       {errorText}
                     </div>
                   )}
@@ -248,7 +248,7 @@ export const GoogleAuth = ({
                           required
                           value={name}
                           onChange={(e) => setName(e.target.value)}
-                          className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 outline-none"
+                          className="input pl-10"
                         />
                       </div>
                     )}
@@ -263,7 +263,7 @@ export const GoogleAuth = ({
                         required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 outline-none"
+                        className="input pl-10"
                       />
                     </div>
                     <div className="relative">
@@ -277,7 +277,7 @@ export const GoogleAuth = ({
                         required
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 outline-none"
+                        className="input pl-10"
                       />
                     </div>
                     {!isRegistering && (
@@ -285,24 +285,24 @@ export const GoogleAuth = ({
                         <button
                           type="button"
                           onClick={() => setCurrentView("forgot")}
-                          className="text-xs text-orange-500 hover:text-orange-600 font-medium">
+                          className="font-code text-[10px] text-cyan-400 hover:text-cyan-300 font-medium tracking-widest uppercase transition-colors">
                           Forgot Password?
                         </button>
                       </div>
                     )}
                     <button
                       type="submit"
-                      className="w-full py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-bold transition-colors">
+                      className="w-full btn-cyber">
                       {isRegistering ? "Register" : "Sign In"}
                     </button>
                   </form>
 
                   <div className="my-6 flex items-center">
-                    <div className="flex-grow border-t border-gray-200 dark:border-gray-600"></div>
-                    <span className="px-3 text-sm text-gray-500 dark:text-gray-400">
+                    <div className="flex-grow border-t border-cyan-500/20"></div>
+                    <span className="px-3 font-code text-[10px] text-slate-500 uppercase tracking-widest">
                       or
                     </span>
-                    <div className="flex-grow border-t border-gray-200 dark:border-gray-600"></div>
+                    <div className="flex-grow border-t border-cyan-500/20"></div>
                   </div>
 
                   <div className="flex flex-col gap-3">
@@ -321,7 +321,7 @@ export const GoogleAuth = ({
                     <div className="grid grid-cols-2 gap-3">
                       <button
                         onClick={handleGitHubLogin}
-                        className="h-[40px] flex items-center justify-center gap-2 bg-[#24292F] hover:bg-[#1a1e22] text-white rounded-lg text-xs font-semibold transition-all border border-gray-700">
+                        className="h-[40px] flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 text-white rounded-lg font-code text-xs font-semibold transition-all border border-white/10">
                         <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                           <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.003-.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                         </svg>
@@ -329,26 +329,26 @@ export const GoogleAuth = ({
                       </button>
                       <button
                         onClick={() => setCurrentView("phone")}
-                        className="h-[40px] flex items-center justify-center gap-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-900 dark:text-white rounded-lg text-xs font-semibold transition-all border border-gray-300 dark:border-gray-600">
+                        className="h-[40px] flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 text-white rounded-lg font-code text-xs font-semibold transition-all border border-white/10">
                         <Phone size={16} />
                         <span>Phone</span>
                       </button>
                     </div>
                     <button
                       onClick={() => setCurrentView("magic")}
-                      className="w-full h-[40px] flex items-center justify-center gap-2 bg-blue-500/10 hover:bg-blue-500/20 text-blue-600 dark:text-blue-400 rounded-lg text-xs font-semibold transition-all border border-blue-200 dark:border-blue-900">
+                      className="w-full h-[40px] flex items-center justify-center gap-2 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 rounded-lg font-code text-[10px] uppercase tracking-widest font-bold transition-all border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.1)]">
                       <Mail size={16} />
-                      <span>Continue with Email (No Password)</span>
+                      <span>Continue with Email</span>
                     </button>
                   </div>
 
-                  <div className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
+                  <div className="mt-6 text-center font-code text-[10px] uppercase tracking-widest text-slate-500">
                     {isRegistering
                       ? "Already have an account?"
                       : "Don't have an account?"}{" "}
                     <button
                       onClick={() => setIsRegistering(!isRegistering)}
-                      className="text-orange-500 hover:text-orange-600 font-semibold transition-colors">
+                      className="text-cyan-400 hover:text-cyan-300 font-bold transition-colors ml-1">
                       {isRegistering ? "Sign In" : "Register"}
                     </button>
                   </div>
