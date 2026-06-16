@@ -15,35 +15,48 @@
     "bcryptjs": "^3.0.3",
     "connect-mongo": "^6.0.0",
     "cookie-parser": "^1.4.7",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "express-rate-limit": "^8.2.2",
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.2",
+    "express-rate-limit": "^8.5.2",
     "express-session": "^1.19.0",
-    "express-validator": "^7.3.1",
-    "google-auth-library": "^10.5.0",
-    "helmet": "^8.1.0",
+    "express-validator": "^7.3.2",
+    "google-auth-library": "^10.7.0",
+    "helmet": "^8.2.0",
     "jsonwebtoken": "^9.0.3",
     "kafkajs": "^2.2.4",
-    "lodash": "^4.18.0",
+    "lodash": "^4.18.1",
     "lusca": "^1.7.0",
-    "mongodb": "^7.0.0",
-    "mongoose": "^8.22.1",
+    "mongodb": "^7.3.0",
+    "mongoose": "^8.24.0",
     "multer": "^2.1.1",
-    "nodemailer": "^8.0.5"
+    "nodemailer": "^8.0.11"
   },
   "devDependencies": {
-    "jest": "^30.3.0",
+    "jest": "^30.4.2",
     "nodemon": "^3.1.14",
     "supertest": "^7.2.2"
   },
   "jest": {
-    "testMatch": ["<rootDir>/__tests__/**/*.test.js"]
+    "testMatch": [
+      "<rootDir>/__tests__/**/*.test.js"
+    ]
   },
   "overrides": {
     "brace-expansion": "^5.0.6",
     "minimatch": "^10.2.2",
     "ip-address": ">=10.1.1",
-    "qs": "^6.15.2"
+    "qs": "^6.15.2",
+    "form-data": ">=4.0.6",
+    "js-yaml": ">=4.1.2"
+  },
+  "pnpm": {
+    "overrides": {
+      "form-data": ">=4.0.6",
+      "js-yaml": ">=4.1.2"
+    }
+  },
+  "resolutions": {
+    "js-yaml": ">=4.1.2"
   }
 }
