@@ -1376,8 +1376,8 @@ packages:
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
-  js-yaml@3.14.2:
-    resolution: {integrity: sha512-PMSmkqxr106Xa156c2M265Z+FTrPl+oxd/rgOQy2tijQeK5TxQ43psO1ZCwhVOSdnn+RzkzlRz/eY4BgJBYVpg==}
+  js-yaml@4.2.0:
+    resolution: {integrity: sha512-cj/jw5m+H4wzB0G/yqA7Y0aF+V9vAOM8e3h9P5m7F8M38z/9A4eS+7XhK61J50uO6WzC+lS/32m2eC90c6cdeA==}
     hasBin: true
 
   jsesc@3.1.0:
@@ -2321,7 +2321,7 @@ snapshots:
       camelcase: 5.3.1
       find-up: 4.1.0
       get-package-type: 0.1.0
-      js-yaml: 3.14.2
+      js-yaml: 4.2.0
       resolve-from: 5.0.0
 
   '@istanbuljs/schema@0.1.6': {}
@@ -3723,7 +3723,7 @@ snapshots:
 
   js-tokens@4.0.0: {}
 
-  js-yaml@3.14.2:
+  js-yaml@4.2.0:
     dependencies:
       argparse: 1.0.10
       esprima: 4.0.1
