@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "jest": "^30.4.2",
+    "js-yaml": "^4.2.0",
     "nodemon": "^3.1.14",
     "supertest": "^7.2.2"
   },
@@ -48,15 +49,10 @@
     "ip-address": ">=10.1.1",
     "qs": "^6.15.2",
     "form-data": ">=4.0.6",
-    "js-yaml": ">=4.1.2"
-  },
-  "pnpm": {
-    "overrides": {
-      "form-data": ">=4.0.6",
-      "js-yaml": ">=4.1.2"
-    }
+    "js-yaml": "^4.1.2"
   },
   "resolutions": {
-    "js-yaml": ">=4.1.2"
+    "@istanbuljs/load-nyc-config>js-yaml": "^4.1.2",
+    "js-yaml": "^4.1.2"
   }
 }
