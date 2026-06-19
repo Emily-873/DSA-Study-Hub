@@ -34,8 +34,8 @@ const issueTokens = (user, res) => {
 
   const cookieOptions = {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    secure: true,
+    sameSite: "strict",
     signed: true,
   };
 
@@ -394,8 +394,8 @@ router.post(
 router.post("/logout", (req, res) => {
   const cookieOptions = {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    secure: true,
+    sameSite: "strict",
     signed: true,
   };
   res.clearCookie("accessToken", cookieOptions);

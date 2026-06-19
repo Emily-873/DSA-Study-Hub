@@ -249,7 +249,12 @@ const validateAdminJWT = (req, res, next) => {
     jwt.verify(token, process.env.ADMIN_JWT_SECRET);
     next();
   } catch {
-    res.clearCookie("admin_session");
+    res.clearCookie("admin_session", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+      partitioned: true,
+    });
     return res.status(401).json({ success: false, message: "Session expired" });
   }
 };
@@ -541,7 +546,7 @@ app.post("/api/admin/login", adminLoginLimiter, async (req, res) => {
   res.cookie("admin_session", token, {
     httpOnly: true, // Not accessible by JS — XSS safe
     secure: true,
-    sameSite: "none",
+    sameSite: "strict",
     partitioned: true,
     maxAge: 8 * 60 * 60 * 1000, // 8 hours
   });
@@ -554,7 +559,7 @@ app.post("/api/admin/logout", (req, res) => {
   res.clearCookie("admin_session", {
     httpOnly: true,
     secure: true,
-    sameSite: "none",
+    sameSite: "strict",
     partitioned: true,
   });
   res.json({ success: true, message: "Logged out" });
