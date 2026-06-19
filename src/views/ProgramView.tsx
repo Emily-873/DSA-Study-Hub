@@ -131,7 +131,7 @@ export const ProgramView: React.FC<ProgramViewProps> = ({
     <section className="py-20 px-4 pt-32 min-h-screen">
       <div className="max-w-[1500px] mx-auto px-4 md:px-8 flex flex-col lg:flex-row gap-8 items-stretch">
         {/* Left Column: Program Details & Code */}
-        <div className="w-full lg:w-[55%] xl:w-[50%] lg:min-w-0 p-6 neo-brutalism bg-white dark:border-0 dark:bg-[#0D1424]/80 dark:backdrop-blur-xl dark:border dark:border-cyan-500/12 dark:rounded-xl">
+        <div className="w-full lg:w-[60%] xl:w-[60%] lg:min-w-0 p-6 neo-brutalism bg-white dark:bg-[#0D1424]/80 dark:border dark:border-cyan-500/20 dark:shadow-[0_0_15px_rgba(6,182,212,0.15)] dark:backdrop-blur-xl rounded-xl">
           <div className="space-y-6">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
@@ -321,7 +321,7 @@ export const ProgramView: React.FC<ProgramViewProps> = ({
       </div>
 
         {/* Right Column: Interactive Visualizer & Simulator */}
-        <div className="w-full lg:w-[45%] xl:w-[50%] lg:min-w-0 px-2 lg:px-0 flex flex-col pb-20">
+        <div className="w-full lg:w-[40%] xl:w-[40%] lg:min-w-0 px-2 lg:px-0 flex flex-col pb-20">
           {viewMode === "visualizer" && program.hasInteractive ? (
             <div>
               {renderInteractiveVisualizer(activeView)}

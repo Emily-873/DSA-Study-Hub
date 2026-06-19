@@ -35,14 +35,14 @@ export const CodeBlock = ({
   };
 
   return (
-    <div className="relative overflow-hidden neo-brutalism">
+    <div className="relative overflow-hidden rounded-xl border-2 dark:border border-gray-200 dark:border-cyan-500/20 bg-gray-50 dark:bg-[#070B14]/60 shadow-inner">
       <div className="absolute top-2 right-2 z-10 flex gap-2 transition-opacity opacity-0 group-hover:opacity-100">
         <div className="px-2 py-1 text-[10px] font-bold uppercase tracking-widest bg-gray-200 dark:bg-gray-800 rounded text-gray-500 dark:text-gray-400">
           {language}
         </div>
         <button
           onClick={handleCopy}
-          className="p-2 rounded-md bg-white/80 dark:bg-black/80 hover:bg-orange-500 hover:text-white transition-colors shadow-sm backdrop-blur-sm"
+          className="p-2 rounded-md bg-white/80 dark:bg-black/80 hover:bg-cyan-500 hover:text-white transition-colors shadow-sm backdrop-blur-sm"
           title="Copy code">
           {copied ? <Check size={16} /> : <Copy size={16} />}
         </button>
@@ -55,7 +55,7 @@ export const CodeBlock = ({
           padding: "1.5rem",
           fontSize: "0.875rem",
           lineHeight: "1.5",
-          backgroundColor: darkMode ? "#1f2937" : "#f9fafb",
+          backgroundColor: "transparent",
           fontFamily:
             'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
         }}

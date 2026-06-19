@@ -64,9 +64,9 @@ export const Quiz: React.FC<QuizProps> = ({ programId, darkMode }) => {
 
   return (
     <div
-      className={`mt-10 p-6 rounded-xl border transition-all shadow-md ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
+      className="mt-10 p-6 neo-brutalism bg-white dark:bg-[#0D1424]/80 dark:border dark:border-cyan-500/20 dark:shadow-[0_0_15px_rgba(6,182,212,0.15)] dark:backdrop-blur-xl rounded-xl transition-all shadow-md">
       <div className="flex items-center gap-2 mb-6">
-        <HelpCircle className="text-orange-500" size={24} />
+        <HelpCircle className="text-cyan-500" size={24} />
         <h3
           className={`text-2xl font-bold ${darkMode ? "text-white" : "text-gray-900"}`}>
           Knowledge Check
@@ -94,8 +94,8 @@ export const Quiz: React.FC<QuizProps> = ({ programId, darkMode }) => {
                 onClick={() => handleOptionSelect(idx)}
                 className={`w-full text-left p-4 rounded-lg border-2 transition-all font-medium ${
                   selectedOptions[currentQuestionIndex] === idx
-                    ? "border-orange-500 bg-orange-50 dark:bg-orange-500/10 text-orange-600 dark:text-orange-400"
-                    : "border-gray-200 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-500/50 " +
+                    ? "border-cyan-500 bg-cyan-50 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400"
+                    : "border-gray-200 dark:border-cyan-500/20 hover:border-cyan-300 dark:hover:border-cyan-500/50 " +
                       (darkMode ? "text-gray-300" : "text-gray-700")
                 }`}>
                 {option}
@@ -107,7 +107,7 @@ export const Quiz: React.FC<QuizProps> = ({ programId, darkMode }) => {
             <button
               onClick={handlePrevious}
               disabled={currentQuestionIndex === 0}
-              className={`px-4 py-2 rounded-lg font-semibold transition-colors ${currentQuestionIndex === 0 ? "opacity-50 cursor-not-allowed text-gray-400" : "text-orange-500 hover:bg-orange-50 dark:hover:bg-orange-500/10"}`}>
+              className={`px-4 py-2 rounded-lg font-semibold transition-colors ${currentQuestionIndex === 0 ? "opacity-50 cursor-not-allowed text-gray-400" : "text-cyan-500 hover:bg-cyan-50 dark:hover:bg-cyan-500/10"}`}>
               Previous
             </button>
 
@@ -117,7 +117,7 @@ export const Quiz: React.FC<QuizProps> = ({ programId, darkMode }) => {
                 disabled={
                   Object.keys(selectedOptions).length !== quizQuestions.length
                 }
-                className="px-6 py-2 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 transition-all shadow-md shadow-orange-500/20 disabled:opacity-50 disabled:cursor-not-allowed">
+                className="px-6 py-2 bg-cyan-500 text-white rounded-lg font-semibold hover:bg-cyan-600 transition-all shadow-md shadow-cyan-500/20 disabled:opacity-50 disabled:cursor-not-allowed">
                 Submit Answers
               </button>
             ) : (
@@ -132,8 +132,8 @@ export const Quiz: React.FC<QuizProps> = ({ programId, darkMode }) => {
         </div>
       ) : (
         <div className="animate-fade-in text-center py-6">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-orange-100 dark:bg-orange-500/20 mb-6">
-            <span className="text-3xl font-bold text-orange-500">
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-cyan-100 dark:bg-cyan-500/20 mb-6">
+            <span className="text-3xl font-bold text-cyan-500">
               {score}/{quizQuestions.length}
             </span>
           </div>
@@ -198,7 +198,7 @@ export const Quiz: React.FC<QuizProps> = ({ programId, darkMode }) => {
 
           <button
             onClick={handleReset}
-            className="px-6 py-2 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 transition-all shadow-md shadow-orange-500/20">
+            className="px-6 py-2 bg-cyan-500 text-white rounded-lg font-semibold hover:bg-cyan-600 transition-all shadow-md shadow-cyan-500/20">
             Retake Quiz
           </button>
         </div>

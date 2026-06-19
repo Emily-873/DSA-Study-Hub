@@ -100,7 +100,7 @@ export const InteractiveRoadmap: React.FC<InteractiveRoadmapProps> = ({ complete
   };
 
   return (
-    <section ref={containerRef} className="relative w-full max-w-5xl mx-auto py-24 px-4 sm:px-6 z-10">
+    <section id="roadmap" ref={containerRef} className="relative w-full max-w-5xl mx-auto py-24 px-4 sm:px-6 z-10">
       <div className="text-center mb-20">
         <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">
           The <span className="text-cyan-400">DSA Journey</span>
@@ -112,7 +112,7 @@ export const InteractiveRoadmap: React.FC<InteractiveRoadmapProps> = ({ complete
 
       <div className="relative w-full">
         {/* Animated SVG Path Timeline */}
-        <div className="absolute left-1/2 top-0 bottom-0 w-[4px] -translate-x-1/2 hidden md:block">
+        <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-[4px] -translate-x-1/2 z-0">
           <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 1000">
              {/* The glowing trail that follows scroll */}
              <motion.line
@@ -147,15 +147,18 @@ export const InteractiveRoadmap: React.FC<InteractiveRoadmapProps> = ({ complete
                 {/* Connecting horizontal line for zigzag (Desktop only) */}
                 <div className={`hidden md:block absolute top-1/2 -translate-y-1/2 w-[calc(50%-2rem)] h-[2px] ${isLeft ? 'right-[50%]' : 'left-[50%]'} bg-gradient-to-${isLeft ? 'l' : 'r'} from-cyan-500/50 to-transparent opacity-30`} />
 
+                {/* Connecting horizontal line (Mobile) */}
+                <div className="md:hidden absolute top-1/2 -translate-y-1/2 left-6 w-10 h-[2px] bg-gradient-to-r from-cyan-500/50 to-transparent opacity-30 z-0" />
+
                 {/* Content Card */}
-                <div className={`w-full md:w-[45%] flex ${isLeft ? 'md:justify-end' : 'md:justify-start'}`}>
+                <div className={`w-full md:w-[45%] flex ${isLeft ? 'md:justify-end' : 'md:justify-start'} pl-16 md:pl-0 z-10`}>
                   <motion.div
                     initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.5, delay: 0.1 }}
                     onClick={() => unlocked && router.push(node.route)}
-                    className={`relative p-6 rounded-2xl border transition-all duration-300 w-full max-w-sm
+                    className={`relative p-6 rounded-2xl border transition-all duration-300 w-full max-w-md
                       ${unlocked 
                         ? 'bg-slate-900/80 border-cyan-500/30 hover:border-cyan-400 hover:bg-slate-800 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] cursor-pointer' 
                         : 'bg-slate-900/40 border-slate-800 opacity-60 cursor-not-allowed grayscale'
@@ -188,8 +191,8 @@ export const InteractiveRoadmap: React.FC<InteractiveRoadmapProps> = ({ complete
                 </div>
 
                 {/* Center Node / Dot */}
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:flex items-center justify-center w-12 h-12 rounded-full border-4 border-[#070B14] bg-slate-900 z-10">
-                  <div className={`w-4 h-4 rounded-full transition-all duration-500 ${unlocked ? 'bg-cyan-400 shadow-[0_0_15px_rgba(6,182,212,1)] animate-pulse' : 'bg-slate-700'}`} />
+                <div className="absolute left-6 md:left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-8 h-8 md:w-12 md:h-12 rounded-full border-4 border-[#070B14] bg-slate-900 z-10">
+                  <div className={`w-2.5 h-2.5 md:w-4 md:h-4 rounded-full transition-all duration-500 ${unlocked ? 'bg-cyan-400 shadow-[0_0_15px_rgba(6,182,212,1)] animate-pulse' : 'bg-slate-700'}`} />
                 </div>
 
               </div>

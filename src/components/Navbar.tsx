@@ -380,8 +380,8 @@ export const Navbar = ({ resetProgramState, toggleAdminModal, completedPrograms,
                 backdropFilter: "blur(24px)",
               }}
             >
-              <div className="px-5 py-4 space-y-1">
-                <Link href="/" className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent">
+              <div className="px-5 py-4 space-y-1 max-h-[calc(100vh-64px)] overflow-y-auto pb-24">
+                <Link href="/" onClick={() => setMobileOpen(false)} className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent">
                   <Home size={14} /> Home
                 </Link>
 
@@ -433,28 +433,28 @@ export const Navbar = ({ resetProgramState, toggleAdminModal, completedPrograms,
                 {/* Mobile Visualizers */}
                 <div className="space-y-1 pt-2 border-b border-cyan-500/10 pb-3">
                   <p className="font-code text-[9px] tracking-[0.2em] uppercase text-slate-600 px-2 pb-1">Visualizers</p>
-                  <Link href="/knapsack" className="w-full text-left flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-150 cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent">
+                  <Link href="/knapsack" onClick={() => setMobileOpen(false)} className="w-full text-left flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-150 cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent">
                     <Package size={14} /> Knapsack
                   </Link>
-                  <Link href="/visualizer" className="w-full text-left flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-150 cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent">
+                  <Link href="/visualizer" onClick={() => setMobileOpen(false)} className="w-full text-left flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-150 cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent">
                     <Route size={14} /> PathFinder
                   </Link>
-                  <Link href="/sorting" className="w-full text-left flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-150 cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent">
+                  <Link href="/sorting" onClick={() => setMobileOpen(false)} className="w-full text-left flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-150 cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent">
                     <ArrowUpDown size={14} /> Sorter
                   </Link>
-                  <Link href="/tree-graph" className="w-full text-left flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-150 cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent">
+                  <Link href="/tree-graph" onClick={() => setMobileOpen(false)} className="w-full text-left flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-150 cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent">
                     <GitFork size={14} /> Trees
                   </Link>
-                  <Link href="/system-design" className="w-full text-left flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-150 cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent">
+                  <Link href="/system-design" onClick={() => setMobileOpen(false)} className="w-full text-left flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-150 cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent">
                     <Monitor size={14} /> System Design
                   </Link>
                 </div>
 
-                <Link href="/about" className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent">
+                <Link href="/about" onClick={() => setMobileOpen(false)} className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent">
                   <User size={14} /> About me
                 </Link>
 
-                <Link href="/report" className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent">
+                <Link href="/report" onClick={() => setMobileOpen(false)} className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent">
                   <Bug size={14} /> Report Bug
                 </Link>
               </div>
