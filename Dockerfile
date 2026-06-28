@@ -2,9 +2,9 @@
 FROM node:22-alpine AS builder
 WORKDIR /app
 
-# Copy the server's package files and install only production dependencies
-COPY server/package*.json ./server/
-RUN cd server && npm ci --only=production
+# Copy the server's package files and lockfile
+COPY server/package.json server/pnpm-lock.yaml ./server/
+RUN npm install -g pnpm && cd server && pnpm install --prod --frozen-lockfile
 
 # Stage 2: Final Runtime Image
 FROM node:22-alpine
