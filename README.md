@@ -50,13 +50,9 @@ Visualizing Tree Traversals and Graph Algorithms
 
 ### Architecture Diagrams
 
-#### System Design
+#### System Architecture
 
-![System Design Diagram](./public/diagrams/system-design.drawio.svg)
-
-#### Full Stack Linkage
-
-![Full Stack Linkage Diagram](./public/diagrams/fullstack.drawio.svg)
+![System Architecture Diagram](./public/diagrams/DSA-Study-Hub-System-architecture.png)
 
 ## Features
 
@@ -150,7 +146,7 @@ Our development journey with **DSA Study Hub** has been a rich learning experien
 - **Safe Multi-Language Code Execution:** Developed a secure server-side sandbox to compile and execute arbitrary user-submitted code (C, C++, Java, Python). This involved managing temporary file environments and handling `child_process` spawns with strict timeout and resource limits.
 - **Full-Stack Orchestration:** Mastered the integration of a **Next.js** (Pages Router) frontend with a persistent **Express/MongoDB** backend, utilizing **JWT-based** session management and **CSRF-seeding** for enhanced security.
 - **Interactive Algorithm Logic:** Transformed complex, static C-language data structures into dynamic, state-driven **React/TypeScript** visualizers (including Sorting, Pathfinding, Knapsack, and Tree/Graph traversal).
-- **Synergistic Visual Documentation:** Adopted a "Documentation-as-Code" approach by integrating **.drawio.svg** diagrams directly into the repository, ensuring system designs evolve alongside implementation.
+- **Synergistic Visual Documentation:** Adopted a "Documentation-as-Code" approach by integrating architecture diagrams directly into the repository, ensuring system designs evolve alongside implementation.
 - **Automated Developer Storytelling:** Leveraged GitHub Metrics to showcase project impact and technical proficiency, overcoming SVG rendering challenges through streamlined workflow optimization.
 - **Advanced Thematic UI/UX Design:** Successfully built and orchestrated a cohesive, complex cyberpunk design system using Tailwind CSS. This involved engineering global ambient background animations, custom glassmorphism panels, and harmonizing color palettes (migrating off default themes to custom glowing cyan and emerald) across 15+ independent interactive visualizer components.
 
